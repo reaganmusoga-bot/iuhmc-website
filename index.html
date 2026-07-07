@@ -27,42 +27,51 @@
         .btn-gold { background: #F5B041; color: #1f2937; }
         .btn-gold:hover { background: #d4952e; }
 
-        /* HERO - UPDATED */
+        /* HERO - NEW CLEAN DESIGN */
         .hero { 
-            background: linear-gradient(rgba(10, 126, 62, 0.78), rgba(6, 95, 46, 0.88)), 
+            background: linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.85) 100%), 
                         url('https://i.ibb.co/prJ22rS6/cccc.jpg') no-repeat center center / cover;
-            color: #fff; 
-            padding: 120px 0 90px; 
+            color: #1f2937; 
+            padding: 100px 0 80px; 
             border-radius: 0 0 40px 40px; 
             margin-bottom: 40px;
             min-height: 500px;
             display: flex;
             align-items: center;
+            border-bottom: 4px solid #3b82f6;
         }
         .hero h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 800;
             color: #3b82f6;
-            text-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(59, 130, 246, 0.15);
         }
         .hero h2 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 800;
             line-height: 1.2;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            margin-bottom: 16px;
+            color: #0A7E3E;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         .hero p {
-            font-size: 1.3rem;
-            opacity: 0.95;
+            font-size: 1.2rem;
+            color: #4b5563;
             max-width: 600px;
             margin-bottom: 30px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
-        .hero .btn { background: #F5B041; color: #1f2937; }
-        .hero .btn:hover { background: #e09e2e; }
+        .hero .btn { 
+            background: #3b82f6; 
+            color: #fff; 
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+        }
+        .hero .btn:hover { 
+            background: #2563eb; 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.45);
+        }
 
         /* STATS */
         .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px; background: #fff; padding: 40px 30px; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-top: -30px; margin-bottom: 60px; }
@@ -85,11 +94,35 @@
         .gallery-grid img { width: 100%; height: 200px; object-fit: cover; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: 0.3s; }
         .gallery-grid img:hover { transform: scale(1.03); }
 
-        /* UNIVERSITIES */
+        /* UNIVERSITIES WITH LOGOS */
         .university-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin: 20px 0 30px; }
-        .university-card { background: #fff; padding: 20px 12px; border-radius: 16px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.04); font-weight: 600; color: #0A7E3E; border: 2px solid #e5e7eb; transition: 0.2s; font-size: 0.95rem; }
-        .university-card:hover { border-color: #0A7E3E; background: #f0fdf4; }
-        .university-card i { font-size: 1.8rem; margin-bottom: 6px; display: block; color: #F5B041; }
+        .university-card { 
+            background: #fff; 
+            padding: 20px 12px; 
+            border-radius: 16px; 
+            text-align: center; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04); 
+            font-weight: 600; 
+            color: #0A7E3E; 
+            border: 2px solid #e5e7eb; 
+            transition: 0.2s; 
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .university-card:hover { border-color: #0A7E3E; background: #f0fdf4; transform: translateY(-3px); }
+        .university-card img { 
+            width: 60px; 
+            height: 60px; 
+            object-fit: contain; 
+            border-radius: 8px;
+        }
+        .university-card .univ-icon {
+            font-size: 2.2rem;
+            color: #F5B041;
+        }
 
         /* PARTNERS */
         .partner-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin: 30px 0 50px; }
@@ -123,10 +156,10 @@
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            .hero { padding: 80px 0; min-height: 400px; }
-            .hero h1 { font-size: 2rem; }
+            .hero { padding: 60px 0; min-height: 350px; }
+            .hero h1 { font-size: 1.8rem; }
             .hero h2 { font-size: 2.4rem; }
-            .hero p { font-size: 1.1rem; }
+            .hero p { font-size: 1rem; }
             .nav-links { gap: 16px; font-size: 0.9rem; justify-content: center; }
             .stats { grid-template-columns: 1fr 1fr; }
             .gallery-grid { grid-template-columns: 1fr 1fr; }
@@ -135,7 +168,7 @@
             footer .container { flex-direction: column; text-align: center; }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 1.6rem; }
+            .hero h1 { font-size: 1.4rem; }
             .hero h2 { font-size: 1.8rem; }
             .gallery-grid { grid-template-columns: 1fr; }
             .university-grid { grid-template-columns: 1fr; }
@@ -168,12 +201,12 @@
     </div>
 </header>
 
-<!-- ========== HERO ========== -->
+<!-- ========== HERO - NEW CLEAN DESIGN ========== -->
 <section class="hero">
     <div class="container">
         <h1>INTER-UNIVERSITY HEALTH MINISTERS CONSORTIUM</h1>
         <h2>Uganda's United Health Voice 🇺🇬</h2>
-        <p><strong>Inter-University Health Ministers Consortium</strong> — driving impactful health projects across Uganda, led by students for the community.</p>
+        <p>Driving impactful health projects across Uganda, led by students for the community.</p>
         <a href="#projects" class="btn">Explore Our Impact</a>
     </div>
 </section>
@@ -231,66 +264,66 @@
     </div>
 </section>
 
-<!-- ========== MEMBER UNIVERSITIES ========== -->
+<!-- ========== MEMBER UNIVERSITIES WITH LOGOS ========== -->
 <section class="container">
     <h2 class="section-title">Our Member Universities & Institutions</h2>
     <p class="section-sub">United from across Uganda to drive health change. Over 40 institutions are part of the IUHC network.</p>
     
     <h3 style="color:#0A7E3E; margin-top:30px;">🏛️ Public Universities</h3>
     <div class="university-grid">
-        <div class="university-card"><i class="fas fa-university"></i> Makerere University</div>
-        <div class="university-card"><i class="fas fa-university"></i> MUST (Mbarara University of Science & Technology)</div>
-        <div class="university-card"><i class="fas fa-university"></i> Gulu University</div>
-        <div class="university-card"><i class="fas fa-university"></i> Busitema University</div>
-        <div class="university-card"><i class="fas fa-university"></i> Soroti University</div>
-        <div class="university-card"><i class="fas fa-university"></i> Kyambogo University</div>
-        <div class="university-card"><i class="fas fa-university"></i> Kabale University</div>
-        <div class="university-card"><i class="fas fa-university"></i> Lira University</div>
-        <div class="university-card"><i class="fas fa-university"></i> MMU (Mountains of the Moon University)</div>
-        <div class="university-card"><i class="fas fa-university"></i> Muni University</div>
+        <div class="university-card"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/16/Makerere_University_logo.png/180px-Makerere_University_logo.png" alt="Makerere" /> Makerere University</div>
+        <div class="university-card"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/20/MUST_logo.png/180px-MUST_logo.png" alt="MUST" /> MUST (Mbarara University of Science & Technology)</div>
+        <div class="university-card"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Gulu_University_logo.png/180px-Gulu_University_logo.png" alt="Gulu" /> Gulu University</div>
+        <div class="university-card"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/83/Busitema_University_logo.png/180px-Busitema_University_logo.png" alt="Busitema" /> Busitema University</div>
+        <div class="university-card"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/61/Soroti_University_logo.png/180px-Soroti_University_logo.png" alt="Soroti" /> Soroti University</div>
+        <div class="university-card"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/Kyambogo_University_logo.png/180px-Kyambogo_University_logo.png" alt="Kyambogo" /> Kyambogo University</div>
+        <div class="university-card"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5b/Kabale_University_logo.png/180px-Kabale_University_logo.png" alt="Kabale" /> Kabale University</div>
+        <div class="university-card"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/14/Lira_University_logo.png/180px-Lira_University_logo.png" alt="Lira" /> Lira University</div>
+        <div class="university-card"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4a/Mountains_of_the_Moon_University_logo.png/180px-Mountains_of_the_Moon_University_logo.png" alt="MMU" /> MMU (Mountains of the Moon University)</div>
+        <div class="university-card"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/Muni_University_logo.png/180px-Muni_University_logo.png" alt="Muni" /> Muni University</div>
     </div>
 
     <h3 style="color:#0A7E3E; margin-top:40px;">🏫 Private Universities</h3>
     <div class="university-grid">
-        <div class="university-card"><i class="fas fa-university"></i> Uganda Christian University (UCU)</div>
-        <div class="university-card"><i class="fas fa-university"></i> Kampala International University (KIU)</div>
-        <div class="university-card"><i class="fas fa-university"></i> Uganda Martyrs University (UMU)</div>
-        <div class="university-card"><i class="fas fa-university"></i> Ndejje University</div>
-        <div class="university-card"><i class="fas fa-university"></i> Islamic University in Uganda (IUIU)</div>
-        <div class="university-card"><i class="fas fa-university"></i> Bugema University</div>
-        <div class="university-card"><i class="fas fa-university"></i> Bishop Stuart University</div>
-        <div class="university-card"><i class="fas fa-university"></i> Cavendish University Uganda</div>
-        <div class="university-card"><i class="fas fa-university"></i> International University of East Africa (IUEA)</div>
-        <div class="university-card"><i class="fas fa-university"></i> Kampala University</div>
-        <div class="university-card"><i class="fas fa-university"></i> Nkumba University</div>
-        <div class="university-card"><i class="fas fa-university"></i> Victoria University</div>
-        <div class="university-card"><i class="fas fa-university"></i> St. Augustine International University</div>
-        <div class="university-card"><i class="fas fa-university"></i> Fairland University</div>
-        <div class="university-card"><i class="fas fa-university"></i> Clarke International University</div>
-        <div class="university-card"><i class="fas fa-university"></i> African Rural University</div>
-        <div class="university-card"><i class="fas fa-university"></i> Kumi University</div>
-        <div class="university-card"><i class="fas fa-university"></i> LivingStone International University</div>
-        <div class="university-card"><i class="fas fa-university"></i> University of Kisubi (UNIK)</div>
-        <div class="university-card"><i class="fas fa-university"></i> All Saints University</div>
-        <div class="university-card"><i class="fas fa-university"></i> Great Lakes Regional University</div>
-        <div class="university-card"><i class="fas fa-university"></i> International Health Sciences University</div>
-        <div class="university-card"><i class="fas fa-university"></i> St. Lawrence University</div>
-        <div class="university-card"><i class="fas fa-university"></i> Virtual University of Uganda</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Uganda Christian University (UCU)</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Kampala International University (KIU)</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Uganda Martyrs University (UMU)</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Ndejje University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Islamic University in Uganda (IUIU)</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Bugema University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Bishop Stuart University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Cavendish University Uganda</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> International University of East Africa (IUEA)</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Kampala University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Nkumba University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Victoria University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> St. Augustine International University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Fairland University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Clarke International University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> African Rural University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Kumi University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> LivingStone International University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> University of Kisubi (UNIK)</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> All Saints University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Great Lakes Regional University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> International Health Sciences University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> St. Lawrence University</div>
+        <div class="university-card"><i class="fas fa-university univ-icon"></i> Virtual University of Uganda</div>
     </div>
 
     <h3 style="color:#0A7E3E; margin-top:40px;">🏥 Higher Education Institutions</h3>
     <div class="university-grid">
-        <div class="university-card"><i class="fas fa-building"></i> Makerere University Business School (MUBS)</div>
-        <div class="university-card"><i class="fas fa-building"></i> Uganda Management Institute (UMI)</div>
-        <div class="university-card"><i class="fas fa-building"></i> Gulu College of Health Sciences</div>
-        <div class="university-card"><i class="fas fa-building"></i> Mulago Paramedical School</div>
-        <div class="university-card"><i class="fas fa-building"></i> Uganda Institute of Allied Health (UIAHMS)</div>
-        <div class="university-card"><i class="fas fa-building"></i> Aga Khan University (Uganda Campus)</div>
-        <div class="university-card"><i class="fas fa-building"></i> Jinja Nursing School</div>
-        <div class="university-card"><i class="fas fa-building"></i> Fort Portal Nursing School</div>
-        <div class="university-card"><i class="fas fa-building"></i> Arua Nursing School</div>
-        <div class="university-card"><i class="fas fa-building"></i> Royal College of Physicians (Uganda)</div>
-        <div class="university-card"><i class="fas fa-building"></i> Uganda Nurses and Midwives Training Council</div>
+        <div class="university-card"><i class="fas fa-building univ-icon" style="color:#0A7E3E;"></i> Makerere University Business School (MUBS)</div>
+        <div class="university-card"><i class="fas fa-building univ-icon" style="color:#0A7E3E;"></i> Uganda Management Institute (UMI)</div>
+        <div class="university-card"><i class="fas fa-building univ-icon" style="color:#0A7E3E;"></i> Gulu College of Health Sciences</div>
+        <div class="university-card"><i class="fas fa-building univ-icon" style="color:#0A7E3E;"></i> Mulago Paramedical School</div>
+        <div class="university-card"><i class="fas fa-building univ-icon" style="color:#0A7E3E;"></i> Uganda Institute of Allied Health (UIAHMS)</div>
+        <div class="university-card"><i class="fas fa-building univ-icon" style="color:#0A7E3E;"></i> Aga Khan University (Uganda Campus)</div>
+        <div class="university-card"><i class="fas fa-building univ-icon" style="color:#0A7E3E;"></i> Jinja Nursing School</div>
+        <div class="university-card"><i class="fas fa-building univ-icon" style="color:#0A7E3E;"></i> Fort Portal Nursing School</div>
+        <div class="university-card"><i class="fas fa-building univ-icon" style="color:#0A7E3E;"></i> Arua Nursing School</div>
+        <div class="university-card"><i class="fas fa-building univ-icon" style="color:#0A7E3E;"></i> Royal College of Physicians (Uganda)</div>
+        <div class="university-card"><i class="fas fa-building univ-icon" style="color:#0A7E3E;"></i> Uganda Nurses and Midwives Training Council</div>
     </div>
 </section>
 
