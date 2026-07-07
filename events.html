@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Events - IUHC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #1f2937; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* HEADER (same as gallery) */
+        header { background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+        nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo img { height: 50px; width: auto; background: transparent; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
+        .logo span { font-weight: 800; font-size: 1.3rem; color: #0A7E3E; }
+        .nav-links { display: flex; gap: 24px; list-style: none; font-weight: 600; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: #1f2937; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: #0A7E3E; border-bottom: 3px solid #F5B041; }
+
+        .page-header { background: linear-gradient(135deg, #0A7E3E 0%, #065f2e 100%); color: #fff; padding: 60px 0 40px; border-radius: 0 0 40px 40px; margin-bottom: 50px; }
+        .page-header h1 { font-size: 2.8rem; font-weight: 800; }
+        .page-header p { opacity: 0.9; font-size: 1.1rem; }
+
+        .events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        .event-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); transition: 0.3s; border-left: 5px solid #0A7E3E; }
+        .event-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        .event-card .date-box { background: #0A7E3E; color: #fff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .event-card .date-box .day { font-size: 2rem; font-weight: 800; }
+        .event-card .content { padding: 24px; }
+        .event-card .content h3 { font-size: 1.2rem; margin-bottom: 8px; }
+        .event-card .content .meta { color: #6b7280; font-size: 0.9rem; margin-bottom: 8px; }
+        .event-card .content .meta i { margin-right: 6px; }
+        .event-card .content p { color: #4b5563; font-size: 0.95rem; }
+        .event-card .btn { display: inline-block; margin-top: 16px; background: #0A7E3E; color: #fff; padding: 8px 24px; border-radius: 40px; text-decoration: none; font-weight: 600; transition: 0.3s; border: none; cursor: pointer; }
+        .event-card .btn:hover { background: #065f2e; }
+
+        .past-event { border-left-color: #9ca3af; opacity: 0.8; }
+        .past-event .date-box { background: #6b7280; }
+
+        footer { background: #1f2937; color: #d1d5db; padding: 40px 0 20px; margin-top: 40px; border-radius: 40px 40px 0 0; }
+        footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+        footer a { color: #F5B041; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2rem; }
+            .nav-links { gap: 16px; font-size: 0.9rem; justify-content: center; }
+            .events-grid { grid-template-columns: 1fr; }
+            footer .container { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .logo img { height: 40px; }
+            .logo span { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <img src="https://i.ibb.co/F4RQmRbY/logo-iuhmc.png" alt="IUHC Logo" />
+                <span>IUHC</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="leadership.html">Leadership</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="get-involved.html">Get Involved</a></li>
+                <li><a href="impact.html">Impact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="events.html" class="active">Events</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="page-header">
+    <div class="container">
+        <h1>📅 Events</h1>
+        <p>Stay updated on IUHC meetings, trainings, and health campaigns across Uganda.</p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="events-grid" id="eventsGrid">
+        <!-- Events will be loaded dynamically -->
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div>
+            <strong style="color:#fff;">IUHC</strong><br />
+            Inter-University Health Ministers Consortium<br />
+            Uganda 🇺🇬
+        </div>
+        <div>
+            <a href="leadership.html">Leadership</a><br />
+            <a href="blog.html">Blog</a><br />
+            <a href="gallery.html">Gallery</a><br />
+            <a href="events.html">Events</a>
+        </div>
+        <div>
+            <strong>Email:</strong> iuhmcinfo@yahoo.com<br />
+            <strong>Phone:</strong> +256 703 796 153
+        </div>
+    </div>
+</footer>
+
+<script>
+    const events = [
+        {
+            id: 1,
+            title: "Northern Region Sickle Cell Training",
+            date: "August 15-16, 2026",
+            location: "Lira University",
+            description: "Training for health ministers from universities in the Northern region. Topics include sickle cell awareness, testing, and community engagement.",
+            isPast: false,
+            day: "15-16",
+            month: "Aug"
+        },
+        {
+            id: 2,
+            title: "National Executive Committee Meeting",
+            date: "August 25, 2026",
+            location: "Virtual (Zoom)",
+            description: "Quarterly meeting of the National Executive Committee to review progress and plan upcoming activities.",
+            isPast: false,
+            day: "25",
+            month: "Aug"
+        },
+        {
+            id: 3,
+            title: "IUHC National Launch & Sickle Cell Campaign",
+            date: "June 26, 2026",
+            location: "Ministry of Health HQ, Kampala",
+            description: "Official launch of the Inter-University Health Ministers Consortium and the Sickle Cell Disease Campaign with the Ministry of Health.",
+            isPast: true,
+            day: "26",
+            month: "Jun"
+        },
+        {
+            id: 4,
+            title: "Central Region Health Ministers Meeting",
+            date: "July 10, 2026",
+            location: "Makerere University",
+            description: "Regional meeting for health ministers from Central Uganda universities to coordinate health activities.",
+            isPast: true,
+            day: "10",
+            month: "Jul"
+        }
+    ];
+
+    function renderEvents() {
+        const grid = document.getElementById('eventsGrid');
+        grid.innerHTML = events.map(event => `
+            <div class="event-card ${event.isPast ? 'past-event' : ''}">
+                <div class="date-box">
+                    <span class="day">${event.day}</span>
+                    <span>${event.month}</span>
+                </div>
+                <div class="content">
+                    <h3>${event.title}</h3>
+                    <div class="meta"><i class="fas fa-map-marker-alt"></i> ${event.location}</div>
+                    <div class="meta"><i class="fas fa-calendar"></i> ${event.date}</div>
+                    <p>${event.description}</p>
+                    ${!event.isPast ? `<button class="btn" onclick="registerEvent(${event.id})">Register Interest →</button>` : `<span style="color:#6b7280; font-size:0.85rem;"><i class="fas fa-check-circle"></i> Past Event</span>`}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function registerEvent(id) {
+        const event = events.find(e => e.id === id);
+        if (event) {
+            sessionStorage.setItem('contactSubject', `Event Registration: ${event.title}`);
+            sessionStorage.setItem('contactMessage', `I would like to register for the event: ${event.title} on ${event.date} at ${event.location}. Please send me more details.`);
+            window.location.href = 'index.html#contact';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', renderEvents);
+</script>
+</body>
+</html>
