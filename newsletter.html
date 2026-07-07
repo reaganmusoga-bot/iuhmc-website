@@ -47,7 +47,7 @@
         .archive-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f3f4f6; }
         .archive-item:last-child { border-bottom: none; }
         .archive-item .date { color: #6b7280; font-size: 0.85rem; }
-        .archive-item .btn-small { background: #F5B041; color: #1f2937; padding: 4px 16px; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
+        .archive-item .btn-small { background: #F5B041; color: #1f2937; padding: 4px 16px; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: 0.3s; border: none; cursor: pointer; }
         .archive-item .btn-small:hover { background: #d4952e; }
 
         footer { background: #1f2937; color: #d1d5db; padding: 40px 0 20px; margin-top: 40px; border-radius: 40px 40px 0 0; }
@@ -102,7 +102,6 @@
 </section>
 
 <div class="container">
-    <!-- Newsletter Signup Box -->
     <div class="newsletter-box">
         <div class="icon">📬</div>
         <h2>Join Our Community</h2>
@@ -118,7 +117,6 @@
         <p style="margin-top:16px; font-size:0.85rem; color:#9ca3af;">We respect your privacy. Unsubscribe at any time.</p>
     </div>
 
-    <!-- Benefits -->
     <h2 style="text-align:center; font-size:2rem; color:#0A7E3E; margin-bottom:12px;">Why Subscribe?</h2>
     <p style="text-align:center; color:#6b7280; margin-bottom:40px;">Get exclusive content and updates straight from the consortium.</p>
     <div class="benefits-grid">
@@ -139,20 +137,19 @@
         </div>
     </div>
 
-    <!-- Newsletter Archive -->
     <div class="archive-section">
         <h3>📂 Past Newsletters</h3>
         <div class="archive-item">
             <span><strong>July 2026</strong> – Sickle Cell Campaign Highlights</span>
-            <a href="#" class="btn-small" onclick="alert('Newsletter archive coming soon. Stay tuned!')">Read</a>
+            <button class="btn-small" onclick="alert('Newsletter archive coming soon. Stay tuned!')">Read</button>
         </div>
         <div class="archive-item">
             <span><strong>June 2026</strong> – IUHC Launch Edition</span>
-            <a href="#" class="btn-small" onclick="alert('Newsletter archive coming soon. Stay tuned!')">Read</a>
+            <button class="btn-small" onclick="alert('Newsletter archive coming soon. Stay tuned!')">Read</button>
         </div>
         <div class="archive-item">
             <span><strong>Coming Soon</strong> – Northern Region Training Preview</span>
-            <a href="#" class="btn-small" onclick="alert('Newsletter archive coming soon. Stay tuned!')">Preview</a>
+            <button class="btn-small" onclick="alert('Newsletter archive coming soon. Stay tuned!')">Preview</button>
         </div>
     </div>
 </div>
@@ -174,7 +171,13 @@
         </div>
         <div>
             <strong>Email:</strong> iuhmcinfo@yahoo.com<br />
-            <strong>Phone:</strong> +256 703 796 153
+            <strong>Phone:</strong> <a href="tel:+256703796153" style="color:#F5B041; text-decoration:none;">+256 703 796 153</a><br />
+            <div class="social-links" style="margin-top:10px;">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            &copy; 2026 IUHC. Built with ❤️ by the consortium.
         </div>
     </div>
 </footer>
@@ -189,17 +192,14 @@
         status.textContent = 'Subscribing...';
         status.style.color = '#0A7E3E';
 
-        // Store subscriber in localStorage (for demo)
         let subscribers = JSON.parse(localStorage.getItem('newsletterSubscribers')) || [];
         subscribers.push({ name, email, date: new Date().toISOString() });
         localStorage.setItem('newsletterSubscribers', JSON.stringify(subscribers));
 
-        // Show success message
         status.textContent = '✅ You\'re subscribed! Welcome to the IUHC community.';
         status.style.color = '#0A7E3E';
         document.getElementById('newsletterForm').reset();
 
-        // Also send via Formspree for email notification
         fetch('https://formspree.io/f/xqkrdnkj', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
