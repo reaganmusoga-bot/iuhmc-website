@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>IUHMC - Inter-University Health Ministers Consortium</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ----- HEADER / NAV ----- */
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+        .logo span {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: #0A7E3E;
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            font-weight: 600;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #1f2937;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #0A7E3E;
+        }
+        .nav-links a.active {
+            color: #0A7E3E;
+            border-bottom: 3px solid #F5B041;
+        }
+
+        /* ----- BUTTONS ----- */
+        .btn {
+            display: inline-block;
+            background: #0A7E3E;
+            color: #fff;
+            padding: 12px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #065f2e;
+        }
+        .btn-gold {
+            background: #F5B041;
+            color: #1f2937;
+        }
+        .btn-gold:hover {
+            background: #d4952e;
+        }
+
+        /* ----- HERO ----- */
+        .hero {
+            background: linear-gradient(135deg, #0A7E3E 0%, #065f2e 100%);
+            color: #fff;
+            padding: 80px 0 60px;
+            border-radius: 0 0 40px 40px;
+            margin-bottom: 40px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+        .hero .btn {
+            background: #F5B041;
+            color: #1f2937;
+        }
+        .hero .btn:hover {
+            background: #e09e2e;
+        }
+
+        /* ----- STATS ----- */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-top: -30px;
+            margin-bottom: 60px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #0A7E3E;
+        }
+        .stat-label {
+            font-size: 0.95rem;
+            color: #6b7280;
+        }
+
+        /* ----- SECTION TITLE ----- */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #0A7E3E;
+        }
+        .section-sub {
+            color: #6b7280;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        /* ----- PROJECT CARDS (placeholder) ----- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .project-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            border-left: 5px solid #F5B041;
+        }
+        .project-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        .project-card p {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        /* ----- FOOTER ----- */
+        footer {
+            background: #1f2937;
+            color: #d1d5db;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+            border-radius: 40px 40px 0 0;
+        }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        footer a {
+            color: #F5B041;
+            text-decoration: none;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { gap: 16px; font-size: 0.9rem; }
+            .logo span { font-size: 1rem; }
+            .stats { grid-template-columns: 1fr 1fr; }
+            footer .container { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <!-- Replace 'logo-placeholder.png' with your actual logo URL -->
+                <img src="https://i.ibb.co/F4RQmRbY/logo-iuhmc.png" alt="IUHMC Logo" />
+                <span>IUHMC</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="leadership.html">Leadership</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+    <div class="container">
+        <h1>Uganda's United Health Voice 🇺🇬</h1>
+        <p>Inter-University Health Ministers Consortium — driving impactful health projects across Uganda, led by students for the community.</p>
+        <a href="#projects" class="btn">Explore Our Impact</a>
+    </div>
+</section>
+
+<!-- ========== STATS ========== -->
+<div class="container">
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-number">20+</div>
+            <div class="stat-label">Member Universities</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">15</div>
+            <div class="stat-label">Active Projects</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">10K+</div>
+            <div class="stat-label">Lives Impacted</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Regions Reached</div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== ABOUT ========== -->
+<section id="about" class="container">
+    <h2 class="section-title">Who We Are</h2>
+    <p class="section-sub">We are a consortium of health ministers from all Ugandan universities and higher education institutions, uniting to create sustainable community health solutions.</p>
+    <div style="background:#fff; padding:30px; border-radius:16px; margin-bottom:40px; box-shadow:0 2px 10px rgba(0,0,0,0.04);">
+        <p><strong>Mission:</strong> To mobilize student-led health initiatives that address Uganda's most pressing health challenges through collaboration, innovation, and service.</p>
+        <p style="margin-top:12px;"><strong>Vision:</strong> A healthier Uganda where every community has access to quality health education and services, driven by the energy of university students.</p>
+    </div>
+</section>
+
+<!-- ========== PROJECTS (placeholder) ========== -->
+<section id="projects" class="container">
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-sub">Real impact, real communities. Here are some of our ongoing initiatives.</p>
+    <div class="project-grid">
+        <div class="project-card">
+            <h3>🩺 Eastern Malaria Eradication</h3>
+            <p>Distributing mosquito nets and education in rural communities.</p>
+        </div>
+        <div class="project-card">
+            <h3>👩‍👧 Maternal Health Camp</h3>
+            <p>Prenatal care and safe delivery workshops in Western Uganda.</p>
+        </div>
+        <div class="project-card">
+            <h3>🧠 Mental Health Awareness</h3>
+            <p>Student-led counseling and stigma reduction campaigns.</p>
+        </div>
+    </div>
+    <div style="text-align:center; margin:40px 0;">
+        <a href="#" class="btn btn-gold">View All Projects</a>
+    </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section id="contact" class="container" style="margin-bottom:40px;">
+    <h2 class="section-title">Partner With Us</h2>
+    <p class="section-sub">NGOs, government agencies, and volunteers — let's work together.</p>
+    <div style="background:#fff; padding:30px; border-radius:16px; box-shadow:0 2px 10px rgba(0,0,0,0.04);">
+        <p><strong>Email:</strong> iuhmc@consortium.ug</p>
+        <p><strong>Follow us:</strong> [Social links coming soon]</p>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+    <div class="container">
+        <div>
+            <strong style="color:#fff;">IUHMC</strong><br />
+            Inter-University Health Ministers Consortium<br />
+            Uganda 🇺🇬
+        </div>
+        <div>
+            <a href="leadership.html">Leadership</a><br />
+            <a href="#projects">Projects</a><br />
+            <a href="#contact">Contact</a>
+        </div>
+        <div>
+            &copy; 2026 IUHMC. Built with ❤️ by the consortium.
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
