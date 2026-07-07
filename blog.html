@@ -11,7 +11,6 @@
         body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #1f2937; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* HEADER */
         header { background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
         nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
         .logo { display: flex; align-items: center; gap: 12px; }
@@ -21,19 +20,16 @@
         .nav-links a { text-decoration: none; color: #1f2937; transition: color 0.2s; }
         .nav-links a:hover, .nav-links a.active { color: #0A7E3E; border-bottom: 3px solid #F5B041; }
 
-        /* PAGE HEADER */
         .page-header { background: linear-gradient(135deg, #0A7E3E 0%, #065f2e 100%); color: #fff; padding: 60px 0 40px; border-radius: 0 0 40px 40px; margin-bottom: 50px; }
         .page-header h1 { font-size: 2.8rem; font-weight: 800; }
         .page-header p { opacity: 0.9; font-size: 1.1rem; }
 
-        /* SEARCH BAR */
         .search-bar { max-width: 500px; margin: 0 auto 40px; display: flex; gap: 12px; }
         .search-bar input { flex: 1; padding: 12px 20px; border: 2px solid #e5e7eb; border-radius: 40px; font-family: inherit; font-size: 1rem; }
         .search-bar input:focus { outline: none; border-color: #0A7E3E; }
         .search-bar button { background: #0A7E3E; color: #fff; padding: 12px 24px; border: none; border-radius: 40px; font-weight: 600; cursor: pointer; transition: 0.3s; }
         .search-bar button:hover { background: #065f2e; }
 
-        /* BLOG GRID */
         .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-bottom: 60px; }
         .blog-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); transition: 0.3s; }
         .blog-card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
@@ -46,12 +42,9 @@
         .blog-card .btn { background: #0A7E3E; color: #fff; padding: 8px 24px; border-radius: 40px; text-decoration: none; font-weight: 600; transition: 0.3s; display: inline-block; border: none; cursor: pointer; }
         .blog-card .btn:hover { background: #065f2e; }
 
-        /* FOOTER */
         footer { background: #1f2937; color: #d1d5db; padding: 40px 0 20px; margin-top: 40px; border-radius: 40px 40px 0 0; }
         footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
         footer a { color: #F5B041; text-decoration: none; }
-        footer .social-links a { color: #d1d5db; font-size: 1.4rem; }
-        footer .social-links a:hover { color: #F5B041; }
 
         @media (max-width: 768px) {
             .page-header h1 { font-size: 2rem; }
@@ -63,7 +56,6 @@
         @media (max-width: 480px) {
             .logo img { height: 40px; }
             .logo span { font-size: 1rem; }
-            .nav-links { gap: 12px; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -83,13 +75,16 @@
                 <li><a href="get-involved.html">Get Involved</a></li>
                 <li><a href="impact.html">Impact</a></li>
                 <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="newsletter.html">Newsletter</a></li>
+                <li><a href="portal.html">Portal</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
-<!-- ========== PAGE HEADER ========== -->
 <section class="page-header">
     <div class="container">
         <h1>📝 IUHC Blog</h1>
@@ -97,7 +92,6 @@
     </div>
 </section>
 
-<!-- ========== SEARCH BAR ========== -->
 <div class="container">
     <div class="search-bar">
         <input type="text" id="searchInput" placeholder="Search articles..." />
@@ -105,14 +99,10 @@
     </div>
 </div>
 
-<!-- ========== BLOG GRID ========== -->
 <div class="container">
-    <div class="blog-grid" id="blogGrid">
-        <!-- Posts will be loaded dynamically -->
-    </div>
+    <div class="blog-grid" id="blogGrid"></div>
 </div>
 
-<!-- ========== FOOTER ========== -->
 <footer>
     <div class="container">
         <div>
@@ -122,9 +112,11 @@
         </div>
         <div>
             <a href="leadership.html">Leadership</a><br />
-            <a href="resources.html">Resources</a><br />
-            <a href="get-involved.html">Get Involved</a><br />
-            <a href="impact.html">Impact</a>
+            <a href="blog.html">Blog</a><br />
+            <a href="gallery.html">Gallery</a><br />
+            <a href="events.html">Events</a><br />
+            <a href="newsletter.html">Newsletter</a><br />
+            <a href="portal.html">Member Portal</a>
         </div>
         <div>
             <strong>Email:</strong> iuhmcinfo@yahoo.com<br />
@@ -140,7 +132,6 @@
 </footer>
 
 <script>
-    // ========== BLOG POSTS ==========
     const posts = [
         {
             id: 1,
@@ -189,7 +180,6 @@
         }
     ];
 
-    // Render posts
     function renderPosts(postsToRender) {
         const grid = document.getElementById('blogGrid');
         if (postsToRender.length === 0) {
@@ -202,7 +192,6 @@
             `;
             return;
         }
-
         grid.innerHTML = postsToRender.map(post => `
             <div class="blog-card">
                 <img src="${post.image}" alt="${post.title}" />
@@ -217,7 +206,6 @@
         `).join('');
     }
 
-    // Search function
     function searchPosts() {
         const query = document.getElementById('searchInput').value.toLowerCase();
         const filtered = posts.filter(post => 
@@ -229,7 +217,6 @@
         renderPosts(filtered);
     }
 
-    // View individual post
     function viewPost(id) {
         const post = posts.find(p => p.id === id);
         if (post) {
@@ -282,7 +269,6 @@
         }
     }
 
-    // Load posts on page load
     document.addEventListener('DOMContentLoaded', function() {
         renderPosts(posts);
         document.getElementById('searchInput').addEventListener('keyup', function(e) {
