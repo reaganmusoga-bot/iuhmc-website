@@ -10,31 +10,66 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #1f2937; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* HEADER */
         header { background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
-        nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+        nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
         .logo { display: flex; align-items: center; gap: 12px; }
-        .logo img { height: 50px; width: auto; }
+        .logo img { height: 50px; width: auto; background: transparent; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
         .logo span { font-weight: 800; font-size: 1.3rem; color: #0A7E3E; }
-        .nav-links { display: flex; gap: 28px; list-style: none; font-weight: 600; flex-wrap: wrap; }
+        .nav-links { display: flex; gap: 24px; list-style: none; font-weight: 600; flex-wrap: wrap; }
         .nav-links a { text-decoration: none; color: #1f2937; transition: color 0.2s; }
         .nav-links a:hover, .nav-links a.active { color: #0A7E3E; border-bottom: 3px solid #F5B041; }
+
+        /* PAGE HEADER */
         .page-header { background: linear-gradient(135deg, #0A7E3E 0%, #065f2e 100%); color: #fff; padding: 60px 0 40px; border-radius: 0 0 40px 40px; margin-bottom: 50px; }
         .page-header h1 { font-size: 2.8rem; font-weight: 800; }
+        .page-header p { opacity: 0.9; font-size: 1.1rem; }
+
+        /* SECTIONS */
         .section-title { font-size: 2rem; font-weight: 800; color: #0A7E3E; border-left: 6px solid #F5B041; padding-left: 16px; margin: 40px 0 20px; }
         .involve-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 60px; }
-        .involve-card { background: #fff; border-radius: 16px; padding: 30px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.06); transition: 0.2s; }
-        .involve-card:hover { transform: translateY(-4px); }
+        .involve-card { background: #fff; border-radius: 16px; padding: 30px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.06); transition: 0.3s; }
+        .involve-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
         .involve-card i { font-size: 3rem; color: #0A7E3E; margin-bottom: 16px; }
         .involve-card h3 { margin-bottom: 8px; }
-        .involve-card p { color: #6b7280; }
+        .involve-card p { color: #6b7280; margin-bottom: 16px; }
+
+        /* BUTTONS */
         .btn { display: inline-block; background: #0A7E3E; color: #fff; padding: 12px 32px; border-radius: 40px; text-decoration: none; font-weight: 700; transition: 0.3s; border: none; cursor: pointer; }
-        .btn:hover { background: #065f2e; }
+        .btn:hover { background: #065f2e; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(10, 126, 62, 0.4); }
         .btn-gold { background: #F5B041; color: #1f2937; }
-        .btn-gold:hover { background: #d4952e; }
+        .btn-gold:hover { background: #d4952e; box-shadow: 0 6px 20px rgba(245, 176, 65, 0.4); }
+        .btn-blue { background: #3b82f6; color: #fff; }
+        .btn-blue:hover { background: #2563eb; box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4); }
+
+        /* CALL TO ACTION BOX */
+        .cta-box { background: #fff; padding: 40px; border-radius: 16px; margin: 40px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.04); text-align: center; border: 2px solid #e5e7eb; }
+        .cta-box h3 { color: #0A7E3E; font-size: 1.5rem; margin-bottom: 10px; }
+        .cta-box p { color: #6b7280; margin-bottom: 20px; }
+
+        /* FOOTER */
         footer { background: #1f2937; color: #d1d5db; padding: 40px 0 20px; margin-top: 40px; border-radius: 40px 40px 0 0; }
         footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
         footer a { color: #F5B041; text-decoration: none; }
-        @media (max-width: 768px) { .nav-links { gap: 16px; font-size: 0.9rem; } .page-header h1 { font-size: 2rem; } }
+        footer .social-links a { color: #d1d5db; font-size: 1.4rem; }
+        footer .social-links a:hover { color: #F5B041; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .page-header { padding: 40px 0 30px; }
+            .page-header h1 { font-size: 2rem; }
+            .nav-links { gap: 16px; font-size: 0.9rem; justify-content: center; }
+            .involve-grid { grid-template-columns: 1fr 1fr; }
+            footer .container { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .involve-grid { grid-template-columns: 1fr; }
+            .logo img { height: 40px; }
+            .logo span { font-size: 1rem; }
+            .nav-links { gap: 12px; font-size: 0.8rem; }
+            .cta-box { padding: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -42,7 +77,10 @@
 <header>
     <div class="container">
         <nav>
-            <div class="logo"><img src="https://i.ibb.co/F4RQmRbY/logo-iuhmc.png" alt="IUHC Logo" /><span>IUHC</span></div>
+            <div class="logo">
+                <img src="https://i.ibb.co/F4RQmRbY/logo-iuhmc.png" alt="IUHC Logo" />
+                <span>IUHC</span>
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="leadership.html">Leadership</a></li>
@@ -55,6 +93,7 @@
     </div>
 </header>
 
+<!-- ========== PAGE HEADER ========== -->
 <section class="page-header">
     <div class="container">
         <h1>🤝 Get Involved</h1>
@@ -62,29 +101,125 @@
     </div>
 </section>
 
+<!-- ========== WAYS TO PARTICIPATE ========== -->
 <div class="container">
     <h2 class="section-title">Ways to Participate</h2>
     <div class="involve-grid">
-        <div class="involve-card"><i class="fas fa-user-graduate"></i><h3>For Students</h3><p>Join your university's health ministry team. Lead campaigns, organize testing drives, and make a difference.</p><a href="index.html#contact" class="btn" style="margin-top:16px;">Join Now</a></div>
-        <div class="involve-card"><i class="fas fa-handshake"></i><h3>For NGOs & Partners</h3><p>Collaborate with us on health projects, provide resources, or co-host awareness campaigns.</p><a href="index.html#contact" class="btn btn-gold" style="margin-top:16px;">Partner With Us</a></div>
-        <div class="involve-card"><i class="fas fa-heart"></i><h3>For Volunteers</h3><p>Join our testing drives, health camps, and community outreach programs across Uganda.</p><a href="index.html#contact" class="btn" style="margin-top:16px;">Volunteer</a></div>
-        <div class="involve-card"><i class="fas fa-donate"></i><h3>For Donors</h3><p>Support our campaigns with funding, medical supplies, or testing kits.</p><a href="index.html#contact" class="btn btn-gold" style="margin-top:16px;">Donate</a></div>
+
+        <!-- For Students -->
+        <div class="involve-card">
+            <i class="fas fa-user-graduate"></i>
+            <h3>For Students</h3>
+            <p>Join your university's health ministry team. Lead campaigns, organize testing drives, and make a difference.</p>
+            <a href="index.html#contact" class="btn" onclick="prefillForm('Student Interest', 'I am a student interested in joining the IUHC network at my university. Please guide me on how to get involved.')">Join Now →</a>
+        </div>
+
+        <!-- For NGOs & Partners -->
+        <div class="involve-card">
+            <i class="fas fa-handshake"></i>
+            <h3>For NGOs & Partners</h3>
+            <p>Collaborate with us on health projects, provide resources, or co-host awareness campaigns.</p>
+            <a href="index.html#contact" class="btn btn-gold" onclick="prefillForm('Partnership Inquiry', 'We are an organization interested in partnering with IUHC. We would like to discuss collaboration opportunities.')">Partner With Us →</a>
+        </div>
+
+        <!-- For Volunteers -->
+        <div class="involve-card">
+            <i class="fas fa-heart"></i>
+            <h3>For Volunteers</h3>
+            <p>Join our testing drives, health camps, and community outreach programs across Uganda.</p>
+            <a href="index.html#contact" class="btn btn-blue" onclick="prefillForm('Volunteer Interest', 'I am interested in volunteering with IUHC. Please let me know about upcoming opportunities and how I can help.')">Volunteer →</a>
+        </div>
+
+        <!-- For Donors -->
+        <div class="involve-card">
+            <i class="fas fa-donate"></i>
+            <h3>For Donors</h3>
+            <p>Support our campaigns with funding, medical supplies, or testing kits.</p>
+            <a href="index.html#contact" class="btn btn-gold" onclick="prefillForm('Donation Inquiry', 'I would like to support IUHC through a donation. Please provide details on how I can contribute.')">Donate →</a>
+        </div>
+
     </div>
 
-    <div style="background:#fff; padding:30px; border-radius:16px; margin:40px 0; box-shadow:0 2px 10px rgba(0,0,0,0.04); text-align:center;">
-        <h3 style="color:#0A7E3E;">Upcoming: Mass Testing Drive</h3>
-        <p style="margin:10px 0;">Join us for our next sickle cell testing exercise. Date and venue to be announced soon.</p>
-        <a href="index.html#contact" class="btn">Get Notified</a>
+    <!-- ========== UPCOMING EVENT ========== -->
+    <div class="cta-box">
+        <h3>📅 Upcoming: Mass Testing Drive</h3>
+        <p>Join us for our next sickle cell testing exercise. Date and venue to be announced soon.</p>
+        <a href="index.html#contact" class="btn" onclick="prefillForm('Testing Drive Interest', 'I am interested in the upcoming mass testing drive. Please notify me when the date and venue are confirmed.')">Get Notified →</a>
+    </div>
+
+    <!-- ========== DIRECT CONTACT ========== -->
+    <div class="cta-box" style="border-color: #0A7E3E; background: #f0fdf4;">
+        <h3>📧 Or Reach Out Directly</h3>
+        <p><strong>Email:</strong> iuhmcinfo@yahoo.com</p>
+        <p><strong>Phone:</strong> +256 791 246663 (Raremark Foundation)</p>
+        <p style="margin-top:10px;">We'll get back to you within 24 hours.</p>
     </div>
 </div>
 
+<!-- ========== FOOTER ========== -->
 <footer>
     <div class="container">
-        <div><strong style="color:#fff;">IUHC</strong><br />Inter-University Health Consortium<br />Uganda 🇺🇬</div>
-        <div><a href="leadership.html">Leadership</a><br /><a href="resources.html">Resources</a><br /><a href="get-involved.html">Get Involved</a></div>
-        <div><strong>Email:</strong> iuhmcinfo@yahoo.com<br />&copy; 2026 IUHC</div>
+        <div>
+            <strong style="color:#fff;">IUHC</strong><br />
+            Inter-University Health Ministers Consortium<br />
+            Uganda 🇺🇬
+        </div>
+        <div>
+            <a href="leadership.html">Leadership</a><br />
+            <a href="resources.html">Resources</a><br />
+            <a href="get-involved.html">Get Involved</a><br />
+            <a href="impact.html">Impact</a>
+        </div>
+        <div>
+            <strong>Email:</strong> iuhmcinfo@yahoo.com<br />
+            <div class="social-links" style="margin-top:10px;">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            &copy; 2026 IUHC. Built with ❤️ by the consortium.
+        </div>
     </div>
 </footer>
+
+<script>
+    // Function to pre-fill the contact form on the homepage
+    function prefillForm(subject, message) {
+        // Store data in sessionStorage so it persists when navigating to the homepage
+        sessionStorage.setItem('contactSubject', subject);
+        sessionStorage.setItem('contactMessage', message);
+        
+        // Navigate to the homepage contact section
+        window.location.href = 'index.html#contact';
+        
+        // After navigation, the contact form will auto-fill
+        // This is handled by the script on the homepage
+    }
+
+    // When the page loads, check if we have stored data
+    document.addEventListener('DOMContentLoaded', function() {
+        const subject = sessionStorage.getItem('contactSubject');
+        const message = sessionStorage.getItem('contactMessage');
+        
+        if (subject && message) {
+            // Try to find the contact form on the page
+            const form = document.getElementById('contactForm');
+            if (form) {
+                // Find the message textarea and pre-fill it
+                const messageField = form.querySelector('textarea');
+                const subjectField = form.querySelector('input[placeholder="Subject"]');
+                
+                if (messageField) {
+                    messageField.value = `Subject: ${subject}\n\n${message}`;
+                }
+                
+                // Clear storage after use
+                sessionStorage.removeItem('contactSubject');
+                sessionStorage.removeItem('contactMessage');
+            }
+        }
+    });
+</script>
 
 </body>
 </html>
