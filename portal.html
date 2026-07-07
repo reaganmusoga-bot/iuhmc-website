@@ -219,13 +219,18 @@
         </div>
         <div>
             <strong>Email:</strong> iuhmcinfo@yahoo.com<br />
-            <strong>Phone:</strong> +256 703 796 153
+            <strong>Phone:</strong> <a href="tel:+256703796153" style="color:#F5B041; text-decoration:none;">+256 703 796 153</a><br />
+            <div class="social-links" style="margin-top:10px;">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            &copy; 2026 IUHC. Built with ❤️ by the consortium.
         </div>
     </div>
 </footer>
 
 <script>
-    // ========== REGISTER ==========
     function showRegister() {
         document.getElementById('loginBox').style.display = 'none';
         document.getElementById('registerBox').classList.add('active');
@@ -265,7 +270,6 @@
         setTimeout(() => showLogin(), 1500);
     }
 
-    // ========== LOGIN ==========
     function loginUser(event) {
         event.preventDefault();
         const email = document.getElementById('loginEmail').value;
@@ -299,10 +303,8 @@
         document.querySelector('.portal-grid').style.display = 'grid';
         document.getElementById('loginBox').style.display = 'block';
         document.getElementById('loginStatus').textContent = '';
-        document.getElementById('loginForm').reset();
     }
 
-    // ========== CHECK SESSION ==========
     document.addEventListener('DOMContentLoaded', function() {
         const session = JSON.parse(localStorage.getItem('iuhc_session'));
         if (session) {
