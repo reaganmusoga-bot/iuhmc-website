@@ -46,6 +46,7 @@
         .feature-item .info h4 { font-size: 1rem; }
         .feature-item .info p { font-size: 0.85rem; color: #6b7280; }
 
+        /* DASHBOARD */
         .dashboard { display: none; }
         .dashboard.active { display: block; }
         .dashboard h2 { color: #0A7E3E; margin-bottom: 20px; }
@@ -53,7 +54,22 @@
         .stat-card { background: #fff; padding: 20px; border-radius: 16px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
         .stat-card .number { font-size: 2.2rem; font-weight: 800; color: #0A7E3E; }
         .stat-card .label { font-size: 0.85rem; color: #6b7280; }
-        .portal-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+
+        /* CHAT ROOM */
+        .chat-room { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); margin: 20px 0; }
+        .chat-room h3 { color: #0A7E3E; margin-bottom: 16px; }
+        .chat-messages { max-height: 300px; overflow-y: auto; margin-bottom: 16px; padding: 12px; background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb; }
+        .chat-message { display: flex; flex-direction: column; padding: 8px 12px; margin-bottom: 8px; background: #fff; border-radius: 8px; border-left: 3px solid #0A7E3E; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .chat-message .sender { font-weight: 700; color: #0A7E3E; font-size: 0.9rem; }
+        .chat-message .time { font-size: 0.7rem; color: #9ca3af; margin-left: 8px; }
+        .chat-message .text { color: #1f2937; font-size: 0.95rem; margin-top: 4px; }
+        .chat-input { display: flex; gap: 12px; }
+        .chat-input input { flex: 1; padding: 12px 16px; border: 2px solid #e5e7eb; border-radius: 40px; font-family: inherit; font-size: 1rem; }
+        .chat-input input:focus { outline: none; border-color: #0A7E3E; }
+        .chat-input button { background: #0A7E3E; color: #fff; padding: 12px 24px; border: none; border-radius: 40px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .chat-input button:hover { background: #065f2e; }
+
+        .portal-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 20px; }
         .portal-actions .btn { background: #F5B041; color: #1f2937; padding: 12px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.3s; }
         .portal-actions .btn:hover { background: #d4952e; transform: translateY(-2px); }
 
@@ -70,6 +86,7 @@
             .portal-grid { grid-template-columns: 1fr; }
             .login-box { padding: 24px; }
             .features-box { padding: 24px; }
+            .chat-input { flex-direction: column; }
             footer .container { flex-direction: column; text-align: center; }
         }
         @media (max-width: 480px) {
@@ -146,6 +163,13 @@
         <div class="features-box">
             <h2>🔑 Member Benefits</h2>
             <div class="feature-item">
+                <i class="fas fa-comments"></i>
+                <div class="info">
+                    <h4>Chat Room</h4>
+                    <p>Connect and chat with other IUHC members in real-time.</p>
+                </div>
+            </div>
+            <div class="feature-item">
                 <i class="fas fa-file-alt"></i>
                 <div class="info">
                     <h4>Shared Documents</h4>
@@ -173,13 +197,6 @@
                     <p>Get exclusive updates from the leadership team.</p>
                 </div>
             </div>
-            <div class="feature-item">
-                <i class="fas fa-download"></i>
-                <div class="info">
-                    <h4>Resource Library</h4>
-                    <p>Download toolkits, guides, and templates.</p>
-                </div>
-            </div>
         </div>
 
     </div>
@@ -192,13 +209,26 @@
             <div class="stat-card"><div class="number">5</div><div class="label">New Resources</div></div>
             <div class="stat-card"><div class="number">12</div><div class="label">Active Members</div></div>
         </div>
+
+        <!-- CHAT ROOM -->
+        <div class="chat-room">
+            <h3>💬 Member Chat Room</h3>
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will appear here -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="if(event.key==='Enter') sendMessage()" />
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+
         <div class="portal-actions">
             <button class="btn" onclick="alert('Opening document library...')">📄 View Documents</button>
             <button class="btn" onclick="alert('Opening calendar...')">📅 View Calendar</button>
             <button class="btn" onclick="alert('Loading member directory...')">👥 Member Directory</button>
             <button class="btn" onclick="logoutUser()">🚪 Logout</button>
         </div>
-        <p style="margin-top:20px; color:#6b7280; font-size:0.9rem; text-align:center;">Welcome! You have access to member-only resources.</p>
+        <p style="margin-top:20px; color:#6b7280; font-size:0.9rem; text-align:center;">Welcome! You have access to member-only resources and chat.</p>
     </div>
 </div>
 
@@ -213,24 +243,17 @@
             <a href="leadership.html">Leadership</a><br />
             <a href="blog.html">Blog</a><br />
             <a href="gallery.html">Gallery</a><br />
-            <a href="events.html">Events</a><br />
-            <a href="newsletter.html">Newsletter</a><br />
-            <a href="portal.html">Member Portal</a>
+            <a href="events.html">Events</a>
         </div>
         <div>
             <strong>Email:</strong> iuhmcinfo@yahoo.com<br />
-            <strong>Phone:</strong> <a href="tel:+256703796153" style="color:#F5B041; text-decoration:none;">+256 703 796 153</a><br />
-            <div class="social-links" style="margin-top:10px;">
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-            &copy; 2026 IUHC. Built with ❤️ by the consortium.
+            <strong>Phone:</strong> +256 703 796 153
         </div>
     </div>
 </footer>
 
 <script>
+    // ========== REGISTER ==========
     function showRegister() {
         document.getElementById('loginBox').style.display = 'none';
         document.getElementById('registerBox').classList.add('active');
@@ -270,6 +293,7 @@
         setTimeout(() => showLogin(), 1500);
     }
 
+    // ========== LOGIN ==========
     function loginUser(event) {
         event.preventDefault();
         const email = document.getElementById('loginEmail').value;
@@ -295,6 +319,7 @@
         document.getElementById('registerBox').classList.remove('active');
         document.getElementById('dashboard').classList.add('active');
         document.querySelector('.portal-grid').style.display = 'none';
+        loadChatMessages();
     }
 
     function logoutUser() {
@@ -303,8 +328,63 @@
         document.querySelector('.portal-grid').style.display = 'grid';
         document.getElementById('loginBox').style.display = 'block';
         document.getElementById('loginStatus').textContent = '';
+        document.getElementById('loginForm').reset();
     }
 
+    // ========== CHAT SYSTEM ==========
+    function loadChatMessages() {
+        const messages = JSON.parse(localStorage.getItem('iuhc_chat')) || [];
+        const container = document.getElementById('chatMessages');
+        
+        if (messages.length === 0) {
+            container.innerHTML = `<p style="color:#9ca3af; text-align:center; padding:20px;">No messages yet. Start the conversation!</p>`;
+            return;
+        }
+
+        let html = '';
+        messages.forEach(msg => {
+            html += `
+                <div class="chat-message">
+                    <div>
+                        <span class="sender">${msg.name}</span>
+                        <span class="time">${msg.time}</span>
+                    </div>
+                    <div class="text">${msg.text}</div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('chatInput');
+        const text = input.value.trim();
+        if (!text) return;
+
+        const session = JSON.parse(localStorage.getItem('iuhc_session'));
+        if (!session) {
+            alert('Please login first.');
+            return;
+        }
+
+        const messages = JSON.parse(localStorage.getItem('iuhc_chat')) || [];
+        const now = new Date();
+        const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        
+        messages.push({
+            name: session.name,
+            text: text,
+            time: time,
+            timestamp: now.toISOString()
+        });
+        
+        localStorage.setItem('iuhc_chat', JSON.stringify(messages));
+        input.value = '';
+        loadChatMessages();
+    }
+
+    // ========== CHECK SESSION ==========
     document.addEventListener('DOMContentLoaded', function() {
         const session = JSON.parse(localStorage.getItem('iuhc_session'));
         if (session) {
