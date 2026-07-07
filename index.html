@@ -15,12 +15,7 @@
         header { background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
         nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
         .logo { display: flex; align-items: center; gap: 12px; }
-        .logo img { 
-            height: 50px; 
-            width: auto; 
-            background: transparent;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-        }
+        .logo img { height: 50px; width: auto; background: transparent; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
         .logo span { font-weight: 800; font-size: 1.3rem; color: #0A7E3E; }
         .nav-links { display: flex; gap: 24px; list-style: none; font-weight: 600; flex-wrap: wrap; }
         .nav-links a { text-decoration: none; color: #1f2937; transition: color 0.2s; }
@@ -32,7 +27,7 @@
         .btn-gold { background: #F5B041; color: #1f2937; }
         .btn-gold:hover { background: #d4952e; }
 
-        /* HERO - FIXED BACKGROUND */
+        /* HERO - UPDATED */
         .hero { 
             background: linear-gradient(rgba(10, 126, 62, 0.78), rgba(6, 95, 46, 0.88)), 
                         url('https://i.ibb.co/prJ22rS6/cccc.jpg') no-repeat center center / cover;
@@ -44,8 +39,28 @@
             display: flex;
             align-items: center;
         }
-        .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .hero p { font-size: 1.3rem; opacity: 0.95; max-width: 600px; margin-bottom: 30px; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #3b82f6;
+            text-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .hero h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
         .hero .btn { background: #F5B041; color: #1f2937; }
         .hero .btn:hover { background: #e09e2e; }
 
@@ -109,7 +124,8 @@
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .hero { padding: 80px 0; min-height: 400px; }
-            .hero h1 { font-size: 2.4rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero h2 { font-size: 2.4rem; }
             .hero p { font-size: 1.1rem; }
             .nav-links { gap: 16px; font-size: 0.9rem; justify-content: center; }
             .stats { grid-template-columns: 1fr 1fr; }
@@ -119,7 +135,8 @@
             footer .container { flex-direction: column; text-align: center; }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 1.8rem; }
+            .hero h1 { font-size: 1.6rem; }
+            .hero h2 { font-size: 1.8rem; }
             .gallery-grid { grid-template-columns: 1fr; }
             .university-grid { grid-template-columns: 1fr; }
             .logo img { height: 40px; }
@@ -154,7 +171,8 @@
 <!-- ========== HERO ========== -->
 <section class="hero">
     <div class="container">
-        <h1>Uganda's United Health Voice 🇺🇬</h1>
+        <h1>INTER-UNIVERSITY HEALTH MINISTERS CONSORTIUM</h1>
+        <h2>Uganda's United Health Voice 🇺🇬</h2>
         <p><strong>Inter-University Health Ministers Consortium</strong> — driving impactful health projects across Uganda, led by students for the community.</p>
         <a href="#projects" class="btn">Explore Our Impact</a>
     </div>
