@@ -11,7 +11,6 @@
         body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #1f2937; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* HEADER (same as gallery) */
         header { background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
         nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
         .logo { display: flex; align-items: center; gap: 12px; }
@@ -75,6 +74,8 @@
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="events.html" class="active">Events</a></li>
+                <li><a href="newsletter.html">Newsletter</a></li>
+                <li><a href="portal.html">Portal</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </nav>
@@ -89,9 +90,7 @@
 </section>
 
 <div class="container">
-    <div class="events-grid" id="eventsGrid">
-        <!-- Events will be loaded dynamically -->
-    </div>
+    <div class="events-grid" id="eventsGrid"></div>
 </div>
 
 <footer>
@@ -105,11 +104,19 @@
             <a href="leadership.html">Leadership</a><br />
             <a href="blog.html">Blog</a><br />
             <a href="gallery.html">Gallery</a><br />
-            <a href="events.html">Events</a>
+            <a href="events.html">Events</a><br />
+            <a href="newsletter.html">Newsletter</a><br />
+            <a href="portal.html">Member Portal</a>
         </div>
         <div>
             <strong>Email:</strong> iuhmcinfo@yahoo.com<br />
-            <strong>Phone:</strong> +256 703 796 153
+            <strong>Phone:</strong> <a href="tel:+256703796153" style="color:#F5B041; text-decoration:none;">+256 703 796 153</a><br />
+            <div class="social-links" style="margin-top:10px;">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            &copy; 2026 IUHC. Built with ❤️ by the consortium.
         </div>
     </div>
 </footer>
@@ -188,5 +195,6 @@
 
     document.addEventListener('DOMContentLoaded', renderEvents);
 </script>
+
 </body>
 </html>
