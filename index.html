@@ -25,7 +25,7 @@
         .btn { display: inline-block; background: #0A7E3E; color: #fff; padding: 12px 32px; border-radius: 40px; text-decoration: none; font-weight: 700; transition: 0.3s; border: none; cursor: pointer; }
         .btn:hover { background: #065f2e; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(10, 126, 62, 0.4); }
         .btn-gold { background: #F5B041; color: #1f2937; }
-        .btn-gold:hover { background: #d4952e; }
+        .btn-gold:hover { background: #d4952e; box-shadow: 0 6px 20px rgba(245, 176, 65, 0.4); }
 
         /* ========== HERO - CRYSTAL CLEAR ========== */
         .hero {
@@ -158,12 +158,13 @@
         .social-links a { color: #1f2937; font-size: 1.8rem; transition: 0.2s; }
         .social-links a:hover { color: #0A7E3E; transform: scale(1.1); }
 
-        /* CONTACT FORM */
+        /* CONTACT FORM - WITH SUBJECT FIELD */
         .contact-form { background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); max-width: 600px; margin: 20px auto; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 12px 16px; margin: 8px 0 16px; border: 1px solid #d1d5db; border-radius: 8px; font-family: inherit; }
-        .contact-form textarea { height: 120px; }
-        .contact-form button { background: #0A7E3E; color: #fff; padding: 12px 32px; border: none; border-radius: 40px; font-weight: 700; cursor: pointer; transition: 0.2s; width: 100%; }
-        .contact-form button:hover { background: #065f2e; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 12px 16px; margin: 8px 0 16px; border: 1px solid #d1d5db; border-radius: 8px; font-family: inherit; font-size: 1rem; }
+        .contact-form textarea { height: 120px; resize: vertical; }
+        .contact-form button { background: #0A7E3E; color: #fff; padding: 12px 32px; border: none; border-radius: 40px; font-weight: 700; cursor: pointer; transition: 0.3s; width: 100%; font-size: 1rem; }
+        .contact-form button:hover { background: #065f2e; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(10, 126, 62, 0.4); }
+        .form-status { text-align: center; margin-top: 16px; font-weight: 600; }
 
         /* FOOTER */
         footer { background: #1f2937; color: #d1d5db; padding: 40px 0 20px; margin-top: 40px; border-radius: 40px 40px 0 0; }
@@ -195,6 +196,7 @@
             .logo img { height: 40px; }
             .logo span { font-size: 1rem; }
             .nav-links { gap: 12px; font-size: 0.8rem; }
+            .contact-form { padding: 20px; }
         }
     </style>
 </head>
@@ -221,7 +223,7 @@
     </div>
 </header>
 
-<!-- ========== HERO - CRYSTAL CLEAR ========== -->
+<!-- ========== HERO ========== -->
 <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
@@ -561,7 +563,7 @@
     </div>
 </section>
 
-<!-- ========== CONTACT ========== -->
+<!-- ========== CONTACT (FIXED WITH SUBJECT FIELD) ========== -->
 <section id="contact" class="container" style="margin-bottom:40px;">
     <h2 class="section-title">Partner With Us</h2>
     <p class="section-sub">NGOs, government agencies, and volunteers — let's work together.</p>
@@ -577,10 +579,12 @@
         <p style="margin:10px 0;"><strong>Email:</strong> iuhmcinfo@yahoo.com</p>
     </div>
 
+    <!-- WORKING CONTACT FORM WITH SUBJECT FIELD -->
     <form class="contact-form" id="contactForm">
         <h3 style="margin-bottom:16px; color:#0A7E3E;">Send Us a Message</h3>
         <input type="text" id="name" placeholder="Your Name" required />
         <input type="email" id="email" placeholder="Your Email" required />
+        <input type="text" id="subject" placeholder="Subject (e.g., Partnership, Volunteering, Donation)" />
         <input type="text" id="organization" placeholder="Organization (if any)" />
         <textarea id="message" placeholder="Tell us how you'd like to partner or get involved..." required></textarea>
         <button type="submit">Send Message</button>
@@ -615,6 +619,29 @@
 </footer>
 
 <script>
+    // ========== PRE-FILL CONTACT FORM FROM GET INVOLVED BUTTONS ==========
+    document.addEventListener('DOMContentLoaded', function() {
+        const subject = sessionStorage.getItem('contactSubject');
+        const message = sessionStorage.getItem('contactMessage');
+        
+        if (subject && message) {
+            const subjectField = document.getElementById('subject');
+            const messageField = document.getElementById('message');
+            
+            if (subjectField) {
+                subjectField.value = subject;
+            }
+            if (messageField) {
+                messageField.value = message;
+            }
+            
+            // Clear storage after pre-filling
+            sessionStorage.removeItem('contactSubject');
+            sessionStorage.removeItem('contactMessage');
+        }
+    });
+
+    // ========== CONTACT FORM SUBMISSION ==========
     document.getElementById('contactForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         const status = document.getElementById('formStatus');
@@ -624,7 +651,8 @@
         const formData = {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
-            organization: document.getElementById('organization').value,
+            subject: document.getElementById('subject').value || 'General Inquiry',
+            organization: document.getElementById('organization').value || 'N/A',
             message: document.getElementById('message').value
         };
 
