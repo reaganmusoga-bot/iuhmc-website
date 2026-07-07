@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Newsletter - IUHC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #1f2937; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        header { background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+        nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo img { height: 50px; width: auto; background: transparent; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
+        .logo span { font-weight: 800; font-size: 1.3rem; color: #0A7E3E; }
+        .nav-links { display: flex; gap: 24px; list-style: none; font-weight: 600; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: #1f2937; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: #0A7E3E; border-bottom: 3px solid #F5B041; }
+
+        .page-header { background: linear-gradient(135deg, #0A7E3E 0%, #065f2e 100%); color: #fff; padding: 60px 0 40px; border-radius: 0 0 40px 40px; margin-bottom: 50px; }
+        .page-header h1 { font-size: 2.8rem; font-weight: 800; }
+        .page-header p { opacity: 0.9; font-size: 1.1rem; }
+
+        .newsletter-box { max-width: 700px; margin: 0 auto 60px; background: #fff; padding: 50px; border-radius: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); text-align: center; }
+        .newsletter-box .icon { font-size: 4rem; color: #0A7E3E; margin-bottom: 16px; }
+        .newsletter-box h2 { color: #0A7E3E; margin-bottom: 12px; }
+        .newsletter-box p { color: #6b7280; margin-bottom: 30px; }
+        .newsletter-box .form-group { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+        .newsletter-box input { flex: 1; min-width: 200px; padding: 14px 20px; border: 2px solid #e5e7eb; border-radius: 40px; font-family: inherit; font-size: 1rem; }
+        .newsletter-box input:focus { outline: none; border-color: #0A7E3E; }
+        .newsletter-box .btn { background: #0A7E3E; color: #fff; padding: 14px 32px; border: none; border-radius: 40px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .newsletter-box .btn:hover { background: #065f2e; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(10, 126, 62, 0.4); }
+        .newsletter-box .status { margin-top: 16px; font-weight: 600; }
+
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        .benefit-card { background: #fff; padding: 30px; border-radius: 16px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.04); border: 2px solid #e5e7eb; transition: 0.3s; }
+        .benefit-card:hover { border-color: #0A7E3E; transform: translateY(-4px); }
+        .benefit-card i { font-size: 2.5rem; color: #0A7E3E; margin-bottom: 12px; }
+        .benefit-card h3 { margin-bottom: 8px; }
+        .benefit-card p { color: #6b7280; font-size: 0.95rem; }
+
+        .archive-section { background: #fff; padding: 30px; border-radius: 16px; margin-bottom: 60px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+        .archive-section h3 { color: #0A7E3E; margin-bottom: 16px; }
+        .archive-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f3f4f6; }
+        .archive-item:last-child { border-bottom: none; }
+        .archive-item .date { color: #6b7280; font-size: 0.85rem; }
+        .archive-item .btn-small { background: #F5B041; color: #1f2937; padding: 4px 16px; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
+        .archive-item .btn-small:hover { background: #d4952e; }
+
+        footer { background: #1f2937; color: #d1d5db; padding: 40px 0 20px; margin-top: 40px; border-radius: 40px 40px 0 0; }
+        footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+        footer a { color: #F5B041; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2rem; }
+            .nav-links { gap: 16px; font-size: 0.9rem; justify-content: center; }
+            .newsletter-box { padding: 30px 20px; }
+            .newsletter-box .form-group { flex-direction: column; }
+            .newsletter-box input { width: 100%; }
+            footer .container { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .logo img { height: 40px; }
+            .logo span { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <img src="https://i.ibb.co/F4RQmRbY/logo-iuhmc.png" alt="IUHC Logo" />
+                <span>IUHC</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="leadership.html">Leadership</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="get-involved.html">Get Involved</a></li>
+                <li><a href="impact.html">Impact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="newsletter.html" class="active">Newsletter</a></li>
+                <li><a href="portal.html">Portal</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="page-header">
+    <div class="container">
+        <h1>📧 Newsletter</h1>
+        <p>Stay updated on IUHC news, events, and health tips – delivered to your inbox.</p>
+    </div>
+</section>
+
+<div class="container">
+    <!-- Newsletter Signup Box -->
+    <div class="newsletter-box">
+        <div class="icon">📬</div>
+        <h2>Join Our Community</h2>
+        <p>Subscribe to the IUHC newsletter and get the latest updates on our projects, events, and health awareness campaigns.</p>
+        <form id="newsletterForm" onsubmit="subscribeNewsletter(event)">
+            <div class="form-group">
+                <input type="text" id="subscriberName" placeholder="Your Full Name" required />
+                <input type="email" id="subscriberEmail" placeholder="Your Email Address" required />
+                <button type="submit" class="btn">Subscribe →</button>
+            </div>
+            <div id="newsletterStatus" class="status"></div>
+        </form>
+        <p style="margin-top:16px; font-size:0.85rem; color:#9ca3af;">We respect your privacy. Unsubscribe at any time.</p>
+    </div>
+
+    <!-- Benefits -->
+    <h2 style="text-align:center; font-size:2rem; color:#0A7E3E; margin-bottom:12px;">Why Subscribe?</h2>
+    <p style="text-align:center; color:#6b7280; margin-bottom:40px;">Get exclusive content and updates straight from the consortium.</p>
+    <div class="benefits-grid">
+        <div class="benefit-card">
+            <i class="fas fa-newspaper"></i>
+            <h3>Latest News</h3>
+            <p>Be the first to know about IUHC events, campaigns, and achievements.</p>
+        </div>
+        <div class="benefit-card">
+            <i class="fas fa-heartbeat"></i>
+            <h3>Health Tips</h3>
+            <p>Get practical health advice and insights from student health leaders.</p>
+        </div>
+        <div class="benefit-card">
+            <i class="fas fa-calendar-check"></i>
+            <h3>Event Invites</h3>
+            <p>Get early access to training sessions, testing drives, and meetings.</p>
+        </div>
+    </div>
+
+    <!-- Newsletter Archive -->
+    <div class="archive-section">
+        <h3>📂 Past Newsletters</h3>
+        <div class="archive-item">
+            <span><strong>July 2026</strong> – Sickle Cell Campaign Highlights</span>
+            <a href="#" class="btn-small" onclick="alert('Newsletter archive coming soon. Stay tuned!')">Read</a>
+        </div>
+        <div class="archive-item">
+            <span><strong>June 2026</strong> – IUHC Launch Edition</span>
+            <a href="#" class="btn-small" onclick="alert('Newsletter archive coming soon. Stay tuned!')">Read</a>
+        </div>
+        <div class="archive-item">
+            <span><strong>Coming Soon</strong> – Northern Region Training Preview</span>
+            <a href="#" class="btn-small" onclick="alert('Newsletter archive coming soon. Stay tuned!')">Preview</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div>
+            <strong style="color:#fff;">IUHC</strong><br />
+            Inter-University Health Ministers Consortium<br />
+            Uganda 🇺🇬
+        </div>
+        <div>
+            <a href="leadership.html">Leadership</a><br />
+            <a href="blog.html">Blog</a><br />
+            <a href="gallery.html">Gallery</a><br />
+            <a href="events.html">Events</a><br />
+            <a href="newsletter.html">Newsletter</a><br />
+            <a href="portal.html">Member Portal</a>
+        </div>
+        <div>
+            <strong>Email:</strong> iuhmcinfo@yahoo.com<br />
+            <strong>Phone:</strong> +256 703 796 153
+        </div>
+    </div>
+</footer>
+
+<script>
+    function subscribeNewsletter(event) {
+        event.preventDefault();
+        const name = document.getElementById('subscriberName').value;
+        const email = document.getElementById('subscriberEmail').value;
+        const status = document.getElementById('newsletterStatus');
+
+        status.textContent = 'Subscribing...';
+        status.style.color = '#0A7E3E';
+
+        // Store subscriber in localStorage (for demo)
+        let subscribers = JSON.parse(localStorage.getItem('newsletterSubscribers')) || [];
+        subscribers.push({ name, email, date: new Date().toISOString() });
+        localStorage.setItem('newsletterSubscribers', JSON.stringify(subscribers));
+
+        // Show success message
+        status.textContent = '✅ You\'re subscribed! Welcome to the IUHC community.';
+        status.style.color = '#0A7E3E';
+        document.getElementById('newsletterForm').reset();
+
+        // Also send via Formspree for email notification
+        fetch('https://formspree.io/f/xqkrdnkj', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                subject: 'Newsletter Subscription',
+                message: `New newsletter subscriber: ${name} (${email})`
+            })
+        }).catch(err => console.log('Formspree error:', err));
+    }
+</script>
+
+</body>
+</html>
