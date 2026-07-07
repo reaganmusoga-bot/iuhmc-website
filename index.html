@@ -20,96 +20,23 @@
         .nav-links a { text-decoration: none; color: #1f2937; transition: color 0.2s; }
         .nav-links a:hover, .nav-links a.active { color: #0A7E3E; border-bottom: 3px solid #F5B041; }
 
-        /* BUTTONS */
         .btn { display: inline-block; background: #0A7E3E; color: #fff; padding: 12px 32px; border-radius: 40px; text-decoration: none; font-weight: 700; transition: 0.3s; border: none; cursor: pointer; }
         .btn:hover { background: #065f2e; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(10, 126, 62, 0.4); }
         .btn-gold { background: #F5B041; color: #1f2937; }
         .btn-gold:hover { background: #d4952e; box-shadow: 0 6px 20px rgba(245, 176, 65, 0.4); }
 
-        /* HERO */
-        .hero {
-            position: relative;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
-            border-radius: 0 0 40px 40px;
-            margin-bottom: 40px;
-            overflow: hidden;
-        }
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background: url('https://i.ibb.co/prJ22rS6/cccc.jpg') no-repeat center center;
-            background-size: cover;
-            filter: brightness(0.6) saturate(1.1);
-            transform: scale(1.02);
-            transition: transform 8s ease;
-        }
+        .hero { position: relative; min-height: 600px; display: flex; align-items: center; border-radius: 0 0 40px 40px; margin-bottom: 40px; overflow: hidden; }
+        .hero-bg { position: absolute; inset: 0; background: url('https://i.ibb.co/prJ22rS6/cccc.jpg') no-repeat center center; background-size: cover; filter: brightness(0.6) saturate(1.1); transform: scale(1.02); transition: transform 8s ease; }
         .hero:hover .hero-bg { transform: scale(1); }
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(10, 126, 62, 0.7) 0%, rgba(6, 95, 46, 0.85) 100%);
-        }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            color: #fff;
-            padding: 80px 0;
-            max-width: 700px;
-        }
-        .hero-content .badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .hero-content h1 {
-            font-size: 2.6rem;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 8px;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-        }
-        .hero-content h1 .highlight {
-            color: #F5B041;
-            background: linear-gradient(135deg, #F5B041, #fbbf24);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero-content h2 {
-            font-size: 3.6rem;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 16px;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-        }
-        .hero-content p {
-            font-size: 1.2rem;
-            opacity: 0.92;
-            max-width: 550px;
-            margin-bottom: 30px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-        .hero-content .btn {
-            background: #F5B041;
-            color: #1f2937;
-            font-weight: 700;
-            box-shadow: 0 4px 20px rgba(245, 176, 65, 0.4);
-        }
-        .hero-content .btn:hover {
-            background: #e09e2e;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(245, 176, 65, 0.5);
-        }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10, 126, 62, 0.7) 0%, rgba(6, 95, 46, 0.85) 100%); }
+        .hero-content { position: relative; z-index: 2; color: #fff; padding: 80px 0; max-width: 700px; }
+        .hero-content .badge { display: inline-block; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 8px 20px; border-radius: 40px; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.2); }
+        .hero-content h1 { font-size: 2.6rem; font-weight: 800; color: #ffffff; margin-bottom: 8px; letter-spacing: 2px; text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+        .hero-content h1 .highlight { color: #F5B041; background: linear-gradient(135deg, #F5B041, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-content h2 { font-size: 3.6rem; font-weight: 800; line-height: 1.15; margin-bottom: 16px; text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+        .hero-content p { font-size: 1.2rem; opacity: 0.92; max-width: 550px; margin-bottom: 30px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .hero-content .btn { background: #F5B041; color: #1f2937; font-weight: 700; box-shadow: 0 4px 20px rgba(245, 176, 65, 0.4); }
+        .hero-content .btn:hover { background: #e09e2e; transform: translateY(-3px); box-shadow: 0 8px 30px rgba(245, 176, 65, 0.5); }
 
         .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px; background: #fff; padding: 40px 30px; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-top: -30px; margin-bottom: 60px; position: relative; z-index: 10; }
         .stat-item { text-align: center; }
@@ -204,13 +131,15 @@
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="events.html">Events</a></li>
+                <li><a href="newsletter.html">Newsletter</a></li>
+                <li><a href="portal.html">Portal</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </nav>
     </div>
 </header>
 
-<!-- ========== HERO ========== -->
+<!-- HERO -->
 <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
@@ -225,7 +154,7 @@
     </div>
 </section>
 
-<!-- ========== STATS ========== -->
+<!-- STATS -->
 <div class="container">
     <div class="stats">
         <div class="stat-item"><div class="stat-number">20K+</div><div class="stat-label">Babies born with sickle cell annually</div></div>
@@ -235,7 +164,7 @@
     </div>
 </div>
 
-<!-- ========== ABOUT ========== -->
+<!-- ABOUT -->
 <section id="about" class="container">
     <h2 class="section-title">Who We Are</h2>
     <p class="section-sub">We are a consortium of health ministers from all Ugandan universities and higher education institutions, uniting to create sustainable community health solutions.</p>
@@ -245,7 +174,7 @@
     </div>
 </section>
 
-<!-- ========== PROJECTS ========== -->
+<!-- PROJECTS -->
 <section id="projects" class="container">
     <h2 class="section-title">Featured Projects</h2>
     <p class="section-sub">Real impact, real communities. Here are our ongoing initiatives.</p>
@@ -266,7 +195,7 @@
     </div>
 </section>
 
-<!-- ========== GALLERY ========== -->
+<!-- GALLERY -->
 <section class="container">
     <h2 class="section-title">Launch Event Gallery</h2>
     <p class="section-sub">Highlights from the IUHC launch and Sickle Cell Disease Campaign on 26th June 2026.</p>
@@ -278,7 +207,7 @@
     </div>
 </section>
 
-<!-- ========== MEMBER UNIVERSITIES ========== -->
+<!-- UNIVERSITIES -->
 <section class="container">
     <h2 class="section-title">Our Member Universities & Institutions</h2>
     <p class="section-sub">United from across Uganda to drive health change. Over 40 institutions are part of the IUHC network.</p>
@@ -341,7 +270,7 @@
     </div>
 </section>
 
-<!-- ========== PARTNERS ========== -->
+<!-- PARTNERS -->
 <section class="container">
     <h2 class="section-title">Our Partners</h2>
     <p class="section-sub">Collaborating for a healthier Uganda.</p>
@@ -352,7 +281,7 @@
     </div>
 </section>
 
-<!-- ========== NEWS ========== -->
+<!-- NEWS -->
 <section id="news" class="container">
     <h2 class="section-title">News & Updates</h2>
     <p class="section-sub">Stay connected with our latest activities.</p>
@@ -370,7 +299,7 @@
     </div>
 </section>
 
-<!-- ========== CONTACT ========== -->
+<!-- CONTACT -->
 <section id="contact" class="container" style="margin-bottom:40px;">
     <h2 class="section-title">Partner With Us</h2>
     <p class="section-sub">NGOs, government agencies, and volunteers — let's work together.</p>
@@ -399,7 +328,7 @@
     </form>
 </section>
 
-<!-- ========== FOOTER ========== -->
+<!-- FOOTER -->
 <footer>
     <div class="container">
         <div>
@@ -411,7 +340,9 @@
             <a href="leadership.html">Leadership</a><br />
             <a href="blog.html">Blog</a><br />
             <a href="gallery.html">Gallery</a><br />
-            <a href="events.html">Events</a>
+            <a href="events.html">Events</a><br />
+            <a href="newsletter.html">Newsletter</a><br />
+            <a href="portal.html">Member Portal</a>
         </div>
         <div>
             <strong>Email:</strong> iuhmcinfo@yahoo.com<br />
