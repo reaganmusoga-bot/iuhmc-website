@@ -11,7 +11,6 @@
         body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #1f2937; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* HEADER */
         header { background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
         nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
         .logo { display: flex; align-items: center; gap: 12px; }
@@ -25,7 +24,6 @@
         .page-header h1 { font-size: 2.8rem; font-weight: 800; }
         .page-header p { opacity: 0.9; font-size: 1.1rem; }
 
-        /* GALLERY */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 60px; }
         .gallery-item { position: relative; overflow: hidden; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: 0.3s; cursor: pointer; }
         .gallery-item:hover { transform: scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
@@ -34,7 +32,6 @@
         .gallery-item .overlay h3 { font-size: 1rem; margin-bottom: 4px; }
         .gallery-item .overlay p { font-size: 0.85rem; opacity: 0.9; }
 
-        /* LIGHTBOX */
         .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; padding: 40px; }
         .lightbox.active { display: flex; }
         .lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; }
@@ -76,6 +73,8 @@
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="gallery.html" class="active">Gallery</a></li>
                 <li><a href="events.html">Events</a></li>
+                <li><a href="newsletter.html">Newsletter</a></li>
+                <li><a href="portal.html">Portal</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </nav>
@@ -90,12 +89,9 @@
 </section>
 
 <div class="container">
-    <div class="gallery-grid" id="galleryGrid">
-        <!-- Images will be loaded dynamically -->
-    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
 </div>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
     <span class="close" onclick="closeLightbox()">&times;</span>
     <img id="lightboxImg" src="" alt="Gallery Image" />
@@ -112,11 +108,19 @@
             <a href="leadership.html">Leadership</a><br />
             <a href="blog.html">Blog</a><br />
             <a href="gallery.html">Gallery</a><br />
-            <a href="events.html">Events</a>
+            <a href="events.html">Events</a><br />
+            <a href="newsletter.html">Newsletter</a><br />
+            <a href="portal.html">Member Portal</a>
         </div>
         <div>
             <strong>Email:</strong> iuhmcinfo@yahoo.com<br />
-            <strong>Phone:</strong> +256 703 796 153
+            <strong>Phone:</strong> <a href="tel:+256703796153" style="color:#F5B041; text-decoration:none;">+256 703 796 153</a><br />
+            <div class="social-links" style="margin-top:10px;">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            &copy; 2026 IUHC. Built with ❤️ by the consortium.
         </div>
     </div>
 </footer>
@@ -160,5 +164,6 @@
 
     document.addEventListener('DOMContentLoaded', renderGallery);
 </script>
+
 </body>
 </html>
