@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Gallery - IUHC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #1f2937; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* HEADER */
+        header { background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+        nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo img { height: 50px; width: auto; background: transparent; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
+        .logo span { font-weight: 800; font-size: 1.3rem; color: #0A7E3E; }
+        .nav-links { display: flex; gap: 24px; list-style: none; font-weight: 600; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: #1f2937; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: #0A7E3E; border-bottom: 3px solid #F5B041; }
+
+        .page-header { background: linear-gradient(135deg, #0A7E3E 0%, #065f2e 100%); color: #fff; padding: 60px 0 40px; border-radius: 0 0 40px 40px; margin-bottom: 50px; }
+        .page-header h1 { font-size: 2.8rem; font-weight: 800; }
+        .page-header p { opacity: 0.9; font-size: 1.1rem; }
+
+        /* GALLERY */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 60px; }
+        .gallery-item { position: relative; overflow: hidden; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: 0.3s; cursor: pointer; }
+        .gallery-item:hover { transform: scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+        .gallery-item img { width: 100%; height: 280px; object-fit: cover; display: block; }
+        .gallery-item .overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: #fff; }
+        .gallery-item .overlay h3 { font-size: 1rem; margin-bottom: 4px; }
+        .gallery-item .overlay p { font-size: 0.85rem; opacity: 0.9; }
+
+        /* LIGHTBOX */
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; padding: 40px; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; }
+        .lightbox .close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 3rem; cursor: pointer; }
+        .lightbox .close:hover { color: #F5B041; }
+
+        footer { background: #1f2937; color: #d1d5db; padding: 40px 0 20px; margin-top: 40px; border-radius: 40px 40px 0 0; }
+        footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+        footer a { color: #F5B041; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2rem; }
+            .nav-links { gap: 16px; font-size: 0.9rem; justify-content: center; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            footer .container { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+            .logo img { height: 40px; }
+            .logo span { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <img src="https://i.ibb.co/F4RQmRbY/logo-iuhmc.png" alt="IUHC Logo" />
+                <span>IUHC</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="leadership.html">Leadership</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="get-involved.html">Get Involved</a></li>
+                <li><a href="impact.html">Impact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="page-header">
+    <div class="container">
+        <h1>📸 Gallery</h1>
+        <p>Moments from IUHC events, campaigns, and activities across Uganda.</p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="gallery-grid" id="galleryGrid">
+        <!-- Images will be loaded dynamically -->
+    </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <img id="lightboxImg" src="" alt="Gallery Image" />
+</div>
+
+<footer>
+    <div class="container">
+        <div>
+            <strong style="color:#fff;">IUHC</strong><br />
+            Inter-University Health Ministers Consortium<br />
+            Uganda 🇺🇬
+        </div>
+        <div>
+            <a href="leadership.html">Leadership</a><br />
+            <a href="blog.html">Blog</a><br />
+            <a href="gallery.html">Gallery</a><br />
+            <a href="events.html">Events</a>
+        </div>
+        <div>
+            <strong>Email:</strong> iuhmcinfo@yahoo.com<br />
+            <strong>Phone:</strong> +256 703 796 153
+        </div>
+    </div>
+</footer>
+
+<script>
+    const galleryImages = [
+        { src: 'https://i.ibb.co/TD34dgcv/image-cons.jpg', title: 'Launch Event', desc: 'IUHC Launch at Ministry of Health' },
+        { src: 'https://i.ibb.co/rfsnLKhs/imageco.jpg', title: 'Student Leaders', desc: 'Student health ministers in attendance' },
+        { src: 'https://i.ibb.co/V0pcNgR1/consorrr.jpg', title: 'Commitment Signing', desc: 'Signing the pledge for sickle cell awareness' },
+        { src: 'https://i.ibb.co/T3mTxSq/consolo.jpg', title: 'Testing Exercise', desc: 'Free sickle cell testing at Makerere University' },
+        { src: 'https://i.ibb.co/9BqC0fs/chrise.jpg', title: 'Leadership', desc: 'Board of Trustees member Chriscent' },
+        { src: 'https://i.ibb.co/0xcs4cT/MUSOGA-bot.jpg', title: 'Leadership', desc: 'Treasurer Musoga Reagan' },
+        { src: 'https://i.ibb.co/pjHHrgwB/ericcc.jpg', title: 'Leadership', desc: 'Secretary General Mugerwa Erick' },
+        { src: 'https://i.ibb.co/7dYTLnyk/ebee.jpg', title: 'Leadership', desc: 'President Wamezaya Ebenezer' }
+    ];
+
+    function renderGallery() {
+        const grid = document.getElementById('galleryGrid');
+        grid.innerHTML = galleryImages.map((img, index) => `
+            <div class="gallery-item" onclick="openLightbox(${index})">
+                <img src="${img.src}" alt="${img.title}" />
+                <div class="overlay">
+                    <h3>${img.title}</h3>
+                    <p>${img.desc}</p>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function openLightbox(index) {
+        const lightbox = document.getElementById('lightbox');
+        const img = document.getElementById('lightboxImg');
+        img.src = galleryImages[index].src;
+        img.alt = galleryImages[index].title;
+        lightbox.classList.add('active');
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', renderGallery);
+</script>
+</body>
+</html>
