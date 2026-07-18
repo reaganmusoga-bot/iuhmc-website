@@ -6,12 +6,14 @@
     <title>IUHC - Inter-University Health Ministers Consortium</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <!-- EmailJS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #1f2937; line-height: 1.6; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* ========== NEW CLEAN & ELEVATED HEADER ========== */
+        /* ========== CLEAN & ELEVATED HEADER ========== */
         header {
             position: sticky;
             top: 0;
@@ -55,7 +57,6 @@
             letter-spacing: -0.5px;
         }
 
-        /* Navigation Links */
         .nav-links {
             display: flex;
             gap: 6px;
@@ -95,7 +96,6 @@
             border-radius: 10px;
         }
 
-        /* Mobile Menu Toggle */
         .menu-toggle {
             display: none;
             background: none;
@@ -169,12 +169,42 @@
         .social-links a { color: #1f2937; font-size: 1.8rem; transition: 0.2s; }
         .social-links a:hover { color: #0A7E3E; transform: scale(1.1); }
 
+        /* ========== CONTACT FORM ========== */
         .contact-form { background: #fff; padding: 30px; border-radius: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); max-width: 600px; margin: 20px auto; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 12px 16px; margin: 8px 0 16px; border: 1px solid #d1d5db; border-radius: 8px; font-family: inherit; font-size: 1rem; }
-        .contact-form textarea { height: 120px; resize: vertical; }
-        .contact-form button { background: #0A7E3E; color: #fff; padding: 12px 32px; border: none; border-radius: 40px; font-weight: 700; cursor: pointer; transition: 0.3s; width: 100%; font-size: 1rem; }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            margin: 6px 0 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            background: #f9fafb;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: #0A7E3E;
+            background: #ffffff;
+        }
+        .contact-form textarea { height: 130px; resize: vertical; }
+        .contact-form button {
+            background: #0A7E3E;
+            color: #fff;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+            font-size: 1rem;
+        }
         .contact-form button:hover { background: #065f2e; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(10, 126, 62, 0.4); }
-        .form-status { text-align: center; margin-top: 16px; font-weight: 600; }
+        .contact-form button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .form-status { text-align: center; margin-top: 16px; font-weight: 600; padding: 12px; border-radius: 8px; }
+        .form-status.success { background: #d1fae5; color: #065f2e; }
+        .form-status.error { background: #fee2e2; color: #991b1b; }
 
         /* ========== FOOTER ========== */
         footer { background: #1f2937; color: #d1d5db; padding: 40px 0 20px; margin-top: 40px; border-radius: 40px 40px 0 0; }
@@ -184,20 +214,8 @@
         footer .social-links a:hover { color: #F5B041; }
 
         /* ========== RESPONSIVE ========== */
-        @media (max-width: 992px) {
-            .nav-links {
-                gap: 4px;
-            }
-            .nav-links a {
-                padding: 6px 12px;
-                font-size: 0.85rem;
-            }
-        }
-
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
+            .menu-toggle { display: block; }
             .nav-links {
                 display: none;
                 flex-direction: column;
@@ -206,21 +224,15 @@
                 gap: 4px;
                 border-top: 1px solid rgba(0,0,0,0.04);
             }
-            .nav-links.open {
-                display: flex;
-            }
+            .nav-links.open { display: flex; }
             .nav-links a {
                 width: 100%;
                 padding: 10px 16px;
                 border-radius: 12px;
                 font-size: 0.95rem;
             }
-            .nav-links a.active::after {
-                display: none;
-            }
-            .nav-links a.active {
-                background: rgba(10, 126, 62, 0.12);
-            }
+            .nav-links a.active::after { display: none; }
+            .nav-links a.active { background: rgba(10, 126, 62, 0.12); }
 
             .hero { min-height: 450px; }
             .hero-content { padding: 50px 0; }
@@ -453,6 +465,7 @@
         <p style="margin:4px 0;"><strong>Phone:</strong> <a href="tel:+256703796153" style="color:#0A7E3E; text-decoration:none; font-weight:600;">+256 703 796 153</a></p>
     </div>
 
+    <!-- ===== WORKING CONTACT FORM (EmailJS) ===== -->
     <form class="contact-form" id="contactForm">
         <h3 style="margin-bottom:16px; color:#0A7E3E;">Send Us a Message</h3>
         <input type="text" id="name" placeholder="Your Name" required />
@@ -460,7 +473,7 @@
         <input type="text" id="subject" placeholder="Subject (e.g., Partnership, Volunteering, Donation)" />
         <input type="text" id="organization" placeholder="Organization (if any)" />
         <textarea id="message" placeholder="Tell us how you'd like to partner or get involved..." required></textarea>
-        <button type="submit">Send Message</button>
+        <button type="submit" id="sendButton">Send Message</button>
         <div id="formStatus" class="form-status"></div>
     </form>
 </section>
@@ -496,7 +509,7 @@
 </footer>
 
 <script>
-    // ========== MOBILE MENU TOGGLE (FIXED) ==========
+    // ========== MOBILE MENU TOGGLE ==========
     document.addEventListener('DOMContentLoaded', function() {
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
@@ -508,7 +521,6 @@
             icon.classList.toggle('fa-times');
         });
 
-        // Close mobile menu when a link is clicked
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('open');
@@ -519,53 +531,58 @@
         });
     });
 
-    // ========== CONTACT FORM PRE-FILL ==========
-    document.addEventListener('DOMContentLoaded', function() {
-        const subject = sessionStorage.getItem('contactSubject');
-        const message = sessionStorage.getItem('contactMessage');
-        if (subject && message) {
-            const subjectField = document.getElementById('subject');
-            const messageField = document.getElementById('message');
-            if (subjectField) subjectField.value = subject;
-            if (messageField) messageField.value = message;
-            sessionStorage.removeItem('contactSubject');
-            sessionStorage.removeItem('contactMessage');
-        }
-    });
+    // ========== EMAILJS CONTACT FORM (WITH YOUR CREDENTIALS) ==========
+    (function() {
+        // Your EmailJS credentials
+        const PUBLIC_KEY = 'svtfQ8t21LRdRe0XZ';
+        const SERVICE_ID = 'service_kztztjj';
+        const TEMPLATE_ID = 'template_89m9ca8';
 
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
+        // Initialize EmailJS
+        emailjs.init(PUBLIC_KEY);
+
+        const form = document.getElementById('contactForm');
         const status = document.getElementById('formStatus');
-        status.textContent = 'Sending...';
-        status.style.color = '#0A7E3E';
+        const sendButton = document.getElementById('sendButton');
 
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            subject: document.getElementById('subject').value || 'General Inquiry',
-            organization: document.getElementById('organization').value || 'N/A',
-            message: document.getElementById('message').value
-        };
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-        try {
-            const response = await fetch('https://formspree.io/f/xqkrdnkj', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            });
-            if (response.ok) {
-                status.textContent = '✅ Message sent successfully! We\'ll get back to you soon.';
-                status.style.color = '#0A7E3E';
-                this.reset();
-            } else {
-                status.textContent = '❌ Oops! Something went wrong. Please try again or email us directly.';
-                status.style.color = '#dc2626';
-            }
-        } catch (error) {
-            status.textContent = '❌ Network error. Please check your connection.';
-            status.style.color = '#dc2626';
-        }
-    });
+            // Show loading state
+            sendButton.disabled = true;
+            sendButton.textContent = 'Sending...';
+            status.className = 'form-status';
+            status.textContent = 'Sending your message...';
+            status.style.color = '#0A7E3E';
+
+            // Prepare template parameters
+            const templateParams = {
+                from_name: document.getElementById('name').value,
+                from_email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value || 'General Inquiry',
+                organization: document.getElementById('organization').value || 'N/A',
+                message: document.getElementById('message').value,
+                to_email: 'iuhmcinfo@yahoo.com'
+            };
+
+            // Send email using EmailJS
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+                .then(function(response) {
+                    status.className = 'form-status success';
+                    status.textContent = '✅ Message sent successfully! We\'ll get back to you soon.';
+                    form.reset();
+                    sendButton.disabled = false;
+                    sendButton.textContent = 'Send Message';
+                })
+                .catch(function(error) {
+                    console.error('EmailJS Error:', error);
+                    status.className = 'form-status error';
+                    status.textContent = '❌ Failed to send message. Please try again or email us directly at iuhmcinfo@yahoo.com';
+                    sendButton.disabled = false;
+                    sendButton.textContent = 'Send Message';
+                });
+        });
+    })();
 </script>
 
 </body>
