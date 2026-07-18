@@ -470,7 +470,7 @@
         <p style="margin:4px 0;"><strong>Phone:</strong> <a href="tel:+256703796153" style="color:#0A7E3E; text-decoration:none; font-weight:600;">+256 703 796 153</a></p>
     </div>
 
-    <!-- ===== CONTACT FORM (Web3Forms - No App Password Needed) ===== -->
+    <!-- ===== WORKING CONTACT FORM (Web3Forms) ===== -->
     <form class="contact-form" id="contactForm">
         <h3 style="margin-bottom:16px; color:#0A7E3E;">Send Us a Message</h3>
         <input type="text" id="name" placeholder="Your Name" required />
@@ -557,7 +557,7 @@
         formData.append('subject', document.getElementById('subject').value || 'General Inquiry');
         formData.append('organization', document.getElementById('organization').value || 'N/A');
         formData.append('message', document.getElementById('message').value);
-        formData.append('access_key', 'YOUR_WEB3FORMS_ACCESS_KEY'); // You'll get this from web3forms.com
+        formData.append('access_key', '979a4746-d8c2-40ca-ba2db-db2d7394cfbb');
 
         // Send to Web3Forms
         fetch('https://api.web3forms.com/submit', {
