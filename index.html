@@ -11,7 +11,7 @@
         body { font-family: 'Inter', sans-serif; background: #f9fafb; color: #1f2937; line-height: 1.6; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* ========== CLEAN & ELEVATED HEADER ========== */
+        /* ========== HEADER ========== */
         header {
             position: sticky;
             top: 0;
@@ -117,7 +117,7 @@
 
         /* ========== HERO ========== */
         .hero { position: relative; min-height: 600px; display: flex; align-items: center; border-radius: 0 0 40px 40px; margin-bottom: 40px; overflow: hidden; }
-        .hero-bg { position: absolute; inset: 0; background: url('https://i.ibb.co/prJ22rS6/cccc.jpg') no-repeat center center; background-size: cover; filter: brightness(0.6) saturate(1.1); transform: scale(1.02); transition: transform 8s ease; }
+        .hero-bg { position: absolute; inset: 0; background: url('https://i.ibb.co/yBW00Brm/cccc.jpg') no-repeat center center; background-size: cover; filter: brightness(0.6) saturate(1.1); transform: scale(1.02); transition: transform 8s ease; }
         .hero:hover .hero-bg { transform: scale(1); }
         .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10, 126, 62, 0.7) 0%, rgba(6, 95, 46, 0.85) 100%); }
         .hero-content { position: relative; z-index: 2; color: #fff; padding: 80px 0; max-width: 700px; }
@@ -144,7 +144,7 @@
         .project-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
         .project-card .pillar { background: #d1fae5; color: #065f2e; padding: 2px 12px; border-radius: 20px; font-size: 0.8rem; display: inline-block; margin-top: 8px; margin-right: 4px; }
 
-        /* ========== GALLERY - HIGHER QUALITY ========== */
+        /* ========== GALLERY - HIGH RESOLUTION ========== */
         .gallery-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -153,12 +153,16 @@
         }
         .gallery-grid img { 
             width: 100%; 
-            height: 280px; 
+            height: 300px; 
             object-fit: cover; 
             border-radius: 16px; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
             transition: transform 0.3s, box-shadow 0.3s;
             background: #e5e7eb;
+            image-rendering: auto;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
         .gallery-grid img:hover { 
             transform: scale(1.03); 
@@ -219,7 +223,7 @@
             .hero-content p { font-size: 1rem; }
             .stats { grid-template-columns: 1fr 1fr; }
             .gallery-grid { grid-template-columns: 1fr 1fr; }
-            .gallery-grid img { height: 200px; }
+            .gallery-grid img { height: 220px; }
             .university-grid { grid-template-columns: 1fr 1fr; }
             .partner-grid { flex-direction: column; align-items: center; }
             footer .container { flex-direction: column; text-align: center; }
@@ -230,7 +234,7 @@
             .hero-content h1 { font-size: 1.4rem; }
             .hero-content h2 { font-size: 1.8rem; }
             .gallery-grid { grid-template-columns: 1fr; }
-            .gallery-grid img { height: 220px; }
+            .gallery-grid img { height: 250px; }
             .university-grid { grid-template-columns: 1fr; }
             .logo img { height: 40px; }
             .logo span { font-size: 1rem; }
@@ -324,15 +328,15 @@
     </div>
 </section>
 
-<!-- ========== GALLERY (FIXED - HIGHER QUALITY) ========== -->
+<!-- ========== GALLERY - HIGH RESOLUTION (UPDATED) ========== -->
 <section class="container">
     <h2 class="section-title">Launch Event Gallery</h2>
     <p class="section-sub">Highlights from the IUHC launch and Sickle Cell Disease Campaign on 26th June 2026.</p>
     <div class="gallery-grid">
-        <img src="https://i.ibb.co/TD34dgcv/image-cons.jpg" alt="Launch event 1" loading="lazy" />
-        <img src="https://i.ibb.co/rfsnLKhs/imageco.jpg" alt="Launch event 2" loading="lazy" />
-        <img src="https://i.ibb.co/V0pcNgR1/consorrr.jpg" alt="Launch event 3" loading="lazy" />
-        <img src="https://i.ibb.co/T3mTxSq/consolo.jpg" alt="Testing exercise" loading="lazy" />
+        <img src="https://i.ibb.co/p6Ff5L20/image-cons.jpg" alt="Launch event 1" loading="lazy" />
+        <img src="https://i.ibb.co/93tRfm0t/imageco.jpg" alt="Launch event 2" loading="lazy" />
+        <img src="https://i.ibb.co/bjRM3sT0/consorrr.jpg" alt="Launch event 3" loading="lazy" />
+        <img src="https://i.ibb.co/L7nPXWh/consolo.jpg" alt="Testing exercise" loading="lazy" />
     </div>
 </section>
 
