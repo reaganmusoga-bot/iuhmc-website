@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Get Involved - IUHC</title>
+    <title>Get Involved - IUHMC</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <style>
@@ -17,6 +17,8 @@
             --nav-bg: rgba(255, 255, 255, 0.75);
             --input-bg: #f9fafb;
             --progress-color: #3B82F6;
+            --sky: #E0F2FE;
+            --sky-light: #F0F9FF;
         }
         body.dark-mode {
             --bg: #111827;
@@ -27,6 +29,8 @@
             --nav-bg: rgba(17, 24, 39, 0.85);
             --input-bg: #374151;
             --progress-color: #60A5FA;
+            --sky: #1e3a5f;
+            --sky-light: #1e293b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -289,6 +293,7 @@
             .cookie-banner { padding: 15px 20px; flex-direction: column; text-align: center; }
             .share-buttons { gap: 10px; }
             .share-btn { padding: 8px 16px; font-size: 0.85rem; }
+            .cta-box { padding: 20px; }
             footer .container { flex-direction: column; text-align: center; }
         }
 
@@ -299,7 +304,7 @@
             .floating-buttons { bottom: 15px; right: 15px; gap: 8px; }
             .fab-btn { width: 44px; height: 44px; font-size: 1rem; }
             .cookie-banner p { font-size: 0.85rem; }
-            .cta-box { padding: 20px; }
+            .cta-box { padding: 15px; }
         }
     </style>
 </head>
@@ -319,8 +324,8 @@
     <div class="container">
         <nav>
             <div class="logo">
-                <img src="https://i.ibb.co/F4RQmRbY/logo-iuhmc.png" alt="IUHC Logo" />
-                <span>IUHC</span>
+                <img src="https://i.ibb.co/F4RQmRbY/logo-iuhmc.png" alt="IUHMC Logo" />
+                <span>IUHMC</span>
             </div>
             <div style="display:flex; align-items:center; gap:8px;">
                 <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
@@ -341,7 +346,6 @@
                 <li><a href="events.html">Events</a></li>
                 <li><a href="newsletter.html">Newsletter</a></li>
                 <li><a href="portal.html">Portal</a></li>
-                <li><a href="admin.html">Admin</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </nav>
@@ -366,7 +370,7 @@
             <i class="fas fa-user-graduate"></i>
             <h3>For Students</h3>
             <p>Join your university's health ministry team. Lead campaigns, organize testing drives, and make a difference.</p>
-            <a href="index.html#contact" class="btn" onclick="prefillForm('Student Interest', 'I am a student interested in joining the IUHC network at my university. Please guide me on how to get involved.')">Join Now →</a>
+            <a href="index.html#contact" class="btn" onclick="prefillForm('Student Interest', 'I am a student interested in joining the IUHMC network at my university. Please guide me on how to get involved.')">Join Now →</a>
         </div>
 
         <!-- For NGOs & Partners -->
@@ -374,7 +378,7 @@
             <i class="fas fa-handshake"></i>
             <h3>For NGOs & Partners</h3>
             <p>Collaborate with us on health projects, provide resources, or co-host awareness campaigns.</p>
-            <a href="index.html#contact" class="btn btn-gold" onclick="prefillForm('Partnership Inquiry', 'We are an organization interested in partnering with IUHC. We would like to discuss collaboration opportunities.')">Partner With Us →</a>
+            <a href="index.html#contact" class="btn btn-gold" onclick="prefillForm('Partnership Inquiry', 'We are an organization interested in partnering with IUHMC. We would like to discuss collaboration opportunities.')">Partner With Us →</a>
         </div>
 
         <!-- For Volunteers -->
@@ -382,7 +386,7 @@
             <i class="fas fa-heart"></i>
             <h3>For Volunteers</h3>
             <p>Join our testing drives, health camps, and community outreach programs across Uganda.</p>
-            <a href="index.html#contact" class="btn btn-blue" onclick="prefillForm('Volunteer Interest', 'I am interested in volunteering with IUHC. Please let me know about upcoming opportunities and how I can help.')">Volunteer →</a>
+            <a href="index.html#contact" class="btn btn-blue" onclick="prefillForm('Volunteer Interest', 'I am interested in volunteering with IUHMC. Please let me know about upcoming opportunities and how I can help.')">Volunteer →</a>
         </div>
 
         <!-- For Donors -->
@@ -390,7 +394,7 @@
             <i class="fas fa-donate"></i>
             <h3>For Donors</h3>
             <p>Support our campaigns with funding, medical supplies, or testing kits.</p>
-            <a href="index.html#contact" class="btn btn-gold" onclick="prefillForm('Donation Inquiry', 'I would like to support IUHC through a donation. Please provide details on how I can contribute.')">Donate →</a>
+            <a href="index.html#contact" class="btn btn-gold" onclick="prefillForm('Donation Inquiry', 'I would like to support IUHMC through a donation. Please provide details on how I can contribute.')">Donate →</a>
         </div>
 
     </div>
@@ -403,7 +407,7 @@
     </div>
 
     <!-- ========== DIRECT CONTACT ========== -->
-    <div class="cta-box" style="border-color: #0A7E3E; background: #f0fdf4;">
+    <div class="cta-box" style="border-color: #0A7E3E; background: var(--sky-light);">
         <h3>📧 Or Reach Out Directly</h3>
         <p><strong>Email:</strong> iuhmcinfo@yahoo.com</p>
         <p><strong>Phone:</strong> <a href="tel:+256703796153" style="color:#0A7E3E; text-decoration:none; font-weight:600;">+256 703 796 153</a></p>
@@ -415,7 +419,7 @@
 <section class="container fade-in">
     <div class="share-section">
         <h2 class="section-title">📤 Share This Page</h2>
-        <p class="section-sub">Help spread the word about IUHC.</p>
+        <p class="section-sub">Help spread the word about IUHMC.</p>
         <div class="share-buttons">
             <button class="share-btn linkedin" onclick="sharePage('linkedin')"><i class="fab fa-linkedin"></i> LinkedIn</button>
             <button class="share-btn twitter" onclick="sharePage('twitter')"><i class="fab fa-twitter"></i> Twitter</button>
@@ -429,7 +433,7 @@
 <footer>
     <div class="container">
         <div>
-            <strong style="color:#fff;">IUHC</strong><br />
+            <strong style="color:#fff;">IUHMC</strong><br />
             Inter-University Health Ministers Consortium<br />
             Uganda 🇺🇬
         </div>
@@ -439,8 +443,7 @@
             <a href="gallery.html">Gallery</a><br />
             <a href="events.html">Events</a><br />
             <a href="newsletter.html">Newsletter</a><br />
-            <a href="portal.html">Member Portal</a><br />
-            <a href="admin.html">Admin</a>
+            <a href="portal.html">Member Portal</a>
         </div>
         <div>
             <strong>Email:</strong> iuhmcinfo@yahoo.com<br />
@@ -450,7 +453,7 @@
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
-            &copy; 2026 IUHC. Built with ❤️ by the consortium.
+            &copy; 2026 IUHMC. Built with ❤️ by the consortium.
         </div>
     </div>
 </footer>
@@ -515,7 +518,7 @@
     // ========== SHARE BUTTONS ==========
     function sharePage(platform) {
         const url = encodeURIComponent(window.location.href);
-        const text = encodeURIComponent('Check out IUHC - Inter-University Health Ministers Consortium!');
+        const text = encodeURIComponent('Check out IUHMC - Inter-University Health Ministers Consortium!');
         const urls = {
             linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
             twitter: `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
