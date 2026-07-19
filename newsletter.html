@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Newsletter - IUHC</title>
+    <title>Newsletter - IUHMC</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <style>
@@ -17,6 +17,8 @@
             --nav-bg: rgba(255, 255, 255, 0.75);
             --input-bg: #f9fafb;
             --progress-color: #3B82F6;
+            --sky: #E0F2FE;
+            --sky-light: #F0F9FF;
         }
         body.dark-mode {
             --bg: #111827;
@@ -27,6 +29,8 @@
             --nav-bg: rgba(17, 24, 39, 0.85);
             --input-bg: #374151;
             --progress-color: #60A5FA;
+            --sky: #1e3a5f;
+            --sky-light: #1e293b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -330,8 +334,8 @@
     <div class="container">
         <nav>
             <div class="logo">
-                <img src="https://i.ibb.co/F4RQmRbY/logo-iuhmc.png" alt="IUHC Logo" />
-                <span>IUHC</span>
+                <img src="https://i.ibb.co/F4RQmRbY/logo-iuhmc.png" alt="IUHMC Logo" />
+                <span>IUHMC</span>
             </div>
             <div style="display:flex; align-items:center; gap:8px;">
                 <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
@@ -352,7 +356,6 @@
                 <li><a href="events.html">Events</a></li>
                 <li><a href="newsletter.html" class="active">Newsletter</a></li>
                 <li><a href="portal.html">Portal</a></li>
-                <li><a href="admin.html">Admin</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </nav>
@@ -363,7 +366,7 @@
 <section class="page-header fade-in">
     <div class="container">
         <h1>📧 Newsletter</h1>
-        <p>Stay updated on IUHC news, events, and health tips – delivered to your inbox.</p>
+        <p>Stay updated on IUHMC news, events, and health tips – delivered to your inbox.</p>
     </div>
 </section>
 
@@ -372,7 +375,7 @@
     <div class="newsletter-box">
         <div class="icon">📬</div>
         <h2>Join Our Community</h2>
-        <p>Subscribe to the IUHC newsletter and get the latest updates on our projects, events, and health awareness campaigns.</p>
+        <p>Subscribe to the IUHMC newsletter and get the latest updates on our projects, events, and health awareness campaigns.</p>
         <form id="newsletterForm" onsubmit="subscribeNewsletter(event)">
             <div class="form-group">
                 <input type="text" id="subscriberName" placeholder="Your Full Name" required />
@@ -393,7 +396,7 @@
         <div class="benefit-card">
             <i class="fas fa-newspaper"></i>
             <h3>Latest News</h3>
-            <p>Be the first to know about IUHC events, campaigns, and achievements.</p>
+            <p>Be the first to know about IUHMC events, campaigns, and achievements.</p>
         </div>
         <div class="benefit-card">
             <i class="fas fa-heartbeat"></i>
@@ -417,7 +420,7 @@
             <button class="btn-small" onclick="alert('Newsletter archive coming soon. Stay tuned!')">Read</button>
         </div>
         <div class="archive-item">
-            <span><strong>June 2026</strong> – IUHC Launch Edition</span>
+            <span><strong>June 2026</strong> – IUHMC Launch Edition</span>
             <button class="btn-small" onclick="alert('Newsletter archive coming soon. Stay tuned!')">Read</button>
         </div>
         <div class="archive-item">
@@ -431,7 +434,7 @@
 <section class="container fade-in">
     <div class="share-section">
         <h2 class="section-title">📤 Share This Page</h2>
-        <p class="section-sub">Help spread the word about IUHC.</p>
+        <p class="section-sub">Help spread the word about IUHMC.</p>
         <div class="share-buttons">
             <button class="share-btn linkedin" onclick="sharePage('linkedin')"><i class="fab fa-linkedin"></i> LinkedIn</button>
             <button class="share-btn twitter" onclick="sharePage('twitter')"><i class="fab fa-twitter"></i> Twitter</button>
@@ -445,7 +448,7 @@
 <footer>
     <div class="container">
         <div>
-            <strong style="color:#fff;">IUHC</strong><br />
+            <strong style="color:#fff;">IUHMC</strong><br />
             Inter-University Health Ministers Consortium<br />
             Uganda 🇺🇬
         </div>
@@ -455,8 +458,7 @@
             <a href="gallery.html">Gallery</a><br />
             <a href="events.html">Events</a><br />
             <a href="newsletter.html">Newsletter</a><br />
-            <a href="portal.html">Member Portal</a><br />
-            <a href="admin.html">Admin</a>
+            <a href="portal.html">Member Portal</a>
         </div>
         <div>
             <strong>Email:</strong> iuhmcinfo@yahoo.com<br />
@@ -466,7 +468,7 @@
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
-            &copy; 2026 IUHC. Built with ❤️ by the consortium.
+            &copy; 2026 IUHMC. Built with ❤️ by the consortium.
         </div>
     </div>
 </footer>
@@ -531,7 +533,7 @@
     // ========== SHARE BUTTONS ==========
     function sharePage(platform) {
         const url = encodeURIComponent(window.location.href);
-        const text = encodeURIComponent('Check out IUHC - Inter-University Health Ministers Consortium!');
+        const text = encodeURIComponent('Check out IUHMC - Inter-University Health Ministers Consortium!');
         const urls = {
             linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
             twitter: `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
@@ -556,7 +558,7 @@
         subscribers.push({ name, email, date: new Date().toISOString() });
         localStorage.setItem('newsletterSubscribers', JSON.stringify(subscribers));
 
-        status.textContent = '✅ You\'re subscribed! Welcome to the IUHC community.';
+        status.textContent = '✅ You\'re subscribed! Welcome to the IUHMC community.';
         status.style.color = '#0A7E3E';
         document.getElementById('newsletterForm').reset();
 
