@@ -475,9 +475,18 @@
     <div class="dashboard" id="dashboard">
         <h2>📊 Member Dashboard</h2>
         <div class="dashboard-stats">
-            <div class="stat-card"><div class="number">3</div><div class="label">Upcoming Events</div></div>
-            <div class="stat-card"><div class="number">5</div><div class="label">New Resources</div></div>
-            <div class="stat-card"><div class="number">12</div><div class="label">Active Members</div></div>
+            <div class="stat-card">
+                <div class="number" id="totalMembers">0</div>
+                <div class="label">Total Registered Members</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="totalChats">0</div>
+                <div class="label">Chat Messages</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="onlineNow">0</div>
+                <div class="label">Online Now</div>
+            </div>
         </div>
 
         <!-- ===== CHAT ROOM ===== -->
@@ -615,6 +624,17 @@
         window.open(urls[platform], '_blank', 'width=600,height=500');
     }
 
+    // ========== UPDATE DASHBOARD STATS ==========
+    function updateDashboardStats() {
+        const users = JSON.parse(localStorage.getItem('iuhc_users')) || [];
+        const chatMessages = JSON.parse(localStorage.getItem('iuhc_chat')) || [];
+        const session = JSON.parse(localStorage.getItem('iuhc_session'));
+
+        document.getElementById('totalMembers').textContent = users.length;
+        document.getElementById('totalChats').textContent = chatMessages.length;
+        document.getElementById('onlineNow').textContent = session ? 1 : 0;
+    }
+
     // ========== REGISTER ==========
     function showRegister() {
         document.getElementById('loginBox').style.display = 'none';
@@ -682,6 +702,7 @@
         document.getElementById('dashboard').classList.add('active');
         document.querySelector('.portal-grid').style.display = 'none';
         loadChatMessages();
+        updateDashboardStats();
     }
 
     function logoutUser() {
@@ -690,6 +711,7 @@
         document.querySelector('.portal-grid').style.display = 'grid';
         document.getElementById('loginBox').style.display = 'block';
         document.getElementById('loginStatus').textContent = '';
+        updateDashboardStats();
     }
 
     // ========== CHAT ==========
@@ -739,6 +761,7 @@
         localStorage.setItem('iuhc_chat', JSON.stringify(messages));
         input.value = '';
         loadChatMessages();
+        updateDashboardStats();
     }
 
     // ========== MOBILE MENU ==========
