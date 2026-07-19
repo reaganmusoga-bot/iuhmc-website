@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Member Portal - IUHC</title>
+    <title>Member Portal - IUHMC</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <style>
@@ -17,6 +17,8 @@
             --nav-bg: rgba(255, 255, 255, 0.75);
             --input-bg: #f9fafb;
             --progress-color: #3B82F6;
+            --sky: #E0F2FE;
+            --sky-light: #F0F9FF;
         }
         body.dark-mode {
             --bg: #111827;
@@ -27,6 +29,8 @@
             --nav-bg: rgba(17, 24, 39, 0.85);
             --input-bg: #374151;
             --progress-color: #60A5FA;
+            --sky: #1e3a5f;
+            --sky-light: #1e293b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -357,8 +361,8 @@
     <div class="container">
         <nav>
             <div class="logo">
-                <img src="https://i.ibb.co/F4RQmRbY/logo-iuhmc.png" alt="IUHC Logo" />
-                <span>IUHC</span>
+                <img src="https://i.ibb.co/F4RQmRbY/logo-iuhmc.png" alt="IUHMC Logo" />
+                <span>IUHMC</span>
             </div>
             <div style="display:flex; align-items:center; gap:8px;">
                 <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
@@ -379,7 +383,6 @@
                 <li><a href="events.html">Events</a></li>
                 <li><a href="newsletter.html">Newsletter</a></li>
                 <li><a href="portal.html" class="active">Portal</a></li>
-                <li><a href="admin.html">Admin</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </nav>
@@ -390,7 +393,7 @@
 <section class="page-header fade-in">
     <div class="container">
         <h1>🔐 Member Portal</h1>
-        <p>Exclusive access for IUHC health ministers and members.</p>
+        <p>Exclusive access for IUHMC health ministers and members.</p>
     </div>
 </section>
 
@@ -414,7 +417,7 @@
         <!-- ===== REGISTER BOX ===== -->
         <div class="login-box register-box" id="registerBox">
             <h2>Create Account</h2>
-            <p class="sub">Join the IUHC member community.</p>
+            <p class="sub">Join the IUHMC member community.</p>
             <form onsubmit="registerUser(event)">
                 <input type="text" id="regName" placeholder="Full Name" required />
                 <input type="email" id="regEmail" placeholder="Your Email Address" required />
@@ -433,7 +436,7 @@
                 <i class="fas fa-comments"></i>
                 <div class="info">
                     <h4>Chat Room</h4>
-                    <p>Connect and chat with other IUHC members in real-time.</p>
+                    <p>Connect and chat with other IUHMC members in real-time.</p>
                 </div>
             </div>
             <div class="feature-item">
@@ -503,7 +506,7 @@
 <section class="container fade-in">
     <div class="share-section">
         <h2 class="section-title">📤 Share This Page</h2>
-        <p class="section-sub">Help spread the word about IUHC.</p>
+        <p class="section-sub">Help spread the word about IUHMC.</p>
         <div class="share-buttons">
             <button class="share-btn linkedin" onclick="sharePage('linkedin')"><i class="fab fa-linkedin"></i> LinkedIn</button>
             <button class="share-btn twitter" onclick="sharePage('twitter')"><i class="fab fa-twitter"></i> Twitter</button>
@@ -517,7 +520,7 @@
 <footer>
     <div class="container">
         <div>
-            <strong style="color:#fff;">IUHC</strong><br />
+            <strong style="color:#fff;">IUHMC</strong><br />
             Inter-University Health Ministers Consortium<br />
             Uganda 🇺🇬
         </div>
@@ -527,8 +530,7 @@
             <a href="gallery.html">Gallery</a><br />
             <a href="events.html">Events</a><br />
             <a href="newsletter.html">Newsletter</a><br />
-            <a href="portal.html">Member Portal</a><br />
-            <a href="admin.html">Admin</a>
+            <a href="portal.html">Member Portal</a>
         </div>
         <div>
             <strong>Email:</strong> iuhmcinfo@yahoo.com<br />
@@ -538,7 +540,7 @@
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
-            &copy; 2026 IUHC. Built with ❤️ by the consortium.
+            &copy; 2026 IUHMC. Built with ❤️ by the consortium.
         </div>
     </div>
 </footer>
@@ -603,7 +605,7 @@
     // ========== SHARE BUTTONS ==========
     function sharePage(platform) {
         const url = encodeURIComponent(window.location.href);
-        const text = encodeURIComponent('Check out IUHC - Inter-University Health Ministers Consortium!');
+        const text = encodeURIComponent('Check out IUHMC - Inter-University Health Ministers Consortium!');
         const urls = {
             linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
             twitter: `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
