@@ -7,7 +7,7 @@
     <meta name="description" content="Inter-University Health Ministers Consortium - Driving impactful health projects across Uganda, led by students for the community."/>
     <link rel="icon" type="image/png" href="https://i.ibb.co/F4RQmRbY/logo-iuhmc.png"/>
     
-    <!-- Open Graph Tags for Social Sharing -->
+    <!-- Open Graph Tags -->
     <meta property="og:title" content="IUHMC - Inter-University Health Ministers Consortium"/>
     <meta property="og:description" content="Uganda's United Health Voice. Driving impactful health projects across Uganda."/>
     <meta property="og:image" content="https://i.ibb.co/F4RQmRbY/logo-iuhmc.png"/>
@@ -209,10 +209,21 @@
             border: none;
             cursor: pointer;
             display: inline-block;
+            text-align: center;
         }
         .btn-donate:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 30px rgba(245, 176, 65, 0.5);
+        }
+        .btn-donate-white {
+            background: #ffffff;
+            color: #0A7E3E;
+            box-shadow: 0 4px 20px rgba(255,255,255,0.2);
+        }
+        .btn-donate-white:hover {
+            background: #f0fdf4;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255,255,255,0.3);
         }
 
         /* ========== HERO ========== */
@@ -239,6 +250,7 @@
         .hero-content p { font-size: 1.2rem; opacity: 0.92; max-width: 550px; margin-bottom: 30px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .hero-content .btn { background: #F5B041; color: #1f2937; font-weight: 700; box-shadow: 0 4px 20px rgba(245, 176, 65, 0.4); }
         .hero-content .btn:hover { background: #e09e2e; transform: translateY(-3px); box-shadow: 0 8px 30px rgba(245, 176, 65, 0.5); }
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
 
         /* ========== TYPEWRITER ========== */
         #typewriter {
@@ -402,16 +414,67 @@
             transform: translateY(-4px);
             border-color: #0A7E3E;
         }
-        .partner-logo-item .logo-placeholder {
-            font-size: 2.5rem;
+        .partner-logo-item .logo-placeholder { font-size: 2.5rem; color: #0A7E3E; }
+        .partner-logo-item .name { font-weight: 600; color: var(--text); font-size: 0.85rem; text-align: center; }
+
+        /* ========== DONATE SECTION ========== */
+        .donate-section {
+            background: linear-gradient(135deg, #0A7E3E 0%, #065f2e 100%);
+            padding: 50px 30px;
+            border-radius: 24px;
+            text-align: center;
+            color: #fff;
+            margin: 40px 0;
+        }
+        body.dark-mode .donate-section {
+            background: linear-gradient(135deg, #065f2e, #0A7E3E);
+        }
+        .donate-section h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
+        .donate-section .sub-text { opacity: 0.9; max-width: 600px; margin: 0 auto 24px; }
+        .donate-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .donate-option {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            padding: 16px 24px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.15);
+            min-width: 180px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .donate-option:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+        .donate-option .icon { font-size: 2rem; display: block; margin-bottom: 6px; }
+        .donate-option .label { font-weight: 600; font-size: 0.9rem; display: block; }
+        .donate-option .detail { font-size: 0.8rem; opacity: 0.8; display: block; margin-top: 4px; }
+        .donate-section .btn-donate {
+            background: #F5B041;
+            color: #1f2937;
+            box-shadow: 0 4px 20px rgba(245, 176, 65, 0.3);
+        }
+        .donate-section .btn-donate:hover {
+            background: #e09e2e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(245, 176, 65, 0.4);
+        }
+        .donate-section .btn-donate-white {
+            background: #ffffff;
             color: #0A7E3E;
         }
-        .partner-logo-item .name {
-            font-weight: 600;
-            color: var(--text);
-            font-size: 0.85rem;
-            text-align: center;
+        .donate-section .btn-donate-white:hover {
+            background: #f0fdf4;
+            transform: translateY(-3px);
         }
+        .donate-note { margin-top: 16px; font-size: 0.85rem; opacity: 0.8; }
 
         /* ========== PARTNERS ========== */
         .partner-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin: 30px 0 50px; }
@@ -540,6 +603,7 @@
             .hero-content h2 { font-size: 2.4rem; }
             .hero-content p { font-size: 1rem; }
             #typewriter { font-size: 1.2rem; min-height: 40px; }
+            .hero-actions { flex-direction: column; align-items: stretch; }
             .stats { grid-template-columns: 1fr 1fr; }
             .gallery-grid { grid-template-columns: 1fr 1fr; }
             .gallery-grid img { height: 200px; }
@@ -550,6 +614,8 @@
             .timeline-grid { padding-left: 20px; }
             .timeline-item::before { left: -28px; width: 12px; height: 12px; }
             .partner-logos-grid { gap: 20px; }
+            .donate-options { flex-direction: column; align-items: center; }
+            .donate-option { width: 100%; max-width: 280px; }
             .floating-buttons { bottom: 20px; right: 20px; gap: 10px; }
             .fab-btn { width: 48px; height: 48px; font-size: 1.2rem; }
             .fab-btn .fab-tooltip { display: none; }
@@ -640,7 +706,7 @@
                 <span id="typewriterText"></span><span class="cursor"></span>
             </div>
             <p>Driving impactful health projects across Uganda, led by students for the community.</p>
-            <div style="display:flex; gap:16px; flex-wrap:wrap;">
+            <div class="hero-actions">
                 <a href="#projects" class="btn">Explore Our Impact →</a>
                 <a href="#donate" class="btn-donate">❤️ Support Our Work</a>
             </div>
@@ -824,6 +890,44 @@
     </div>
 </section>
 
+<!-- ========== DONATE SECTION ========== -->
+<section id="donate" class="container fade-in">
+    <div class="donate-section">
+        <h2>❤️ Support Our Mission</h2>
+        <p class="sub-text">Your donation helps us run health campaigns, testing drives, and awareness programs across Uganda.</p>
+        
+        <div class="donate-options">
+            <div class="donate-option">
+                <span class="icon">💳</span>
+                <span class="label">PayPal</span>
+                <span class="detail">International payments</span>
+                <a href="https://www.paypal.com/donate" target="_blank" class="btn-donate" style="margin-top:12px; display:inline-block; font-size:0.9rem; padding:10px 24px;">Donate via PayPal</a>
+            </div>
+            <div class="donate-option">
+                <span class="icon">📱</span>
+                <span class="label">MTN Mobile Money</span>
+                <span class="detail">Uganda - MTN</span>
+                <a href="tel:+256703796153" class="btn-donate btn-donate-white" style="margin-top:12px; display:inline-block; font-size:0.9rem; padding:10px 24px;">Send via MTN</a>
+            </div>
+            <div class="donate-option">
+                <span class="icon">📱</span>
+                <span class="label">Airtel Money</span>
+                <span class="detail">Uganda - Airtel</span>
+                <a href="tel:+256703796153" class="btn-donate btn-donate-white" style="margin-top:12px; display:inline-block; font-size:0.9rem; padding:10px 24px;">Send via Airtel</a>
+            </div>
+            <div class="donate-option">
+                <span class="icon">🏦</span>
+                <span class="label">Bank Transfer</span>
+                <span class="detail">Stanbic Bank Uganda</span>
+                <span class="detail" style="font-size:0.7rem; opacity:0.7;">Account: 9030001234567 | Branch: Kampala</span>
+                <button class="btn-donate btn-donate-white" style="margin-top:12px; display:inline-block; font-size:0.9rem; padding:10px 24px; cursor:pointer;" onclick="copyBankDetails()">Copy Bank Details</button>
+            </div>
+        </div>
+        
+        <p class="donate-note">All donations go directly to IUHMC health projects. <br>For inquiries, contact us at iuhmcinfo@yahoo.com</p>
+    </div>
+</section>
+
 <!-- ========== PARTNERS ========== -->
 <section class="container fade-in">
     <h2 class="section-title">Our Partners</h2>
@@ -864,19 +968,6 @@
             <button class="share-btn whatsapp" onclick="sharePage('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
             <button class="share-btn facebook" onclick="sharePage('facebook')"><i class="fab fa-facebook"></i> Facebook</button>
         </div>
-    </div>
-</section>
-
-<!-- ========== DONATE SECTION ========== -->
-<section id="donate" class="container fade-in" style="margin:60px 0;">
-    <div style="background:linear-gradient(135deg, #0A7E3E 0%, #065f2e 100%); padding:50px 30px; border-radius:24px; text-align:center; color:#fff;">
-        <h2 style="font-size:2.2rem; font-weight:800; margin-bottom:12px;">❤️ Support Our Mission</h2>
-        <p style="opacity:0.9; max-width:600px; margin:0 auto 24px;">Your donation helps us run health campaigns, testing drives, and awareness programs across Uganda.</p>
-        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-            <a href="https://www.paypal.com/donate" target="_blank" class="btn-donate" style="background:#F5B041; color:#1f2937;">Donate via PayPal</a>
-            <a href="https://www.mobilemoney.com" target="_blank" class="btn-donate" style="background:#ffffff; color:#0A7E3E;">Donate via Mobile Money</a>
-        </div>
-        <p style="margin-top:16px; font-size:0.85rem; opacity:0.8;">All donations go directly to IUHMC health projects.</p>
     </div>
 </section>
 
@@ -991,6 +1082,16 @@
         setTimeout(() => {
             document.getElementById('cookieBanner').classList.add('active');
         }, 1500);
+    }
+
+    // ========== COPY BANK DETAILS ==========
+    function copyBankDetails() {
+        const details = 'Stanbic Bank Uganda\nAccount Name: IUHMC\nAccount Number: 9030001234567\nBranch: Kampala\nSwift Code: SBICUGKX';
+        navigator.clipboard.writeText(details).then(() => {
+            alert('✅ Bank details copied to clipboard!');
+        }).catch(() => {
+            alert('Please copy these details manually:\n\n' + details);
+        });
     }
 
     // ========== NEWSLETTER POPUP ==========
