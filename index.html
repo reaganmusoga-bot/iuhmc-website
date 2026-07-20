@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     
-    <!-- Tidio Live Chat Script -->
+    <!-- Tidio Live Chat Script (replace with your own when you get it) -->
     <script src="//code.tidio.co/0mkwrvx2t78fmk7tv3jvdnha3a7p7aas.js" async></script>
     
     <style>
@@ -290,6 +290,31 @@
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+        /* ========== UNIVERSITIES ========== */
+        .university-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin: 20px 0 30px; }
+        .university-card {
+            background: var(--card-bg);
+            padding: 24px 16px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--border);
+            transition: 0.3s, background 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        .university-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-color: #0A7E3E;
+        }
+        .university-card .univ-icon { font-size: 2.5rem; margin-bottom: 4px; }
+        .university-card .univ-name { font-weight: 700; font-size: 0.95rem; color: var(--text); }
+        .university-card .univ-sub { font-size: 0.75rem; color: #6b7280; }
+        body.dark-mode .university-card .univ-sub { color: #9ca3af; }
+
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 60px; }
         .project-card { background: var(--card-bg); border-radius: 16px; padding: 24px; box-shadow: var(--shadow); border-left: 5px solid #F5B041; transition: 0.3s; }
         .project-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
@@ -380,24 +405,10 @@
             margin: 60px 0;
             transition: background 0.3s ease;
         }
-        .partner-logos-section h2 {
-            color: #0A7E3E;
-            text-align: center;
-            margin-bottom: 8px;
-        }
-        .partner-logos-section .sub {
-            text-align: center;
-            color: #6b7280;
-            margin-bottom: 30px;
-        }
+        .partner-logos-section h2 { color: #0A7E3E; text-align: center; margin-bottom: 8px; }
+        .partner-logos-section .sub { text-align: center; color: #6b7280; margin-bottom: 30px; }
         body.dark-mode .partner-logos-section .sub { color: #9ca3af; }
-        .partner-logos-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-        }
+        .partner-logos-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 40px; }
         .partner-logo-item {
             display: flex;
             flex-direction: column;
@@ -410,10 +421,7 @@
             border: 1px solid var(--border);
             background: var(--bg);
         }
-        .partner-logo-item:hover {
-            transform: translateY(-4px);
-            border-color: #0A7E3E;
-        }
+        .partner-logo-item:hover { transform: translateY(-4px); border-color: #0A7E3E; }
         .partner-logo-item .logo-placeholder { font-size: 2.5rem; color: #0A7E3E; }
         .partner-logo-item .name { font-weight: 600; color: var(--text); font-size: 0.85rem; text-align: center; }
 
@@ -426,18 +434,10 @@
             color: #fff;
             margin: 40px 0;
         }
-        body.dark-mode .donate-section {
-            background: linear-gradient(135deg, #065f2e, #0A7E3E);
-        }
+        body.dark-mode .donate-section { background: linear-gradient(135deg, #065f2e, #0A7E3E); }
         .donate-section h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
         .donate-section .sub-text { opacity: 0.9; max-width: 600px; margin: 0 auto 24px; }
-        .donate-options {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 16px;
-            margin: 20px 0;
-        }
+        .donate-options { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 20px 0; }
         .donate-option {
             background: rgba(255,255,255,0.12);
             backdrop-filter: blur(10px);
@@ -449,31 +449,14 @@
             transition: 0.3s;
             cursor: pointer;
         }
-        .donate-option:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-3px);
-        }
+        .donate-option:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
         .donate-option .icon { font-size: 2rem; display: block; margin-bottom: 6px; }
         .donate-option .label { font-weight: 600; font-size: 0.9rem; display: block; }
         .donate-option .detail { font-size: 0.8rem; opacity: 0.8; display: block; margin-top: 4px; }
-        .donate-section .btn-donate {
-            background: #F5B041;
-            color: #1f2937;
-            box-shadow: 0 4px 20px rgba(245, 176, 65, 0.3);
-        }
-        .donate-section .btn-donate:hover {
-            background: #e09e2e;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(245, 176, 65, 0.4);
-        }
-        .donate-section .btn-donate-white {
-            background: #ffffff;
-            color: #0A7E3E;
-        }
-        .donate-section .btn-donate-white:hover {
-            background: #f0fdf4;
-            transform: translateY(-3px);
-        }
+        .donate-section .btn-donate { background: #F5B041; color: #1f2937; box-shadow: 0 4px 20px rgba(245, 176, 65, 0.3); }
+        .donate-section .btn-donate:hover { background: #e09e2e; transform: translateY(-3px); box-shadow: 0 8px 30px rgba(245, 176, 65, 0.4); }
+        .donate-section .btn-donate-white { background: #ffffff; color: #0A7E3E; }
+        .donate-section .btn-donate-white:hover { background: #f0fdf4; transform: translateY(-3px); }
         .donate-note { margin-top: 16px; font-size: 0.85rem; opacity: 0.8; }
 
         /* ========== PARTNERS ========== */
@@ -614,6 +597,7 @@
             .timeline-grid { padding-left: 20px; }
             .timeline-item::before { left: -28px; width: 12px; height: 12px; }
             .partner-logos-grid { gap: 20px; }
+            .university-grid { grid-template-columns: 1fr 1fr; }
             .donate-options { flex-direction: column; align-items: center; }
             .donate-option { width: 100%; max-width: 280px; }
             .floating-buttons { bottom: 20px; right: 20px; gap: 10px; }
@@ -645,6 +629,7 @@
             .fab-btn { width: 44px; height: 44px; font-size: 1rem; }
             .visitor-counter { bottom: 75px; right: 15px; font-size: 0.7rem; padding: 4px 10px; }
             .cookie-banner p { font-size: 0.85rem; }
+            .university-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -816,32 +801,88 @@
     </div>
 </section>
 
+<!-- ========== UNIVERSITIES & INSTITUTIONS ========== -->
+<section class="container fade-in">
+    <h2 class="section-title">Our Member Universities & Institutions</h2>
+    <p class="section-sub">United from across Uganda to drive health change. Over 40 institutions are part of the IUHMC network.</p>
+
+    <h3 style="color:#0A7E3E; margin-top:30px;">🏛️ Public Universities</h3>
+    <div class="university-grid">
+        <div class="university-card" style="border-color: #0A7E3E;"><i class="fas fa-university univ-icon" style="color:#0A7E3E;"></i><span class="univ-name">Makerere University</span><span class="univ-sub">Est. 1922</span></div>
+        <div class="university-card" style="border-color: #dc2626;"><i class="fas fa-university univ-icon" style="color:#dc2626;"></i><span class="univ-name">MUST</span><span class="univ-sub">Mbarara University of Science & Technology</span></div>
+        <div class="university-card" style="border-color: #16a34a;"><i class="fas fa-university univ-icon" style="color:#16a34a;"></i><span class="univ-name">Gulu University</span><span class="univ-sub">Northern Uganda</span></div>
+        <div class="university-card" style="border-color: #eab308;"><i class="fas fa-university univ-icon" style="color:#eab308;"></i><span class="univ-name">Busitema University</span><span class="univ-sub">Eastern Uganda</span></div>
+        <div class="university-card" style="border-color: #8b5cf6;"><i class="fas fa-university univ-icon" style="color:#8b5cf6;"></i><span class="univ-name">Soroti University</span><span class="univ-sub">Teso Region</span></div>
+        <div class="university-card" style="border-color: #ec4899;"><i class="fas fa-university univ-icon" style="color:#ec4899;"></i><span class="univ-name">Kyambogo University</span><span class="univ-sub">Central Uganda</span></div>
+        <div class="university-card" style="border-color: #14b8a6;"><i class="fas fa-university univ-icon" style="color:#14b8a6;"></i><span class="univ-name">Kabale University</span><span class="univ-sub">Southwestern Uganda</span></div>
+        <div class="university-card" style="border-color: #f97316;"><i class="fas fa-university univ-icon" style="color:#f97316;"></i><span class="univ-name">Lira University</span><span class="univ-sub">Northern Uganda</span></div>
+        <div class="university-card" style="border-color: #6366f1;"><i class="fas fa-university univ-icon" style="color:#6366f1;"></i><span class="univ-name">MMU</span><span class="univ-sub">Mountains of the Moon University</span></div>
+        <div class="university-card" style="border-color: #d946ef;"><i class="fas fa-university univ-icon" style="color:#d946ef;"></i><span class="univ-name">Muni University</span><span class="univ-sub">West Nile Region</span></div>
+    </div>
+
+    <h3 style="color:#0A7E3E; margin-top:40px;">🏫 Private Universities</h3>
+    <div class="university-grid">
+        <div class="university-card" style="border-color: #1e40af;"><i class="fas fa-university univ-icon" style="color:#1e40af;"></i><span class="univ-name">Uganda Christian University (UCU)</span><span class="univ-sub">Mukono</span></div>
+        <div class="university-card" style="border-color: #b91c1c;"><i class="fas fa-university univ-icon" style="color:#b91c1c;"></i><span class="univ-name">Kampala International University (KIU)</span><span class="univ-sub">Kampala</span></div>
+        <div class="university-card" style="border-color: #065f46;"><i class="fas fa-university univ-icon" style="color:#065f46;"></i><span class="univ-name">Uganda Martyrs University (UMU)</span><span class="univ-sub">Nkozi</span></div>
+        <div class="university-card" style="border-color: #6d28d9;"><i class="fas fa-university univ-icon" style="color:#6d28d9;"></i><span class="univ-name">Ndejje University</span><span class="univ-sub">Central Uganda</span></div>
+        <div class="university-card" style="border-color: #047857;"><i class="fas fa-university univ-icon" style="color:#047857;"></i><span class="univ-name">Islamic University in Uganda (IUIU)</span><span class="univ-sub">Mbale</span></div>
+        <div class="university-card" style="border-color: #92400e;"><i class="fas fa-university univ-icon" style="color:#92400e;"></i><span class="univ-name">Bugema University</span><span class="univ-sub">Central Uganda</span></div>
+        <div class="university-card" style="border-color: #1e3a8a;"><i class="fas fa-university univ-icon" style="color:#1e3a8a;"></i><span class="univ-name">Bishop Stuart University</span><span class="univ-sub">Mbarara</span></div>
+        <div class="university-card" style="border-color: #a16207;"><i class="fas fa-university univ-icon" style="color:#a16207;"></i><span class="univ-name">Cavendish University Uganda</span><span class="univ-sub">Kampala</span></div>
+        <div class="university-card" style="border-color: #be185d;"><i class="fas fa-university univ-icon" style="color:#be185d;"></i><span class="univ-name">International University of East Africa (IUEA)</span><span class="univ-sub">Kampala</span></div>
+        <div class="university-card" style="border-color: #0a7e3e;"><i class="fas fa-university univ-icon" style="color:#0a7e3e;"></i><span class="univ-name">Kampala University</span><span class="univ-sub">Kampala</span></div>
+        <div class="university-card" style="border-color: #7c3aed;"><i class="fas fa-university univ-icon" style="color:#7c3aed;"></i><span class="univ-name">Nkumba University</span><span class="univ-sub">Entebbe</span></div>
+        <div class="university-card" style="border-color: #0d9488;"><i class="fas fa-university univ-icon" style="color:#0d9488;"></i><span class="univ-name">Victoria University</span><span class="univ-sub">Kampala</span></div>
+        <div class="university-card" style="border-color: #b45309;"><i class="fas fa-university univ-icon" style="color:#b45309;"></i><span class="univ-name">St. Augustine International University</span><span class="univ-sub">Kampala</span></div>
+        <div class="university-card" style="border-color: #4f46e5;"><i class="fas fa-university univ-icon" style="color:#4f46e5;"></i><span class="univ-name">Fairland University</span><span class="univ-sub">Jinja</span></div>
+        <div class="university-card" style="border-color: #a855f7;"><i class="fas fa-university univ-icon" style="color:#a855f7;"></i><span class="univ-name">Clarke International University</span><span class="univ-sub">Kampala</span></div>
+        <div class="university-card" style="border-color: #059669;"><i class="fas fa-university univ-icon" style="color:#059669;"></i><span class="univ-name">African Rural University</span><span class="univ-sub">Kagadi</span></div>
+        <div class="university-card" style="border-color: #d97706;"><i class="fas fa-university univ-icon" style="color:#d97706;"></i><span class="univ-name">Kumi University</span><span class="univ-sub">Kumi</span></div>
+        <div class="university-card" style="border-color: #2563eb;"><i class="fas fa-university univ-icon" style="color:#2563eb;"></i><span class="univ-name">LivingStone International University</span><span class="univ-sub">Mbale</span></div>
+        <div class="university-card" style="border-color: #0891b2;"><i class="fas fa-university univ-icon" style="color:#0891b2;"></i><span class="univ-name">University of Kisubi (UNIK)</span><span class="univ-sub">Kisubi</span></div>
+        <div class="university-card" style="border-color: #6b7280;"><i class="fas fa-university univ-icon" style="color:#6b7280;"></i><span class="univ-name">All Saints University</span><span class="univ-sub">Lira</span></div>
+        <div class="university-card" style="border-color: #991b1b;"><i class="fas fa-university univ-icon" style="color:#991b1b;"></i><span class="univ-name">Great Lakes Regional University</span><span class="univ-sub">Kanungu</span></div>
+        <div class="university-card" style="border-color: #15803d;"><i class="fas fa-university univ-icon" style="color:#15803d;"></i><span class="univ-name">International Health Sciences University</span><span class="univ-sub">Kampala</span></div>
+        <div class="university-card" style="border-color: #7c3aed;"><i class="fas fa-university univ-icon" style="color:#7c3aed;"></i><span class="univ-name">St. Lawrence University</span><span class="univ-sub">Kampala</span></div>
+        <div class="university-card" style="border-color: #0ea5e9;"><i class="fas fa-university univ-icon" style="color:#0ea5e9;"></i><span class="univ-name">Virtual University of Uganda</span><span class="univ-sub">Online</span></div>
+        <!-- NEW: King Ceasor University -->
+        <div class="university-card" style="border-color: #f59e0b;"><i class="fas fa-university univ-icon" style="color:#f59e0b;"></i><span class="univ-name">King Ceasor University</span><span class="univ-sub">Central Uganda</span></div>
+        <!-- NEW: Florence Nightingale -->
+        <div class="university-card" style="border-color: #ec4899;"><i class="fas fa-university univ-icon" style="color:#ec4899;"></i><span class="univ-name">Florence Nightingale</span><span class="univ-sub">Nursing & Health Sciences</span></div>
+        <!-- NEW: KIU Western Campus -->
+        <div class="university-card" style="border-color: #8b5cf6;"><i class="fas fa-university univ-icon" style="color:#8b5cf6;"></i><span class="univ-name">KIU Western Campus</span><span class="univ-sub">Western Uganda</span></div>
+        <!-- NEW: UICT -->
+        <div class="university-card" style="border-color: #14b8a6;"><i class="fas fa-university univ-icon" style="color:#14b8a6;"></i><span class="univ-name">UICT</span><span class="univ-sub">Uganda Institute of Information & Communications Technology</span></div>
+    </div>
+
+    <h3 style="color:#0A7E3E; margin-top:40px;">🏥 Higher Education Institutions</h3>
+    <div class="university-grid">
+        <div class="university-card" style="border-color: #0A7E3E;"><i class="fas fa-building univ-icon" style="color:#0A7E3E;"></i><span class="univ-name">Makerere University Business School (MUBS)</span><span class="univ-sub">Kampala</span></div>
+        <div class="university-card" style="border-color: #F5B041;"><i class="fas fa-building univ-icon" style="color:#F5B041;"></i><span class="univ-name">Uganda Management Institute (UMI)</span><span class="univ-sub">Kampala</span></div>
+        <div class="university-card" style="border-color: #8b5cf6;"><i class="fas fa-building univ-icon" style="color:#8b5cf6;"></i><span class="univ-name">Gulu College of Health Sciences</span><span class="univ-sub">Gulu</span></div>
+        <div class="university-card" style="border-color: #ef4444;"><i class="fas fa-building univ-icon" style="color:#ef4444;"></i><span class="univ-name">Mulago Paramedical School</span><span class="univ-sub">Kampala</span></div>
+        <div class="university-card" style="border-color: #14b8a6;"><i class="fas fa-building univ-icon" style="color:#14b8a6;"></i><span class="univ-name">Uganda Institute of Allied Health (UIAHMS)</span><span class="univ-sub">Kampala</span></div>
+        <div class="university-card" style="border-color: #8b5cf6;"><i class="fas fa-building univ-icon" style="color:#8b5cf6;"></i><span class="univ-name">Aga Khan University (Uganda Campus)</span><span class="univ-sub">Kampala</span></div>
+        <div class="university-card" style="border-color: #f59e0b;"><i class="fas fa-building univ-icon" style="color:#f59e0b;"></i><span class="univ-name">Jinja Nursing School</span><span class="univ-sub">Jinja</span></div>
+        <div class="university-card" style="border-color: #10b981;"><i class="fas fa-building univ-icon" style="color:#10b981;"></i><span class="univ-name">Fort Portal Nursing School</span><span class="univ-sub">Fort Portal</span></div>
+        <div class="university-card" style="border-color: #3b82f6;"><i class="fas fa-building univ-icon" style="color:#3b82f6;"></i><span class="univ-name">Arua Nursing School</span><span class="univ-sub">Arua</span></div>
+        <div class="university-card" style="border-color: #7c3aed;"><i class="fas fa-building univ-icon" style="color:#7c3aed;"></i><span class="univ-name">Royal College of Physicians (Uganda)</span><span class="univ-sub">Kampala</span></div>
+        <div class="university-card" style="border-color: #dc2626;"><i class="fas fa-building univ-icon" style="color:#dc2626;"></i><span class="univ-name">Uganda Nurses and Midwives Training Council</span><span class="univ-sub">Kampala</span></div>
+    </div>
+</section>
+
 <!-- ========== PARTNER LOGOS ========== -->
 <section class="container fade-in">
     <div class="partner-logos-section">
         <h2>🤝 Our Partners</h2>
         <p class="sub">Collaborating for a healthier Uganda.</p>
         <div class="partner-logos-grid">
-            <div class="partner-logo-item">
-                <span class="logo-placeholder">🏛️</span>
-                <span class="name">Ministry of Health - Uganda</span>
-            </div>
-            <div class="partner-logo-item">
-                <span class="logo-placeholder">❤️</span>
-                <span class="name">Raremark Foundation</span>
-            </div>
-            <div class="partner-logo-item">
-                <span class="logo-placeholder">🔬</span>
-                <span class="name">Microhaem Scientifics</span>
-            </div>
-            <div class="partner-logo-item">
-                <span class="logo-placeholder">🏥</span>
-                <span class="name">Lira University</span>
-            </div>
-            <div class="partner-logo-item">
-                <span class="logo-placeholder">📚</span>
-                <span class="name">Makerere University</span>
-            </div>
+            <div class="partner-logo-item"><span class="logo-placeholder">🏛️</span><span class="name">Ministry of Health - Uganda</span></div>
+            <div class="partner-logo-item"><span class="logo-placeholder">❤️</span><span class="name">Raremark Foundation</span></div>
+            <div class="partner-logo-item"><span class="logo-placeholder">🔬</span><span class="name">Microhaem Scientifics</span></div>
+            <div class="partner-logo-item"><span class="logo-placeholder">🏥</span><span class="name">Lira University</span></div>
+            <div class="partner-logo-item"><span class="logo-placeholder">📚</span><span class="name">Makerere University</span></div>
         </div>
     </div>
 </section>
@@ -895,7 +936,6 @@
     <div class="donate-section">
         <h2>❤️ Support Our Mission</h2>
         <p class="sub-text">Your donation helps us run health campaigns, testing drives, and awareness programs across Uganda.</p>
-        
         <div class="donate-options">
             <div class="donate-option">
                 <span class="icon">💳</span>
@@ -923,7 +963,6 @@
                 <button class="btn-donate btn-donate-white" style="margin-top:12px; display:inline-block; font-size:0.9rem; padding:10px 24px; cursor:pointer;" onclick="copyBankDetails()">Copy Bank Details</button>
             </div>
         </div>
-        
         <p class="donate-note">All donations go directly to IUHMC health projects. <br>For inquiries, contact us at iuhmcinfo@yahoo.com</p>
     </div>
 </section>
