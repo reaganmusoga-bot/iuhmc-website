@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* ========== CSS VARIABLES ========== */
+        /* ===== CSS VARIABLES ===== */
         :root {
             --bg: #f9fafb;
             --text: #1f2937;
@@ -43,6 +43,7 @@
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
+        /* ===== SCROLL PROGRESS BAR ===== */
         #progressBar {
             position: fixed;
             top: 0;
@@ -52,19 +53,18 @@
             background: var(--progress-color);
             z-index: 10000;
             transition: width 0.1s linear;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
         }
 
+        /* ===== HEADER ===== */
         header {
             position: sticky;
             top: 0;
             z-index: 1000;
             padding: 12px 0;
             background: var(--nav-bg);
-            backdrop-filter: blur(20px) saturate(1.8);
-            -webkit-backdrop-filter: blur(20px) saturate(1.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.04);
             transition: background 0.3s ease;
         }
         body.dark-mode header { border-bottom: 1px solid rgba(255,255,255,0.05); }
@@ -158,6 +158,7 @@
         }
         .menu-toggle:hover { background: rgba(10, 126, 62, 0.08); }
 
+        /* ===== PAGE HEADER ===== */
         .page-header {
             background: linear-gradient(135deg, var(--primary) 0%, #065f2e 100%);
             color: #fff;
@@ -180,6 +181,7 @@
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+        /* ===== COOKIE BANNER ===== */
         .cookie-banner {
             position: fixed;
             bottom: 0;
@@ -212,6 +214,7 @@
         }
         .cookie-banner .btn:hover { background: #d4952e; }
 
+        /* ===== FLOATING BUTTONS ===== */
         .floating-buttons {
             position: fixed;
             bottom: 30px;
@@ -272,6 +275,7 @@
         .fab-btn.top { opacity: 0; pointer-events: none; transform: translateY(20px); }
         .fab-btn.top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
 
+        /* ===== FOOTER ===== */
         footer {
             background: #1f2937;
             color: #d1d5db;
@@ -289,13 +293,37 @@
         footer .social-links a { color: #d1d5db; font-size: 1.4rem; }
         footer .social-links a:hover { color: var(--gold); }
 
-        /* ========== MEMBER DIRECTORY ========== */
+        /* ===== MEMBER DIRECTORY ===== */
+        .directory-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+            align-items: center;
+        }
+        .directory-actions .btn-export {
+            background: var(--primary);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .directory-actions .btn-export:hover { background: #065f2e; transform: translateY(-2px); }
+        .directory-actions .btn-export i { font-size: 1rem; }
+
         .directory-search {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             align-items: center;
+            flex: 1;
         }
         .directory-search input {
             flex: 1;
@@ -369,6 +397,7 @@
             padding: 12px 16px;
             border-bottom: 1px solid var(--border);
             color: var(--text);
+            cursor: pointer;
         }
         .member-table-container tr:hover { background: var(--sky-light); }
         body.dark-mode .member-table-container tr:hover { background: #1e293b; }
@@ -394,6 +423,160 @@
             color: #6b7280;
         }
 
+        /* ===== MEMBER PROFILE MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: var(--card-bg);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            transition: background 0.3s ease;
+        }
+        .modal-content .close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #6b7280;
+            cursor: pointer;
+        }
+        .modal-content .close:hover { color: var(--text); }
+        .modal-content .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 16px;
+        }
+        .modal-content .name { font-size: 1.5rem; font-weight: 700; text-align: center; }
+        .modal-content .role { color: var(--primary); text-align: center; font-weight: 600; margin-bottom: 16px; }
+        .modal-content .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .modal-content .detail-row .label { color: #6b7280; }
+        .modal-content .detail-row .value { font-weight: 600; }
+        .modal-content .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        .modal-content .actions .btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .modal-content .actions .btn-primary { background: var(--primary); color: #fff; }
+        .modal-content .actions .btn-primary:hover { background: #065f2e; }
+        .modal-content .actions .btn-gold { background: var(--gold); color: #1f2937; }
+        .modal-content .actions .btn-gold:hover { background: #d4952e; }
+
+        /* ===== COORDINATORS ===== */
+        .coordinator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .coordinator-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--border);
+            transition: 0.3s;
+        }
+        .coordinator-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+        .coordinator-card .region-icon { font-size: 2.5rem; margin-bottom: 8px; }
+        .coordinator-card .coord-name { font-weight: 700; font-size: 1.1rem; }
+        .coordinator-card .coord-role { color: var(--primary); font-weight: 600; font-size: 0.9rem; }
+        .coordinator-card .coord-phone { color: #6b7280; font-size: 0.85rem; }
+        body.dark-mode .coordinator-card .coord-phone { color: #9ca3af; }
+        .coordinator-card .btn-small {
+            background: var(--gold);
+            color: #1f2937;
+            padding: 6px 16px;
+            border: none;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 8px;
+        }
+        .coordinator-card .btn-small:hover { background: #d4952e; }
+
+        /* ===== ACTIVITY FEED ===== */
+        .activity-feed {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            transition: background 0.3s ease;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .activity-feed .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .activity-feed .activity-item:last-child { border-bottom: none; }
+        .activity-feed .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--sky-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        .activity-feed .activity-text { flex: 1; }
+        .activity-feed .activity-text .title { font-weight: 600; }
+        .activity-feed .activity-text .time { font-size: 0.8rem; color: #6b7280; }
+        body.dark-mode .activity-feed .activity-text .time { color: #9ca3af; }
+
+        /* ===== EVENT REGISTRATION ===== */
         .event-registration-form {
             background: var(--card-bg);
             padding: 30px;
@@ -447,6 +630,7 @@
         .registration-status.success { background: #d1fae5; color: #065f2e; }
         .registration-status.error { background: #fee2e2; color: #991b1b; }
 
+        /* ===== IMPACT DASHBOARD ===== */
         .dashboard-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -476,6 +660,7 @@
         .chart-container canvas { max-height: 300px; }
         .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
 
+        /* ===== RESOURCES ===== */
         .resource-library-search {
             display: flex;
             gap: 12px;
@@ -555,6 +740,7 @@
         }
         .resource-card .btn-small:hover { background: #d4952e; }
 
+        /* ===== PWA ===== */
         .pwa-section {
             background: linear-gradient(135deg, var(--primary) 0%, #065f2e 100%);
             color: #fff;
@@ -588,6 +774,7 @@
         }
         .pwa-section .btn:hover { background: #d4952e; }
 
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             .nav-links {
@@ -607,6 +794,7 @@
             .page-header h1 { font-size: 2rem; }
             .chart-grid { grid-template-columns: 1fr; }
             .directory-search { flex-direction: column; }
+            .directory-actions { flex-direction: column; }
             .resource-library-search { flex-direction: column; }
             .floating-buttons { bottom: 20px; right: 20px; gap: 10px; }
             .fab-btn { width: 48px; height: 48px; font-size: 1.2rem; }
@@ -617,6 +805,7 @@
             .pwa-section .pwa-badge { display: block; margin: 8px 0; }
             .member-table-container table { font-size: 0.8rem; }
             .member-table-container th, .member-table-container td { padding: 8px 10px; }
+            .coordinator-grid { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 480px) {
@@ -625,7 +814,9 @@
             .floating-buttons { bottom: 15px; right: 15px; gap: 8px; }
             .fab-btn { width: 44px; height: 44px; font-size: 1rem; }
             .dashboard-stats { grid-template-columns: 1fr 1fr; }
+            .coordinator-grid { grid-template-columns: 1fr; }
             .member-table-container th, .member-table-container td { padding: 6px 8px; font-size: 0.7rem; }
+            .modal-content { padding: 24px; }
         }
     </style>
 </head>
@@ -679,24 +870,45 @@
     </div>
 </section>
 
-<!-- ========== FEATURE 1: MEMBER DIRECTORY ========== -->
+<!-- ===== ACTIVITY FEED ===== -->
+<section class="container fade-in">
+    <h2 class="section-title">📊 Activity Feed</h2>
+    <p style="color:#6b7280; margin-bottom:16px;">Recent activity from IUHMC members and events.</p>
+    <div class="activity-feed" id="activityFeed">
+        <!-- Activities will be loaded dynamically -->
+    </div>
+</section>
+
+<!-- ===== COORDINATORS ===== -->
+<section class="container fade-in">
+    <h2 class="section-title">📍 Regional Coordinators</h2>
+    <p style="color:#6b7280; margin-bottom:16px;">Contact your regional coordinator for support and guidance.</p>
+    <div class="coordinator-grid" id="coordinatorGrid">
+        <!-- Coordinators will be loaded dynamically -->
+    </div>
+</section>
+
+<!-- ===== MEMBER DIRECTORY ===== -->
 <section class="container fade-in">
     <h2 class="section-title">👥 Member Directory</h2>
     <p style="color:#6b7280; margin-bottom:16px;">Search and connect with health ministers from across Uganda.</p>
 
-    <div class="directory-search">
-        <input type="text" id="memberSearch" placeholder="Search by name, university, or district..." onkeyup="filterMembers()" />
-        <select id="regionFilter" onchange="filterMembers()">
-            <option value="all">All Regions</option>
-            <option value="Centeal">Central</option>
-            <option value="Easter">Eastern</option>
-            <option value="Northern">Northern</option>
-            <option value="Western">Western</option>
-        </select>
-        <button onclick="filterMembers()"><i class="fas fa-search"></i> Search</button>
+    <div class="directory-actions">
+        <div class="directory-search">
+            <input type="text" id="memberSearch" placeholder="Search by name, university, or district..." onkeyup="filterMembers()" />
+            <select id="regionFilter" onchange="filterMembers()">
+                <option value="all">All Regions</option>
+                <option value="Centeal">Central</option>
+                <option value="Easter">Eastern</option>
+                <option value="Northern">Northern</option>
+                <option value="Western">Western</option>
+            </select>
+            <button onclick="filterMembers()"><i class="fas fa-search"></i> Search</button>
+        </div>
+        <button class="btn-export" onclick="exportToCSV()"><i class="fas fa-file-export"></i> Export CSV</button>
     </div>
 
-    <div class="member-count" id="memberCount">Total Health Ministers: <span id="countDisplay">0</span></div>
+    <div class="member-count">Total Health Ministers: <span id="countDisplay">0</span></div>
 
     <div class="member-table-container">
         <table>
@@ -722,7 +934,28 @@
     </div>
 </section>
 
-<!-- ========== FEATURE 2: EVENT REGISTRATION ========== -->
+<!-- ===== MEMBER PROFILE MODAL ===== -->
+<div class="modal" id="memberModal">
+    <div class="modal-content">
+        <button class="close" onclick="closeModal()">&times;</button>
+        <div class="avatar" id="modalAvatar">WE</div>
+        <div class="name" id="modalName">Wamezaya Ebenezer</div>
+        <div class="role" id="modalRole">Health Minister</div>
+        <div id="modalDetails">
+            <div class="detail-row"><span class="label">Institution</span><span class="value" id="modalInstitution">Makerere University</span></div>
+            <div class="detail-row"><span class="label">Region</span><span class="value" id="modalRegion">Central</span></div>
+            <div class="detail-row"><span class="label">District</span><span class="value" id="modalDistrict">Kampala</span></div>
+            <div class="detail-row"><span class="label">Phone</span><span class="value" id="modalPhone">+256 784 541 248</span></div>
+            <div class="detail-row"><span class="label">Email</span><span class="value" id="modalEmail">ebenezerwame@gmail.com</span></div>
+        </div>
+        <div class="actions">
+            <a href="#" class="btn btn-primary" id="modalCallBtn"><i class="fas fa-phone"></i> Call</a>
+            <a href="#" class="btn btn-gold" id="modalEmailBtn"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+    </div>
+</div>
+
+<!-- ===== EVENT REGISTRATION ===== -->
 <section class="container fade-in">
     <h2 class="section-title">📝 Event Registration</h2>
     <p style="color:#6b7280; margin-bottom:20px;">Register for upcoming IUHMC events and training sessions.</p>
@@ -745,7 +978,7 @@
     </div>
 </section>
 
-<!-- ========== FEATURE 3: IMPACT DASHBOARD ========== -->
+<!-- ===== IMPACT DASHBOARD ===== -->
 <section class="container fade-in">
     <h2 class="section-title">📊 Impact Dashboard</h2>
     <p style="color:#6b7280; margin-bottom:20px;">Live statistics showing IUHMC's impact across Uganda.</p>
@@ -769,7 +1002,7 @@
     </div>
 </section>
 
-<!-- ========== FEATURE 4: HEALTH RESOURCES LIBRARY ========== -->
+<!-- ===== RESOURCES ===== -->
 <section class="container fade-in">
     <h2 class="section-title">📚 Health Resources Library</h2>
     <p style="color:#6b7280; margin-bottom:20px;">Access health articles, research, and educational materials.</p>
@@ -789,7 +1022,7 @@
     <div class="resource-grid" id="resourceGrid"></div>
 </section>
 
-<!-- ========== FEATURE 5: PWA SETUP ========== -->
+<!-- ===== PWA ===== -->
 <section class="container fade-in">
     <div class="pwa-section">
         <h2>📱 Install IUHMC App</h2>
@@ -856,7 +1089,7 @@
 </div>
 
 <script>
-    // ========== COOKIE CONSENT ==========
+    // ===== COOKIE CONSENT =====
     function acceptCookies() {
         document.getElementById('cookieBanner').classList.remove('active');
         localStorage.setItem('cookiesAccepted', 'true');
@@ -867,7 +1100,7 @@
         }, 1500);
     }
 
-    // ========== DARK MODE ==========
+    // ===== DARK MODE =====
     const darkToggle = document.getElementById('darkToggle');
     darkToggle.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
@@ -876,14 +1109,14 @@
         icon.classList.toggle('fa-sun');
     });
 
-    // ========== SCROLL PROGRESS ==========
+    // ===== SCROLL PROGRESS =====
     window.addEventListener('scroll', () => {
         const scrollTop = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         document.getElementById('progressBar').style.width = (scrollTop / docHeight * 100) + '%';
     });
 
-    // ========== FADE-IN ANIMATIONS ==========
+    // ===== FADE-IN =====
     const fadeElements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -892,7 +1125,7 @@
     }, { threshold: 0.1 });
     fadeElements.forEach(el => observer.observe(el));
 
-    // ========== BACK TO TOP ==========
+    // ===== BACK TO TOP =====
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
         backToTop.classList.toggle('visible', window.scrollY > 300);
@@ -902,7 +1135,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ========== MOBILE MENU ==========
+    // ===== MOBILE MENU =====
     document.getElementById('menuToggle').addEventListener('click', function() {
         document.getElementById('navLinks').classList.toggle('open');
         this.querySelector('i').classList.toggle('fa-bars');
@@ -917,7 +1150,49 @@
         });
     });
 
-    // ========== MEMBER DIRECTORY DATA (FROM YOUR EXCEL) ==========
+    // ===== ACTIVITY FEED =====
+    function generateActivityFeed() {
+        const feed = document.getElementById('activityFeed');
+        const activities = [
+            { icon: 'fa-user-plus', title: 'New member registered: Wamezaya Ebenezer', time: '2 hours ago' },
+            { icon: 'fa-calendar-check', title: 'Event registration: Northern Region Training (12 members)', time: '5 hours ago' },
+            { icon: 'fa-file-alt', title: 'New resource added: Sickle Cell in Uganda Report', time: '1 day ago' },
+            { icon: 'fa-users', title: 'Central Region meeting scheduled for August 10', time: '2 days ago' },
+            { icon: 'fa-heart', title: 'Sickle Cell Testing Drive reached 500+ students', time: '3 days ago' }
+        ];
+        feed.innerHTML = activities.map(activity => `
+            <div class="activity-item">
+                <div class="activity-icon"><i class="fas ${activity.icon}"></i></div>
+                <div class="activity-text">
+                    <div class="title">${activity.title}</div>
+                    <div class="time">${activity.time}</div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // ===== COORDINATORS =====
+    const coordinators = [
+        { name: 'Wamezaya Ebenezer', region: 'Central', phone: '0784541248', icon: '🏛️' },
+        { name: 'Baiga Philmon Timothy', region: 'Eastern', phone: '0780787101', icon: '🌅' },
+        { name: 'Okello Daniel', region: 'Northern', phone: '0777774475', icon: '🏔️' },
+        { name: 'Nakigozi Esther', region: 'Western', phone: '0757636237', icon: '🌄' }
+    ];
+
+    function renderCoordinators() {
+        const grid = document.getElementById('coordinatorGrid');
+        grid.innerHTML = coordinators.map(coord => `
+            <div class="coordinator-card">
+                <div class="region-icon">${coord.icon}</div>
+                <div class="coord-name">${coord.name}</div>
+                <div class="coord-role">Coordinator - ${coord.region} Region</div>
+                <div class="coord-phone"><i class="fas fa-phone"></i> ${coord.phone}</div>
+                <button class="btn-small" onclick="alert('Contact ${coord.name} at ${coord.phone}')"><i class="fas fa-phone"></i> Contact</button>
+            </div>
+        `).join('');
+    }
+
+    // ===== MEMBER DIRECTORY =====
     const members = [
         { name: "Mutebi Remmigious Remmy", institution: "Uganda Christian university", region: "Centeal", district: "Mukono", phone: "763928029", email: "Mutebiremmigiousremmy3@gmail.com" },
         { name: "Naibembe Moses Eric", institution: "St. Peter's University", region: "Centeal", district: "Luwero", phone: "704123341", email: "nabalambaflorence@icloud.com" },
@@ -1001,7 +1276,6 @@
         { name: "Wamezaya Ebenezer", institution: "Makerere University", region: "Centeal", district: "Kampala", phone: "784541248", email: "ebenezerwame@gmail.com" },
         { name: "ABER MOREEN", institution: "ST.MARY'S MIDWIFERY TRAINING SCHOOL KALONGO", region: "Northern", district: "AGAGO DISTRICT", phone: "774246282", email: "abermoreen9@gmail.com" },
         { name: "ALIBU CALVIN", institution: "KAMPALA INSTITUTE OF SCIENCE AND TECHNOLOGY", region: "Centeal", district: "WAKISO", phone: "790441339", email: "calvinalibu6@gmail.com" },
-        { name: "AKELLO MITCHELL REGINA", institution: "KYAMBOGO SOROTI LEARNING CENTRE", region: "Easter", district: "SOROTI CITY", phone: "761124209", email: "akellomitchellregina@gmail.com" },
         { name: "NAGUJJA HANIFAH", institution: "GULU COLLEGE OF HEALTH SCIENCES", region: "Northern", district: "GULU", phone: "756325051", email: "nagujjaanifer@gmail.com" },
         { name: "Mwanaish zamzam", institution: "Gulu school of nursing and midwifery", region: "Northern", district: "Gulu", phone: "772765186", email: "Mwanaishzamzam644@gmail.com" },
         { name: "MUSOKE ABDUL LATWIIF", institution: "ISLAMIC UNIVERSITY IN UGANDA", region: "Easter", district: "MBALE CITY", phone: "701930516", email: "musokeabdullatwiif256@gmail.com" },
@@ -1029,7 +1303,7 @@
         { name: "Nyongyera Viola Mwesigwa", institution: "University of Kisubi", region: "Centeal", district: "Wakiso District", phone: "755346046", email: "mwesiviola@gmail.com" }
     ];
 
-    // ========== RENDER MEMBERS TABLE ==========
+    // ===== RENDER MEMBERS =====
     let currentSort = { column: 0, ascending: true };
     let currentFilteredMembers = [...members];
 
@@ -1047,14 +1321,14 @@
         }
         noResults.style.display = 'none';
 
-        tbody.innerHTML = membersToRender.map(member => `
-            <tr>
+        tbody.innerHTML = membersToRender.map((member, index) => `
+            <tr onclick="openModal(${index})">
                 <td><strong>${member.name}</strong></td>
                 <td>${member.institution}</td>
                 <td><span class="region-badge ${member.region.toLowerCase()}">${member.region}</span></td>
                 <td>${member.district}</td>
                 <td>${member.phone}</td>
-                <td><a href="mailto:${member.email}" style="color:var(--primary); text-decoration:none;">${member.email}</a></td>
+                <td><a href="mailto:${member.email}" style="color:var(--primary); text-decoration:none;" onclick="event.stopPropagation();">${member.email}</a></td>
             </tr>
         `).join('');
     }
@@ -1071,7 +1345,6 @@
             return matchesQuery && matchesRegion;
         });
 
-        // Apply current sort
         sortMembers(currentSort.column, currentSort.ascending);
         renderMembers(currentFilteredMembers);
     }
@@ -1100,7 +1373,61 @@
         });
     }
 
-    // ========== UPDATE DASHBOARD STATS ==========
+    // ===== EXPORT TO CSV =====
+    function exportToCSV() {
+        const headers = ['Name', 'Institution', 'Region', 'District', 'Phone', 'Email'];
+        const rows = currentFilteredMembers.map(m => [
+            m.name, m.institution, m.region, m.district, m.phone, m.email
+        ]);
+
+        let csv = headers.join(',') + '\n';
+        rows.forEach(row => {
+            csv += row.join(',') + '\n';
+        });
+
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'IUHMC_Member_Directory.csv';
+        a.click();
+        window.URL.revokeObjectURL(url);
+    }
+
+    // ===== MEMBER MODAL =====
+    let currentModalIndex = 0;
+
+    function openModal(index) {
+        const member = currentFilteredMembers[index];
+        if (!member) return;
+
+        currentModalIndex = index;
+        const modal = document.getElementById('memberModal');
+        document.getElementById('modalAvatar').textContent = member.name.split(' ').map(n => n[0]).join('').substring(0, 2);
+        document.getElementById('modalName').textContent = member.name;
+        document.getElementById('modalRole').textContent = 'Health Minister';
+        document.getElementById('modalInstitution').textContent = member.institution;
+        document.getElementById('modalRegion').textContent = member.region;
+        document.getElementById('modalDistrict').textContent = member.district;
+        document.getElementById('modalPhone').textContent = member.phone;
+        document.getElementById('modalEmail').textContent = member.email;
+
+        document.getElementById('modalCallBtn').href = `tel:+256${member.phone}`;
+        document.getElementById('modalEmailBtn').href = `mailto:${member.email}`;
+
+        modal.classList.add('active');
+    }
+
+    function closeModal() {
+        document.getElementById('memberModal').classList.remove('active');
+    }
+
+    // Close modal on outside click
+    document.getElementById('memberModal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+
+    // ===== UPDATE DASHBOARD STATS =====
     function updateDashboardStats() {
         const uniqueInstitutions = new Set(members.map(m => m.institution));
         const uniqueRegions = new Set(members.map(m => m.region));
@@ -1110,7 +1437,7 @@
         document.getElementById('totalRegions').textContent = uniqueRegions.size;
     }
 
-    // ========== CHARTS ==========
+    // ===== CHARTS =====
     function initCharts() {
         const regionCounts = {};
         members.forEach(m => {
@@ -1155,7 +1482,7 @@
         });
     }
 
-    // ========== EVENT REGISTRATION ==========
+    // ===== EVENT REGISTRATION =====
     function registerForEvent() {
         const name = document.getElementById('regName').value;
         const email = document.getElementById('regEmail').value;
@@ -1182,7 +1509,7 @@
         document.getElementById('regNotes').value = '';
     }
 
-    // ========== HEALTH RESOURCES LIBRARY ==========
+    // ===== RESOURCES =====
     const resources = [
         { title: 'Sickle Cell Disease in Uganda', desc: 'Comprehensive report on prevalence, challenges, and opportunities.', category: 'Sickle Cell', icon: '🩸' },
         { title: 'Mental Health Awareness Guide', desc: 'Practical tips for recognizing and supporting mental health on campus.', category: 'Mental Health', icon: '🧠' },
@@ -1221,13 +1548,15 @@
         renderResources(filtered);
     }
 
-    // ========== PWA INSTALL ==========
+    // ===== PWA =====
     function installPWA() {
         alert('📱 To install the IUHMC app:\n\n1. Open this page in Chrome/Firefox/Edge\n2. Click the three dots (menu)\n3. Select "Add to Home Screen" or "Install App"\n\nOn Safari:\n1. Tap the share button\n2. Tap "Add to Home Screen"');
     }
 
-    // ========== INIT ==========
+    // ===== INIT =====
     document.addEventListener('DOMContentLoaded', function() {
+        generateActivityFeed();
+        renderCoordinators();
         renderMembers(members);
         updateDashboardStats();
         initCharts();
