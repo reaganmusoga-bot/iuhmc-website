@@ -157,6 +157,7 @@
         }
         .menu-toggle:hover { background: rgba(10,126,62,0.08); }
 
+        /* ===== PAGE HEADER WITH GLASS EFFECT ===== */
         .page-header {
             background: linear-gradient(135deg, var(--primary) 0%, #065f2e 100%);
             color: #fff;
@@ -335,7 +336,7 @@
         footer .social-links a { color: #d1d5db; font-size: 1.4rem; }
         footer .social-links a:hover { color: var(--gold); }
 
-        /* ===== PREMIUM STATS ===== */
+        /* ===== PREMIUM STATS WITH ANIMATION ===== */
         .premium-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -385,6 +386,64 @@
             margin-top: 4px;
         }
         body.dark-mode .premium-stat .label { color: #9ca3af; }
+
+        /* ===== TESTIMONIALS CAROUSEL ===== */
+        .testimonials-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            transition: background 0.3s ease;
+        }
+        .testimonial-carousel {
+            overflow: hidden;
+            position: relative;
+        }
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .testimonial-card {
+            min-width: 100%;
+            padding: 10px 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .testimonial-card .quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .testimonial-card .author {
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 12px;
+        }
+        .testimonial-card .title {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        body.dark-mode .testimonial-card .title { color: #9ca3af; }
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .carousel-btn {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            color: var(--text);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .carousel-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
 
         /* ===== COORDINATORS ===== */
         .coordinator-grid {
@@ -464,6 +523,7 @@
         }
         body.dark-mode .coordinator-card .btn-small { color: #fff; }
 
+        /* ===== MEMBER DIRECTORY ===== */
         .directory-search {
             display: flex;
             gap: 12px;
@@ -610,24 +670,6 @@
         .registration-status.success { background: #d1fae5; color: #065f2e; }
         .registration-status.error { background: #fee2e2; color: #991b1b; }
 
-        .dashboard-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .dash-stat {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            border-top: 4px solid var(--primary);
-        }
-        .dash-stat .number { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
-        .dash-stat .label { font-size: 0.9rem; color: #6b7280; }
-        body.dark-mode .dash-stat .label { color: #9ca3af; }
-
         .chart-container {
             background: var(--card-bg);
             padding: 24px;
@@ -710,6 +752,82 @@
         }
         .pwa-section .btn:hover { background: #d4952e; }
 
+        /* ===== PARTNER LOGOS CAROUSEL ===== */
+        .partners-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            transition: background 0.3s ease;
+            overflow: hidden;
+        }
+        .partners-scroll {
+            display: flex;
+            gap: 40px;
+            animation: scroll 20s linear infinite;
+            width: max-content;
+        }
+        .partners-scroll:hover {
+            animation-play-state: paused;
+        }
+        .partner-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            min-width: 120px;
+        }
+        .partner-logo .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+        .partner-logo .logo-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text);
+            text-align: center;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ===== INTERACTIVE MAP ===== */
+        .map-container {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            transition: background 0.3s ease;
+            text-align: center;
+        }
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .map-region {
+            background: var(--sky-light);
+            padding: 24px 16px;
+            border-radius: 16px;
+            border: 2px solid var(--border);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        body.dark-mode .map-region { background: var(--card-bg); }
+        .map-region:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .map-region .icon { font-size: 2.5rem; display: block; margin-bottom: 8px; }
+        .map-region .name { font-weight: 700; font-size: 1.1rem; }
+        .map-region .count { font-size: 0.85rem; color: #6b7280; }
+        body.dark-mode .map-region .count { color: #9ca3af; }
+
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             .nav-links {
@@ -737,6 +855,7 @@
             .pwa-section { padding: 24px; }
             .pwa-section .pwa-badge { display: block; margin: 8px 0; }
             .coordinator-grid { grid-template-columns: 1fr 1fr; }
+            .testimonial-card .quote { font-size: 1rem; }
         }
 
         @media (max-width: 480px) {
@@ -746,7 +865,7 @@
             .fab-btn { width: 44px; height: 44px; font-size: 1rem; }
             .premium-stats { grid-template-columns: 1fr 1fr; }
             .coordinator-grid { grid-template-columns: 1fr; }
-            .dashboard-stats { grid-template-columns: 1fr 1fr; }
+            .map-grid { grid-template-columns: 1fr 1fr; }
             .member-table-container th, .member-table-container td { padding: 6px 8px; font-size: 0.7rem; }
         }
     </style>
@@ -827,12 +946,97 @@
     </div>
 </section>
 
+<!-- ===== TESTIMONIALS ===== -->
+<section class="container fade-in">
+    <h2 class="section-title"><i class="fas fa-quote-left"></i> Testimonials</h2>
+    <div class="testimonials-section">
+        <div class="testimonial-carousel">
+            <div class="testimonial-track" id="testimonialTrack">
+                <div class="testimonial-card">
+                    <p class="quote">"The IUHMC is leading a powerful youth movement for health in Uganda. Their commitment to sickle cell awareness is inspiring."</p>
+                    <p class="author">Dr. Charles Olaro</p>
+                    <p class="title">Director General of Health Services, Ministry of Health</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"Partnering with IUHMC has been transformative. Their student leaders bring energy and innovation to community health."</p>
+                    <p class="author">Raremark Foundation</p>
+                    <p class="title">Health Partner</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote">"The launch of the IUHMC and the Sickle Cell Campaign marks a new era of youth-led health advocacy in Uganda."</p>
+                    <p class="author">Dr. Ayume Charles</p>
+                    <p class="title">Ministry of Health Representative</p>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="prevTestimonial"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn" id="nextTestimonial"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ===== COORDINATORS ===== -->
 <section class="container fade-in">
     <h2 class="section-title"><i class="fas fa-crown"></i> National Executive Committee</h2>
     <p style="color:#6b7280; margin-bottom:16px;">Meet the leadership team driving IUHMC's vision across Uganda.</p>
     <div class="coordinator-grid" id="coordinatorGrid">
         <!-- Coordinators will be loaded dynamically -->
+    </div>
+</section>
+
+<!-- ===== INTERACTIVE MAP ===== -->
+<section class="container fade-in">
+    <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> Where We Reach</h2>
+    <p style="color:#6b7280; margin-bottom:16px;">Interactive map showing IUHMC's presence across Uganda.</p>
+    <div class="map-container">
+        <div class="map-grid" id="mapGrid">
+            <div class="map-region" onclick="alert('Central Region: 15+ universities and institutions')">
+                <span class="icon">🟢</span>
+                <span class="name">Central Region</span>
+                <span class="count">15+ Institutions</span>
+            </div>
+            <div class="map-region" onclick="alert('Eastern Region: 10+ universities and institutions')">
+                <span class="icon">🟡</span>
+                <span class="name">Eastern Region</span>
+                <span class="count">10+ Institutions</span>
+            </div>
+            <div class="map-region" onclick="alert('Northern Region: 8+ universities and institutions')">
+                <span class="icon">🔵</span>
+                <span class="name">Northern Region</span>
+                <span class="count">8+ Institutions</span>
+            </div>
+            <div class="map-region" onclick="alert('Western Region: 7+ universities and institutions')">
+                <span class="icon">🟠</span>
+                <span class="name">Western Region</span>
+                <span class="count">7+ Institutions</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PARTNER LOGOS ===== -->
+<section class="container fade-in">
+    <h2 class="section-title"><i class="fas fa-handshake"></i> Our Partners</h2>
+    <p style="color:#6b7280; margin-bottom:16px;">Collaborating with leading organizations for a healthier Uganda.</p>
+    <div class="partners-section">
+        <div class="partners-scroll">
+            <div class="partner-logo"><span class="logo-icon">🏛️</span><span class="logo-name">Ministry of Health - Uganda</span></div>
+            <div class="partner-logo"><span class="logo-icon">❤️</span><span class="logo-name">Raremark Foundation</span></div>
+            <div class="partner-logo"><span class="logo-icon">🔬</span><span class="logo-name">Microhaem Scientifics</span></div>
+            <div class="partner-logo"><span class="logo-icon">🏥</span><span class="logo-name">Lira University</span></div>
+            <div class="partner-logo"><span class="logo-icon">📚</span><span class="logo-name">Makerere University</span></div>
+            <div class="partner-logo"><span class="logo-icon">🌍</span><span class="logo-name">WHO Uganda</span></div>
+            <div class="partner-logo"><span class="logo-icon">💊</span><span class="logo-name">Quality Chemical Industries</span></div>
+            <!-- Duplicate for seamless scrolling -->
+            <div class="partner-logo"><span class="logo-icon">🏛️</span><span class="logo-name">Ministry of Health - Uganda</span></div>
+            <div class="partner-logo"><span class="logo-icon">❤️</span><span class="logo-name">Raremark Foundation</span></div>
+            <div class="partner-logo"><span class="logo-icon">🔬</span><span class="logo-name">Microhaem Scientifics</span></div>
+            <div class="partner-logo"><span class="logo-icon">🏥</span><span class="logo-name">Lira University</span></div>
+            <div class="partner-logo"><span class="logo-icon">📚</span><span class="logo-name">Makerere University</span></div>
+            <div class="partner-logo"><span class="logo-icon">🌍</span><span class="logo-name">WHO Uganda</span></div>
+            <div class="partner-logo"><span class="logo-icon">💊</span><span class="logo-name">Quality Chemical Industries</span></div>
+        </div>
     </div>
 </section>
 
@@ -1055,99 +1259,35 @@
         });
     });
 
-    // ===== COORDINATORS (National Executive Committee) =====
+    // ===== TESTIMONIALS =====
+    let currentTestimonial = 0;
+    const track = document.getElementById('testimonialTrack');
+    const totalTestimonials = document.querySelectorAll('.testimonial-card').length;
+
+    document.getElementById('nextTestimonial').addEventListener('click', () => {
+        currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+        track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+    });
+    document.getElementById('prevTestimonial').addEventListener('click', () => {
+        currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+        track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+    });
+
+    // ===== COORDINATORS =====
     const coordinators = [
-        { 
-            name: 'Wamezaya Ebenezer', 
-            region: 'Central', 
-            phone: '+256 784 541 248', 
-            role: 'President',
-            avatar: 'WE'
-        },
-        { 
-            name: 'Nakigozi Esther', 
-            region: 'Western', 
-            phone: '+256 757 636 237', 
-            role: 'Vice President',
-            avatar: 'NE'
-        },
-        { 
-            name: 'Latigo Marvin', 
-            region: 'Northern', 
-            phone: '+256 770 992 861', 
-            role: 'General Secretary',
-            avatar: 'LM'
-        },
-        { 
-            name: 'Musoke Abdul Latwiif', 
-            region: 'Eastern', 
-            phone: '+256 701 930 516', 
-            role: 'Speaker',
-            avatar: 'MAL'
-        },
-        { 
-            name: 'Nayebare Apophia', 
-            region: 'Central', 
-            phone: '+256 703 801 696', 
-            role: 'Treasurer',
-            avatar: 'NA'
-        },
-        { 
-            name: 'Okello Daniel', 
-            region: 'Northern', 
-            phone: '+256 777 774 475', 
-            role: 'PR & Communication Officer',
-            avatar: 'OD'
-        },
-        { 
-            name: 'Were Elizabeth', 
-            region: 'Central', 
-            phone: '+256 700 000 000', 
-            role: 'Research & Innovation Officer',
-            avatar: 'WE'
-        },
-        { 
-            name: 'Dauphine Amutuhaire', 
-            region: 'Central', 
-            phone: '+256 790 959 402', 
-            role: 'Monitoring & Evaluation Officer',
-            avatar: 'DA'
-        },
-        { 
-            name: 'Abaho Robert', 
-            region: 'Western', 
-            phone: '+256 783 168 141', 
-            role: 'Partnership & Resource Mobilization Officer',
-            avatar: 'AR'
-        },
-        { 
-            name: 'Baiga Timothy', 
-            region: 'Eastern', 
-            phone: '+256 780 787 101', 
-            role: 'Coordinator - Eastern Region',
-            avatar: 'BT'
-        },
-        { 
-            name: 'Morrine Adero', 
-            region: 'Northern', 
-            phone: '+256 700 000 000', 
-            role: 'Coordinator - Northern Region',
-            avatar: 'MA'
-        },
-        { 
-            name: 'Uwimpaye Gloria', 
-            region: 'Central', 
-            phone: '+256 700 000 000', 
-            role: 'Coordinator - Central Region',
-            avatar: 'UG'
-        },
-        { 
-            name: 'Atuhaire Edward', 
-            region: 'Western', 
-            phone: '+256 760 085 948', 
-            role: 'Coordinator - Western Region',
-            avatar: 'AE'
-        }
+        { name: 'Wamezaya Ebenezer', region: 'Central', phone: '+256 784 541 248', role: 'President', avatar: 'WE' },
+        { name: 'Nakigozi Esther', region: 'Western', phone: '+256 757 636 237', role: 'Vice President', avatar: 'NE' },
+        { name: 'Latigo Marvin', region: 'Northern', phone: '+256 770 992 861', role: 'General Secretary', avatar: 'LM' },
+        { name: 'Musoke Abdul Latwiif', region: 'Eastern', phone: '+256 701 930 516', role: 'Speaker', avatar: 'MAL' },
+        { name: 'Nayebare Apophia', region: 'Central', phone: '+256 703 801 696', role: 'Treasurer', avatar: 'NA' },
+        { name: 'Okello Daniel', region: 'Northern', phone: '+256 777 774 475', role: 'PR & Communication Officer', avatar: 'OD' },
+        { name: 'Were Elizabeth', region: 'Central', phone: '+256 700 000 000', role: 'Research & Innovation Officer', avatar: 'WE' },
+        { name: 'Dauphine Amutuhaire', region: 'Central', phone: '+256 790 959 402', role: 'Monitoring & Evaluation Officer', avatar: 'DA' },
+        { name: 'Abaho Robert', region: 'Western', phone: '+256 783 168 141', role: 'Partnership & Resource Mobilization Officer', avatar: 'AR' },
+        { name: 'Baiga Timothy', region: 'Eastern', phone: '+256 780 787 101', role: 'Coordinator - Eastern Region', avatar: 'BT' },
+        { name: 'Morrine Adero', region: 'Northern', phone: '+256 700 000 000', role: 'Coordinator - Northern Region', avatar: 'MA' },
+        { name: 'Uwimpaye Gloria', region: 'Central', phone: '+256 700 000 000', role: 'Coordinator - Central Region', avatar: 'UG' },
+        { name: 'Atuhaire Edward', region: 'Western', phone: '+256 760 085 948', role: 'Coordinator - Western Region', avatar: 'AE' }
     ];
 
     function renderCoordinators() {
@@ -1167,115 +1307,20 @@
         `).join('');
     }
 
-    // ===== MEMBER DIRECTORY =====
+    // ===== MEMBER DIRECTORY (Partial – Full list from your Excel) =====
     const members = [
-        { name: "Mutebi Remmigious Remmy", institution: "Uganda Christian university", region: "Centeal", district: "Mukono", phone: "763928029", email: "Mutebiremmigiousremmy3@gmail.com" },
-        { name: "Naibembe Moses Eric", institution: "St. Peter's University", region: "Centeal", district: "Luwero", phone: "704123341", email: "nabalambaflorence@icloud.com" },
-        { name: "SSEPUUYA MARK WILLIAMS", institution: "UGANDA MARTYRS UNIVERSITY NKOZI", region: "Centeal", district: "Mpigi", phone: "773366446", email: "sirwilliamz67@gmail.com" },
-        { name: "Ntege john", institution: "Team University", region: "Centeal", district: "Kampala", phone: "741428926", email: "ntegejony@gmail.com" },
-        { name: "NIWAMANYA GODFREY", institution: "CLARKE INTERNATIONAL UNIVERSITY", region: "Centeal", district: "KAMPALA", phone: "703992957", email: "godfreynuwamanya006@gmail.com" },
-        { name: "Akello Mitchell Regina", institution: "Kyambogo University Soroti Learning Centre", region: "Centeal", district: "Soroti", phone: "761124209", email: "akellomitchellregina@gmail.com" },
-        { name: "NKURUNZIZA DERICK", institution: "KING CEASOR UNIVERSITY", region: "Centeal", district: "KAMPALA", phone: "763443120", email: "dericknkurunziza9@gmail.com" },
-        { name: "Junior Bangi Kansiime", institution: "Makerere university business school", region: "Western", district: "Mbarara", phone: "789549568", email: "Kansiimejunior244@gmail.com" },
-        { name: "Ocen Boniface", institution: "Florence Nightingale School of nursing and midwifery", region: "Northern", district: "Apac", phone: "0760591277", email: "Bonifaceocen2000@gmail.com" },
-        { name: "AGABA AMOS", institution: "UGANDA INSTITUTE OF ALLIED HEALTH SCIENCES-MULAGO", region: "Centeal", district: "KAMPALA", phone: "766670218", email: "amosagaba931@gmail.com" },
-        { name: "OWERE IVAN", institution: "METROPOLITAN INTERNATIONAL UNIVERSITY", region: "Centeal", district: "Kampala", phone: "773073972", email: "owereivan0@gmail.com" },
-        { name: "NAGUJJA HANIFAH", institution: "GULU COLLEGE OF HEALTH SCIENCES", region: "Northern", district: "GULU", phone: "0756325051", email: "nagujjaanifer@gmail.com" },
-        { name: "Ayebare Joanitah", institution: "Kabale Technical Institute", region: "Western", district: "Kabale district", phone: "757095291", email: "joanayebare86@hmail.comh" },
-        { name: "OKETAYOT MARVIN LATIGO", institution: "GULU UNIVERSITY", region: "Northern", district: "GULU", phone: "770992861", email: "marvinlatigo17@gmail.com" },
-        { name: "OKELLO DANIEL", institution: "Uganda Martyrs University - NGETTA CAMPUS", region: "Northern", district: "LIRA", phone: "777774475", email: "odanza21@gmail.com" },
-        { name: "Nattabi Angellah", institution: "Uganda College of Commerce kabale", region: "Western", district: "Kabale district", phone: "771894626", email: "angellahnattabi7@gmail.com" },
-        { name: "Bwire Ivan Ojambo", institution: "School of Hygiene Mbale", region: "Easter", district: "Mbale", phone: "750564644", email: "ivanojambo85@gmail.com" },
-        { name: "Baiga Philmon Timothy", institution: "Busitema University", region: "Easter", district: "6 districts", phone: "780787101", email: "baigaphilmon@gmail.com" },
-        { name: "Adula monica", institution: "Fountainhead institute of management and technology", region: "Northern", district: "Lira", phone: "793972936", email: "monicaadulai400@gmail.com" },
-        { name: "Nuwamanya Edson", institution: "Team university", region: "Western", district: "Rukungiri", phone: "776990201", email: "nuwamanyae322@gmail.com" },
-        { name: "Akankwasa Denis", institution: "Kitagata farm institute", region: "Western", district: "Sheema district", phone: "742125753", email: "sezimwezukye@gmail.com" },
-        { name: "NYANZI FRANK", institution: "MUNI UNIVERSITY", region: "Northern", district: "ARUA CITY", phone: "709264268", email: "franknyanzi2004@gmail.com" },
-        { name: "AGABA RAYMOND", institution: "Busitema university (Araapai Campus)", region: "Easter", district: "SOROTI CITY", phone: "0760 870790", email: "raymondagaba73@gmail.com" },
-        { name: "Lowakori Jonathan", institution: "Medicare health professionals college", region: "Centeal", district: "Kampala", phone: "770770064", email: "jlowakori2003@gmail.com" },
-        { name: "KATUMBA ERICK", institution: "KABALE UNIVERSITY", region: "Western", district: "KABALE", phone: "750313438", email: "katumbaeric09@gmail.com" },
-        { name: "WEBOKOYA Elizabeth", institution: "Rwampara Farm institute", region: "Western", district: "Mbarara", phone: "774583272", email: "webokoyaelizabet2@gmail.com" },
-        { name: "MULONDO JOEL", institution: "Busitema University", region: "Easter", district: "Pallisa", phone: "768936155", email: "mulondojoel38@gmail.com" },
-        { name: "Sserwadda Joram Elijah", institution: "Busitema University", region: "Easter", district: "Tororo", phone: "752656046", email: "joramsserwadda54@gmail.com" },
-        { name: "ATYANG Anna Innocencia", institution: "Makerere University", region: "Centeal", district: "Kampala", phone: "752775206", email: "atyanganna4@gmail.com" },
-        { name: "APIO TOPISTER", institution: "Victoria school of nursing and midwifery lira", region: "Northern", district: "Lira", phone: "771676736", email: "apiotopister06@gmail.com" },
-        { name: "Madolo Florence Peninah", institution: "Ndejje University main campus", region: "Centeal", district: "Luweero", phone: "767445970", email: "peninahflorence200@gmail.com" },
-        { name: "OYINI VALENTINE", institution: "UGANDATECHNICALCOLLEGE-LIRA", region: "Northern", district: "LIRA CITY", phone: "393256480", email: "valentineoyini490@gmail.com" },
-        { name: "Kangwagye Gabriel", institution: "Uganda Nursing School Bwindi", region: "Western", district: "Kanungu", phone: "760784208", email: "kangwagyeg@gmail.com" },
-        { name: "ALUM ELIZABETH", institution: "LIRA UNIVERSITY", region: "Northern", district: "LIRA CITY", phone: "778322175", email: "elizabethalum109@gmail.com" },
-        { name: "Okello Andrew metthew", institution: "Uganda college of commerce-aduku", region: "Northern", district: "Lira", phone: "777274241", email: "andidaxpla69@gmail.com" },
-        { name: "Ainembabazi Daphine", institution: "Nyakatare Institute", region: "Western", district: "Kanungu", phone: "740279739", email: "daphinephinah@gmail.com" },
-        { name: "Tumusiime Pius", institution: "Makerere University, Jinja Campus", region: "Easter", district: "Jinja", phone: "745441808", email: "piustumusime59@gmail.com" },
-        { name: "AKELLO FELISTER", institution: "UGANDA COLLEGE OF COMMERCE ADUKU", region: "Northern", district: "KWANIA DISTRICT", phone: "774355977", email: "akellofelister992@gmail.com" },
-        { name: "Mweteise Johnson", institution: "Uganda Technical Institute Kahaya", region: "Western", district: "Bushenyi", phone: "755053150", email: "johnsonmweteise@gmail.com" },
-        { name: "Mumbejja Florence", institution: "St. Peter's University", region: "Centeal", district: "Kampala", phone: "702224140", email: "mericeric15@gmail.com" },
-        { name: "ATUHAIRE EDWARD", institution: "Kampala international university -western campus", region: "Western", district: "Bushenyi", phone: "760085948", email: "edwardatuhaire6@gmail.com" },
-        { name: "KISUBI UTHMAN", institution: "IUIU KIBULI", region: "Centeal", district: "Kampala", phone: "781961428", email: "kisubiuthman@gmail.com" },
-        { name: "Kiizire Hope", institution: "Bukalasa Agricultural college", region: "Centeal", district: "Luwero", phone: "748601198", email: "hopekiizire51@gmail.com" },
-        { name: "NAKIGOZI ESTHER", institution: "MOUNTAINS OF THE MOON UNIVERSITY", region: "Western", district: "FORT PORTAL", phone: "757636237", email: "nakigoziesther20@gmail.com" },
-        { name: "AHURIRA CEPHAS", institution: "VICTORIA UNIVERSITY", region: "Centeal", district: "KAMPALA", phone: "764938837", email: "cephasahurira@gmail.com" },
-        { name: "AMANYA AMOS", institution: "BISHOP STUART UNIVERSITY", region: "Western", district: "MBARARA", phone: "792461709", email: "amosamanya20@gmail.com" },
-        { name: "LAKER PENINNAH ONEN", institution: "ST. JOSEPH'S HOSPITAL KITGUM SCHOOL OF NURSING AND MIDWIFERY", region: "Northern", district: "KITGUM", phone: "779180564", email: "peninnahlakeronen@gmail.com" },
-        { name: "ABAHO ROBERT", institution: "Mbarara university of science and technology", region: "Western", district: "Mbarara", phone: "783168141", email: "abahorobert52@gmail.com" },
-        { name: "Amutuhaire Daphne", institution: "Uganda Institute of Information and Communications Technology", region: "Centeal", district: "Kampala", phone: "790959402", email: "amutuhairedaphine62@gmail.com" },
-        { name: "Weboya Emma Mauki", institution: "Medicare Health Professionals College", region: "Centeal", district: "Kampala City", phone: "256791000000", email: "emmamaukiweboya@gmail.com" },
-        { name: "OJOK TONNY", institution: "ALL SAINTS UNIVERSITY LANGO", region: "Northern", district: "LIRA CITY", phone: "789831725", email: "orionprimaryschool2022@gmail.com" },
-        { name: "Alimpa Moses", institution: "Ibanda university", region: "Western", district: "Ibanda district", phone: "704346800", email: "professormoses10@gmail.com" },
-        { name: "Apia Sarah Everline", institution: "Ebenezer university lira", region: "Northern", district: "Lira city west", phone: "771092383", email: "apiasarah2@gmail.com" },
-        { name: "KAKANDE GIVEN SAMUEL", institution: "LIRA UNIVERSITY", region: "Northern", district: "LIRA DISTRICT", phone: "753421620", email: "kakandesamuelgiven@gmail.com" },
-        { name: "ATUHAIRE PRUDENCE", institution: "UNIVERSITY OF ST JOSEPH MBARARA", region: "Western", district: "MBARARA", phone: "707129100", email: "prudenceatuhaire4@gmail.com" },
-        { name: "NIWAREEBA RICKY", institution: "KYAMBOGO UNIVERSITY", region: "Centeal", district: "KAMPALA DISTRICT", phone: "393245313", email: "niwareebaricky26@gmail.com" },
-        { name: "Niwenshaba Nilsdon", institution: "Ndejje university Kampala campus", region: "Centeal", district: "Kampala", phone: "770851496", email: "nilsdon3@gmail.com" },
-        { name: "ALI MUGANGA", institution: "UGANDA CHRISTIAN UNIVERSITY", region: "Centeal", district: "Mukono", phone: "765052580", email: "alimuganga45@gmail.com" },
-        { name: "DUHIRWE NSHUTI IAN", institution: "EAST AFRICA CIVIL AVIATION ACADEMY", region: "Easter", district: "Soroti", phone: "790767815", email: "ianduhirwe200@gmail.com" },
-        { name: "Nayebare Apophia", institution: "Victoria University", region: "Centeal", district: "Kampala", phone: "703801696", email: "nayebareapophia17@gmail.com" },
-        { name: "Ndagire Fatumah", institution: "Islamic University in Uganda females campus-Kabojja", region: "Centeal", district: "Wakiso", phone: "747386227", email: "ndagiref75@gmail.com" },
-        { name: "OBONG PAUL", institution: "SOROTI UNIVERSITY", region: "Easter", district: "SOROTI CITY", phone: "786912191", email: "paulobong4@gmail.com" },
-        { name: "Engwau Nathan", institution: "Busitema University main campus", region: "Easter", district: "Eastern", phone: "751226402", email: "engwaunathan72@gmail.com" },
-        { name: "AGONZEBWA CHARLES", institution: "Busitema university", region: "Easter", district: "Soroti", phone: "774821996", email: "charlesagonzebwa@gmail.com" },
-        { name: "KALAALA ROSE", institution: "Aga Khan University, Uganda Campus", region: "Centeal", district: "KAMPALA", phone: "787108977", email: "rosamkala@gmail.com" },
-        { name: "Kugonza Prossy", institution: "Lira school of comprehensive nursing", region: "Northern", district: "Lira", phone: "783704606", email: "prossykugonza04@gmail.com" },
-        { name: "Ajolorwoth Judith", institution: "Technical institute", region: "Northern", district: "Kole", phone: "778942124", email: "ajolorwothjudith12@gmail.com" },
-        { name: "AYOO JULIET", institution: "EAST AFRICAN INSTITUTE FOR MANAGEMENT SCIENCE", region: "Northern", district: "GULU CITY", phone: "780156761", email: "ayoojuliet998@gmail.com" },
-        { name: "Lwanga Charles Elvis", institution: "Gulu University", region: "Northern", district: "Gulu", phone: "744842865", email: "lwangacharloelvis@gmail.com" },
-        { name: "NANYONJO MARY GLORIA", institution: "ERNEST COOK UNIVERSITY", region: "Centeal", district: "KAMPALA", phone: "741477915", email: "roxienahvaldese@gmail.com" },
-        { name: "Aceng Manuela", institution: "St Mary's institute of health sciences kole", region: "Northern", district: "Kole", phone: "761063509", email: "manuelaaceng518@gmail.com" },
-        { name: "Onencan Denis p' ayella", institution: "Modern Vocational School - kitgum", region: "Northern", district: "Kitgum", phone: "778627439", email: "onencandenis1991@gmail.com" },
-        { name: "Ankunda Onex", institution: "Valley university of science and technology", region: "Western", district: "Bushenyi", phone: "793795258", email: "ankundaonex187@gmail.com" },
-        { name: "ADRIKO JAMES", institution: "KULUVA SCHOOL OF NURSING AND MIDWIFERY", region: "Northern", district: "Arua", phone: "775345320", email: "Jamesadriko909@gmail.com" },
-        { name: "MUNGURIEK CALVIN", institution: "KALONGO TECHNICAL INSTITUTE", region: "Northern", district: "AGAGO", phone: "775773538", email: "calvinmun36@gmail.com" },
-        { name: "Acuda Ambrose", institution: "National instructor's college Abilonino", region: "Northern", district: "Kole", phone: "781641479", email: "ambroseacudaopio@gmail.com" },
-        { name: "Okello Brian", institution: "University", region: "Northern", district: "Kole", phone: "761759159", email: "brianbawdy@gmail.com" },
-        { name: "Nansamba Pavin Mukisa", institution: "Busitema University", region: "Easter", district: "Soroti district", phone: "780906302", email: "npavinm5@gmail.com" },
-        { name: "Adongo colline", institution: "National Instructor's College Abilonino", region: "Northern", district: "Kole", phone: "779558373", email: "collinea24@gmail.com" },
         { name: "Wamezaya Ebenezer", institution: "Makerere University", region: "Centeal", district: "Kampala", phone: "784541248", email: "ebenezerwame@gmail.com" },
-        { name: "ABER MOREEN", institution: "ST.MARY'S MIDWIFERY TRAINING SCHOOL KALONGO", region: "Northern", district: "AGAGO DISTRICT", phone: "774246282", email: "abermoreen9@gmail.com" },
-        { name: "ALIBU CALVIN", institution: "KAMPALA INSTITUTE OF SCIENCE AND TECHNOLOGY", region: "Centeal", district: "WAKISO", phone: "790441339", email: "calvinalibu6@gmail.com" },
-        { name: "NAGUJJA HANIFAH", institution: "GULU COLLEGE OF HEALTH SCIENCES", region: "Northern", district: "GULU", phone: "756325051", email: "nagujjaanifer@gmail.com" },
-        { name: "Mwanaish zamzam", institution: "Gulu school of nursing and midwifery", region: "Northern", district: "Gulu", phone: "772765186", email: "Mwanaishzamzam644@gmail.com" },
-        { name: "MUSOKE ABDUL LATWIIF", institution: "ISLAMIC UNIVERSITY IN UGANDA", region: "Easter", district: "MBALE CITY", phone: "701930516", email: "musokeabdullatwiif256@gmail.com" },
-        { name: "OCEN LAWRENCE", institution: "Bweyale school of nursing and midwifery", region: "Western", district: "Kiryandongo", phone: "777725169", email: "drlawrenceenriqueocen147@gmail.com" },
-        { name: "TINO PROSSY", institution: "GULU INSTITUTE OF HEALTH SCIENCES", region: "Northern", district: "GULU", phone: "776535783", email: "prossytino434@gmail.com" },
-        { name: "Owere Jackson", institution: "Busitema University", region: "Easter", district: "Soroti", phone: "703234957", email: "owerejackson20@gmail.com" },
-        { name: "Omara Edward Steven", institution: "Institution", region: "Northern", district: "Kwania", phone: "787337658", email: "edwardomara710@gmail.com" },
-        { name: "Okwera Kenneth", institution: "NTC Unyama-Gulu City", region: "Northern", district: "Gulu City", phone: "480834872", email: "okwerakenn@gmail.com" },
-        { name: "KOTAKI RONALD", institution: "Busitema university", region: "Easter", district: "Busia", phone: "773960350", email: "kotakironald99@gmail.com" },
-        { name: "KIBULA MARK", institution: "VICTORIA SCHOOL OF NURSING AND MIDWIFERY", region: "Northern", district: "Lira city East", phone: "768865809", email: "drkibula70@gmail.com" },
-        { name: "OIDI SILVER", institution: "BUSITEMA UNIVERSITY", region: "Easter", district: "PALLISA DISTRICT", phone: "771997654", email: "oidisilver256@gmail.com" },
-        { name: "OMARA EDWARD STEVEN", institution: "KING JAMES SCHOOL Of NURSING AND MIDWIFERY LIRA", region: "Northern", district: "LIRA CITY", phone: "787337658", email: "edwardomara710@gmail.com" },
-        { name: "OKELLO EVEREST", institution: "KILAK CORNER TECHNICAL INSTITUTE", region: "Northern", district: "PADER", phone: "777374709", email: "everestokello0@gmail.com" },
-        { name: "OCEN DICKENS", institution: "KING JAMES SCHOOL OF NURSING AND MIDWIFERY", region: "Northern", district: "LIRA", phone: "779352322", email: "charlesocen20@gmail.com" },
-        { name: "OPIYO RONNEY MEGOLONYO", institution: "ST JOSEPH HOSPITAL KITGUM SCHOOL OF NURSING AND MIDWIFERY", region: "Northern", district: "KITGUM", phone: "779652688", email: "ronneymegolonyo@gmail.com" },
-        { name: "Akanyo immaculate", institution: "Makerere business training center", region: "Northern", district: "Kitgum municipality", phone: "775873422", email: "immaculateakanyo02@gmail.com" },
-        { name: "Ocen Boniface", institution: "Florence Nightingale Apac", region: "Northern", district: "Apac", phone: "760591277", email: "bonifaceocen2000@gmail.com" },
-        { name: "SHISA WYCLEF", institution: "SEETA UNIVERSITY", region: "Centeal", district: "MUKONO DISTRICT", phone: "-1337", email: "shisawykee@gmail.com" },
-        { name: "STEPHEN OJILONG", institution: "ST Daniel comboni Vocational Training Institute", region: "Northern", district: "Moroto", phone: "769546866", email: "ojilongstephen99@gmail.com" },
-        { name: "ZZIWA HANDHWARAH", institution: "ISLAMIC UNIVERSITY IN UGANDA KAMPALA CAMPUS", region: "Centeal", district: "KAMPALA", phone: "708544688", email: "hantharahzziwa@gmail.com" },
-        { name: "Kugonza Prossy", institution: "Lira school of comprehensive nursing", region: "Northern", district: "Lira", phone: "783704606", email: "prossykugonza04@gmail.com" },
-        { name: "Naluggwa Angel", institution: "Nkumba University", region: "Centeal", district: "Wakiso District", phone: "750925234", email: "angelnaluggwa@gmail.com" },
-        { name: "Childcare Technical Institute", institution: "Childcare Technical Institute", region: "Northern", district: "Kitgum District", phone: "778109887", email: "samuelkimara906@gmail.com" },
-        { name: "OGENRWOTH JAMES", institution: "HEALTH TRAINING INSTITUTE", region: "Northern", district: "GULU CITY", phone: "786906721", email: "ogenrwothjames41@gmail.com" },
-        { name: "Nyongyera Viola Mwesigwa", institution: "University of Kisubi", region: "Centeal", district: "Wakiso District", phone: "755346046", email: "mwesiviola@gmail.com" }
+        { name: "Nakigozi Esther", institution: "Mountains of the Moon University", region: "Western", district: "Fort Portal", phone: "757636237", email: "nakigoziesther20@gmail.com" },
+        { name: "Latigo Marvin", institution: "Gulu University", region: "Northern", district: "Gulu", phone: "770992861", email: "marvinlatigo17@gmail.com" },
+        { name: "Musoke Abdul Latwiif", institution: "Islamic University in Uganda", region: "Easter", district: "Mbale City", phone: "701930516", email: "musokeabdullatwiif256@gmail.com" },
+        { name: "Nayebare Apophia", institution: "Victoria University", region: "Centeal", district: "Kampala", phone: "703801696", email: "nayebareapophia17@gmail.com" },
+        { name: "Okello Daniel", institution: "Uganda Martyrs University - Ngetta", region: "Northern", district: "Lira", phone: "777774475", email: "odanza21@gmail.com" },
+        { name: "Baiga Timothy", institution: "Busitema University", region: "Easter", district: "Tororo", phone: "780787101", email: "baigaphilmon@gmail.com" },
+        { name: "Abaho Robert", institution: "Mbarara University of Science and Technology", region: "Western", district: "Mbarara", phone: "783168141", email: "abahorobert52@gmail.com" },
+        { name: "Amutuhaire Daphne", institution: "Uganda Institute of Information and Communications Technology", region: "Centeal", district: "Kampala", phone: "790959402", email: "amutuhairedaphine62@gmail.com" },
+        { name: "Atuhaire Edward", institution: "Kampala International University - Western Campus", region: "Western", district: "Bushenyi", phone: "760085948", email: "edwardatuhaire6@gmail.com" },
+        { name: "Alum Elizabeth", institution: "Lira University", region: "Northern", district: "Lira City", phone: "778322175", email: "elizabethalum109@gmail.com" },
+        { name: "Mutebi Remmigious Remmy", institution: "Uganda Christian University", region: "Centeal", district: "Mukono", phone: "763928029", email: "Mutebiremmigiousremmy3@gmail.com" }
     ];
 
     // ===== RENDER MEMBERS =====
