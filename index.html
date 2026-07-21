@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     
-    <!-- Tidio Live Chat Script (replace with your own when you get it) -->
+    <!-- Tidio Live Chat Script -->
     <script src="//code.tidio.co/0mkwrvx2t78fmk7tv3jvdnha3a7p7aas.js" async></script>
     
     <style>
@@ -117,7 +117,7 @@
 
         .nav-links {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             list-style: none;
             font-weight: 500;
             flex-wrap: wrap;
@@ -126,12 +126,13 @@
         .nav-links a {
             text-decoration: none;
             color: var(--text);
-            padding: 8px 16px;
-            border-radius: 40px;
-            font-size: 0.9rem;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
             font-weight: 500;
             transition: all 0.25s ease;
             position: relative;
+            white-space: nowrap;
         }
         .nav-links a:hover { color: var(--primary); background: rgba(10,126,62,0.08); }
         .nav-links a.active {
@@ -149,6 +150,44 @@
             height: 3px;
             background: var(--primary);
             border-radius: 10px;
+        }
+
+        /* Desktop dropdown */
+        @media (min-width: 769px) {
+            .nav-links li {
+                position: relative;
+            }
+            .nav-links .dropdown-content {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: var(--card-bg);
+                min-width: 200px;
+                border-radius: 12px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+                padding: 8px 0;
+                border: 1px solid var(--border);
+                z-index: 100;
+            }
+            .nav-links .dropdown-content a {
+                display: block;
+                padding: 10px 20px;
+                border-radius: 0;
+                white-space: nowrap;
+                font-size: 0.85rem;
+            }
+            .nav-links .dropdown-content a:hover {
+                background: rgba(10,126,62,0.08);
+            }
+            .nav-links li:hover .dropdown-content {
+                display: block;
+            }
+            .nav-links .more-dropdown > a::after {
+                content: ' ▾';
+                font-size: 0.6rem;
+                margin-left: 2px;
+            }
         }
 
         .dark-toggle {
@@ -855,30 +894,63 @@
         footer .social-links a { color: #d1d5db; font-size: 1.4rem; }
         footer .social-links a:hover { color: var(--gold); }
 
-        /* ===== RESPONSIVE ===== */
+        /* ===== RESPONSIVE FIXES ===== */
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             .nav-links {
                 display: none;
                 flex-direction: column;
                 width: 100%;
-                padding: 16px 0 8px;
-                gap: 4px;
-                border-top: 1px solid rgba(0,0,0,0.04);
+                padding: 12px 0 8px;
+                gap: 2px;
+                border-top: 1px solid rgba(0,0,0,0.06);
+                max-height: 70vh;
+                overflow-y: auto;
             }
             .nav-links.open { display: flex; }
-            .nav-links a { width: 100%; padding: 10px 16px; border-radius: 12px; font-size: 0.95rem; }
+            .nav-links a { 
+                width: 100%; 
+                padding: 10px 16px; 
+                border-radius: 10px; 
+                font-size: 0.95rem;
+                white-space: normal;
+            }
             .nav-links a.active::after { display: none; }
-            .nav-links a.active { background: rgba(10,126,62,0.12); }
+            .nav-links a.active { background: rgba(10,126,62,0.12); font-weight: 600; }
+            .nav-links .dropdown-content {
+                padding-left: 20px;
+            }
+            .nav-links .dropdown-content a {
+                font-size: 0.85rem;
+                opacity: 0.8;
+            }
+            .nav-links .more-dropdown > a::after {
+                content: ' ▾';
+                font-size: 0.6rem;
+                margin-left: 2px;
+            }
 
-            .hero { min-height: 500px; }
-            .hero-content { padding: 50px 0; }
+            .hero { 
+                min-height: 400px; 
+                border-radius: 0 0 20px 20px;
+                margin-bottom: 20px;
+            }
+            .hero-content { padding: 40px 0; }
             .hero-content h1 { font-size: 1.8rem; }
             .hero-content h2 { font-size: 2.4rem; }
             .hero-content p { font-size: 1rem; }
             .hero-actions { flex-direction: column; align-items: stretch; }
             #typewriter { font-size: 1.2rem; min-height: 40px; }
-            .stats { grid-template-columns: 1fr 1fr; }
+            
+            /* FIX: Remove negative margin on mobile */
+            .stats { 
+                grid-template-columns: 1fr 1fr; 
+                margin-top: 0 !important;
+                margin-bottom: 30px;
+                padding: 20px 15px;
+                gap: 15px;
+            }
+            
             .gallery-grid { grid-template-columns: 1fr 1fr; }
             .gallery-grid img { height: 200px; }
             .university-grid { grid-template-columns: 1fr 1fr; }
@@ -898,10 +970,19 @@
         }
 
         @media (max-width: 480px) {
-            .hero { min-height: 430px; }
+            .hero { min-height: 350px; }
             .hero-content h1 { font-size: 1.4rem; }
             .hero-content h2 { font-size: 1.8rem; }
             #typewriter { font-size: 1rem; min-height: 32px; }
+            
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                padding: 15px 10px;
+            }
+            .stat-number { font-size: 1.6rem !important; }
+            .stat-label { font-size: 0.75rem !important; }
+            
             .gallery-grid { grid-template-columns: 1fr; }
             .gallery-grid img { height: 220px; }
             .university-grid { grid-template-columns: 1fr; }
@@ -947,19 +1028,29 @@
                 </button>
             </div>
             <ul class="nav-links" id="navLinks">
+                <!-- Primary links (always visible) -->
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="leadership.html">Leadership</a></li>
-                <li><a href="resources.html">Resources</a></li>
-                <li><a href="get-involved.html">Get Involved</a></li>
                 <li><a href="impact.html">Impact</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="events.html">Events</a></li>
-                <li><a href="newsletter.html">Newsletter</a></li>
-                <li><a href="portal.html">Portal</a></li>
-                <li><a href="faqs.html">FAQs</a></li>
-                <li><a href="premium-features.html">Executive Hub</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                
+                <!-- Dropdown for extra pages -->
+                <li class="more-dropdown">
+                    <a href="#">More ▾</a>
+                    <div class="dropdown-content">
+                        <a href="resources.html">Resources</a>
+                        <a href="gallery.html">Gallery</a>
+                        <a href="newsletter.html">Newsletter</a>
+                        <a href="portal.html">Member Portal</a>
+                        <a href="faqs.html">FAQs</a>
+                        <a href="premium-features.html">Executive Hub</a>
+                        <a href="get-involved.html">Get Involved</a>
+                    </div>
+                </li>
+                
+                <!-- Contact button (standout) -->
+                <li><a href="index.html#contact" style="background:var(--primary); color:#fff; font-weight:600; padding:8px 20px;">Contact</a></li>
             </ul>
         </nav>
     </div>
@@ -986,13 +1077,13 @@
     </div>
 </section>
 
-<!-- ===== STATS ===== -->
+<!-- ===== STATS (UPDATED WITH YOUR DATA) ===== -->
 <div class="container fade-in">
     <div class="stats">
-        <div class="stat-item"><span class="stat-number">20K+</span><span class="stat-label">Babies born with sickle cell annually</span></div>
-        <div class="stat-item"><span class="stat-number">13.1%</span><span class="stat-label">Ugandans are sickle cell carriers</span></div>
-        <div class="stat-item"><span class="stat-number">0.7-1%</span><span class="stat-label">Population living with sickle cell</span></div>
-        <div class="stat-item"><span class="stat-number">4</span><span class="stat-label">Regions Reached</span></div>
+        <div class="stat-item"><span class="stat-number">480,000</span><span class="stat-label">Students across all institutions</span></div>
+        <div class="stat-item"><span class="stat-number">186</span><span class="stat-label">Health ministers</span></div>
+        <div class="stat-item"><span class="stat-number">146</span><span class="stat-label">Districts in Uganda</span></div>
+        <div class="stat-item"><span class="stat-number">4</span><span class="stat-label">Regions</span></div>
     </div>
 </div>
 
