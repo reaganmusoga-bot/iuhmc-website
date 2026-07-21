@@ -177,82 +177,14 @@
             letter-spacing: -0.5px;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 4px;
-            list-style: none;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        .nav-links a:hover { background: var(--primary-light); color: var(--primary); }
-        .nav-links a.active {
-            color: var(--primary);
-            background: var(--primary-light);
-            font-weight: 600;
-        }
-        body.dark-mode .nav-links a:hover { background: #06532A; }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .nav-actions .dark-toggle {
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 1.1rem;
-            cursor: pointer;
-            padding: 6px 10px;
-            border-radius: 8px;
-            transition: background 0.2s;
-        }
-        .nav-actions .dark-toggle:hover { background: var(--bg-light); }
-        .nav-actions .btn-primary {
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-        }
-        .nav-actions .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(10,126,62,0.3);
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text);
-            cursor: pointer;
-            padding: 4px 8px;
-        }
-
         /* ===== HERO WITH BACKGROUND IMAGE ===== */
         .hero {
             position: relative;
-            min-height: 550px;
+            min-height: 500px;
             display: flex;
             align-items: center;
             overflow: hidden;
-            padding: 60px 0;
+            padding: 60px 0 40px;
         }
         .hero-bg {
             position: absolute;
@@ -320,42 +252,53 @@
             margin-bottom: 16px;
             border: 1px solid rgba(255,255,255,0.1);
         }
-        .hero-buttons {
+
+        /* ===== HERO LINKS (IFMSA STYLE) ===== */
+        .hero-links {
             display: flex;
-            gap: 12px;
+            gap: 16px;
             flex-wrap: wrap;
+            margin-top: 8px;
         }
-        .hero-buttons .btn-primary {
-            background: #fff;
-            color: var(--primary);
-            padding: 12px 32px;
-            border-radius: 10px;
-            font-weight: 700;
+        .hero-links a {
+            color: rgba(255,255,255,0.85);
             text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
             transition: all 0.3s;
-            font-size: 0.95rem;
-            border: none;
-            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
-        .hero-buttons .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        .hero-links a:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
         }
-        .hero-buttons .btn-secondary {
+        .hero-links a i {
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+        .hero-links .btn-hero-link {
             background: rgba(255,255,255,0.12);
             backdrop-filter: blur(10px);
-            color: #fff;
-            padding: 12px 32px;
-            border-radius: 10px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 0.95rem;
+            padding: 8px 20px;
+            border-radius: 30px;
             border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s;
         }
-        .hero-buttons .btn-secondary:hover {
+        .hero-links .btn-hero-link:hover {
             background: rgba(255,255,255,0.2);
             transform: translateY(-2px);
+            border-bottom-color: transparent;
+        }
+        .hero-links .btn-hero-link i {
+            font-size: 0.8rem;
+            opacity: 1;
         }
 
         /* ===== STATS SECTION BELOW HERO ===== */
@@ -640,7 +583,7 @@
             max-height: none;
         }
         .university-toggle-btn {
-            display: none;
+            display: none !important;
             background: var(--primary);
             color: #fff;
             border: none;
@@ -664,9 +607,9 @@
         .university-toggle-btn.expanded .show-text { display: none; }
         .university-toggle-btn.expanded .hide-text { display: inline; }
 
-        /* Only show toggle and collapse on mobile */
+        /* Mobile: show toggle and collapse */
         @media (max-width: 768px) {
-            .university-toggle-btn { display: block; }
+            .university-toggle-btn { display: block !important; }
             .university-grid-wrapper.collapsed { max-height: 500px; }
         }
         @media (max-width: 480px) {
@@ -1101,22 +1044,10 @@
             .top-bar .left { display: none; }
             .top-bar .right { width: 100%; justify-content: center; }
             
-            .menu-toggle { display: block; }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                padding: 12px 0;
-                gap: 2px;
-                border-top: 1px solid var(--border);
-            }
-            .nav-links.open { display: flex; }
-            .nav-links a { width: 100%; padding: 10px 16px; }
-            
-            .nav-actions .btn-primary { display: none; }
-            
             .hero-content h1 { font-size: 1.8rem; }
             .hero-content .tagline { font-size: 1.1rem; }
+            .hero-links { justify-content: center; }
+            .hero-links a { font-size: 0.8rem; }
             
             .stats-grid-modern {
                 grid-template-columns: 1fr 1fr;
@@ -1154,6 +1085,8 @@
             .hero { min-height: auto; padding: 30px 0; }
             .hero-content h1 { font-size: 1.5rem; }
             .hero-content .tagline { font-size: 0.95rem; }
+            .hero-links { flex-direction: column; align-items: center; }
+            .hero-links a { font-size: 0.85rem; }
             
             .stats-grid-modern {
                 grid-template-columns: 1fr 1fr;
@@ -1221,7 +1154,7 @@
     </div>
 </div>
 
-<!-- ===== HEADER ===== -->
+<!-- ===== HEADER (SIMPLIFIED - NO LINKS) ===== -->
 <header>
     <div class="container">
         <nav>
@@ -1234,22 +1167,11 @@
                 <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
                     <i class="fas fa-moon"></i>
                 </button>
-                <a href="#donate" class="btn-primary">Donate</a>
-                <button class="menu-toggle" id="menuToggle">
+                <a href="#donate" class="btn-primary" style="background:var(--primary); color:#fff; border:none; padding:8px 20px; border-radius:8px; font-weight:600; font-size:0.85rem; cursor:pointer; transition:all 0.2s; text-decoration:none;">Donate</a>
+                <button class="menu-toggle" id="menuToggle" style="display:none; background:none; border:none; font-size:1.5rem; color:var(--text); cursor:pointer; padding:4px 8px;">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
-            
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="leadership.html">Leadership</a></li>
-                <li><a href="impact.html">Impact</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="resources.html">Resources</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
         </nav>
     </div>
 </header>
@@ -1265,9 +1187,12 @@
                 <h1>INTER-UNIVERSITY <span class="highlight">HEALTH MINISTERS</span> CONSORTIUM</h1>
                 <div class="tagline">Uganda's United Health Voice</div>
                 <p>Driving impactful health projects across Uganda, led by students for the community.</p>
-                <div class="hero-buttons">
-                    <a href="#about" class="btn-primary">Explore Our Impact →</a>
-                    <a href="#projects" class="btn-secondary">Our Projects</a>
+                
+                <!-- ===== HERO LINKS (IFMSA STYLE) ===== -->
+                <div class="hero-links">
+                    <a href="#about">Read More About Us <i class="fas fa-arrow-right"></i></a>
+                    <a href="#projects">Our Projects <i class="fas fa-arrow-right"></i></a>
+                    <a href="#news" class="btn-hero-link">News & Updates <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
             
@@ -1454,7 +1379,7 @@
 
     <div class="university-section-wrapper">
         <h3 style="color:var(--primary); margin-top:30px;">🏛️ Public Universities</h3>
-        <div class="university-grid-wrapper" id="universityGrid">
+        <div class="university-grid-wrapper collapsed" id="universityGrid">
             <div class="university-grid">
                 <div class="university-card" style="border-color: var(--primary);"><i class="fas fa-university univ-icon" style="color:var(--primary);"></i><span class="univ-name">Makerere University</span><span class="univ-sub">Est. 1922</span></div>
                 <div class="university-card" style="border-color: #dc2626;"><i class="fas fa-university univ-icon" style="color:#dc2626;"></i><span class="univ-name">MUST</span><span class="univ-sub">Mbarara University of Science & Technology</span></div>
@@ -1864,21 +1789,6 @@
         });
     }, { threshold: 0.1 });
     fadeElements.forEach(el => observer.observe(el));
-
-    // ===== MOBILE MENU =====
-    document.getElementById('menuToggle').addEventListener('click', function() {
-        document.getElementById('navLinks').classList.toggle('open');
-        this.querySelector('i').classList.toggle('fa-bars');
-        this.querySelector('i').classList.toggle('fa-times');
-    });
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            document.getElementById('navLinks').classList.remove('open');
-            const icon = document.getElementById('menuToggle').querySelector('i');
-            icon.classList.add('fa-bars');
-            icon.classList.remove('fa-times');
-        });
-    });
 
     // ===== BACK TO TOP =====
     const backToTop = document.getElementById('backToTop');
