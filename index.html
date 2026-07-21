@@ -177,6 +177,81 @@
             letter-spacing: -0.5px;
         }
 
+        /* ===== NAV PILL BUTTONS ===== */
+        .nav-link-pill {
+            padding: 8px 20px;
+            border: 2px solid var(--primary);
+            border-radius: 40px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+        }
+        .nav-link-pill:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(10,126,62,0.3);
+        }
+        body.dark-mode .nav-link-pill {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        body.dark-mode .nav-link-pill:hover {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .nav-actions .dark-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .nav-actions .dark-toggle:hover { background: var(--bg-light); }
+        .nav-actions .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .nav-actions .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(10,126,62,0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+
         /* ===== HERO WITH BACKGROUND IMAGE ===== */
         .hero {
             position: relative;
@@ -1044,6 +1119,21 @@
             .top-bar .left { display: none; }
             .top-bar .right { width: 100%; justify-content: center; }
             
+            .menu-toggle { display: block; }
+            
+            .nav-link-pill {
+                padding: 6px 14px;
+                font-size: 0.75rem;
+                gap: 4px;
+            }
+            .nav-link-pill i {
+                font-size: 0.7rem;
+            }
+            .nav-actions .btn-primary {
+                padding: 6px 14px;
+                font-size: 0.75rem;
+            }
+            
             .hero-content h1 { font-size: 1.8rem; }
             .hero-content .tagline { font-size: 1.1rem; }
             .hero-links { justify-content: center; }
@@ -1087,6 +1177,20 @@
             .hero-content .tagline { font-size: 0.95rem; }
             .hero-links { flex-direction: column; align-items: center; }
             .hero-links a { font-size: 0.85rem; }
+            
+            .nav-link-pill {
+                padding: 4px 10px;
+                font-size: 0.65rem;
+                gap: 3px;
+                border-width: 1.5px;
+            }
+            .nav-link-pill i {
+                font-size: 0.6rem;
+            }
+            .nav-actions .btn-primary {
+                padding: 4px 10px;
+                font-size: 0.65rem;
+            }
             
             .stats-grid-modern {
                 grid-template-columns: 1fr 1fr;
@@ -1154,7 +1258,7 @@
     </div>
 </div>
 
-<!-- ===== HEADER (SIMPLIFIED - NO LINKS) ===== -->
+<!-- ===== HEADER WITH 3 PILL BUTTONS ===== -->
 <header>
     <div class="container">
         <nav>
@@ -1164,11 +1268,22 @@
             </a>
             
             <div class="nav-actions">
+                <!-- 3 Navigation Links - Pill Buttons -->
+                <a href="#about" class="nav-link-pill">
+                    <i class="fas fa-info-circle"></i> About
+                </a>
+                <a href="#projects" class="nav-link-pill">
+                    <i class="fas fa-bullseye"></i> Impact
+                </a>
+                <a href="#contact" class="nav-link-pill">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+                
                 <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
                     <i class="fas fa-moon"></i>
                 </button>
-                <a href="#donate" class="btn-primary" style="background:var(--primary); color:#fff; border:none; padding:8px 20px; border-radius:8px; font-weight:600; font-size:0.85rem; cursor:pointer; transition:all 0.2s; text-decoration:none;">Donate</a>
-                <button class="menu-toggle" id="menuToggle" style="display:none; background:none; border:none; font-size:1.5rem; color:var(--text); cursor:pointer; padding:4px 8px;">
+                <a href="#donate" class="btn-primary">Donate</a>
+                <button class="menu-toggle" id="menuToggle">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
