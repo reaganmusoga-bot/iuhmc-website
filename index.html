@@ -540,6 +540,57 @@
         .university-card .univ-sub { font-size: 0.75rem; color: #6b7280; }
         body.dark-mode .university-card .univ-sub { color: #9ca3af; }
 
+        /* ===== UNIVERSITY TOGGLE ===== */
+        .university-section-wrapper {
+            position: relative;
+        }
+        .university-grid-wrapper {
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: none;
+        }
+        .university-grid-wrapper.collapsed {
+            max-height: 600px;
+        }
+        .university-grid-wrapper.expanded {
+            max-height: 10000px;
+        }
+        .university-toggle-btn {
+            display: none;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 10px auto 0;
+            box-shadow: 0 4px 14px rgba(10,126,62,0.3);
+        }
+        .university-toggle-btn:hover {
+            background: #065f2e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(10,126,62,0.4);
+        }
+        .university-toggle-btn i {
+            margin-right: 8px;
+        }
+        .university-toggle-btn .show-text { display: inline; }
+        .university-toggle-btn .hide-text { display: none; }
+        .university-toggle-btn.expanded .show-text { display: none; }
+        .university-toggle-btn.expanded .hide-text { display: inline; }
+
+        @media (max-width: 768px) {
+            .university-toggle-btn {
+                display: block;
+            }
+            .university-grid-wrapper.collapsed {
+                max-height: 500px;
+            }
+        }
+
         /* ===== PARTNER LOGOS ===== */
         .partners-section {
             background: var(--card-bg);
@@ -942,7 +993,6 @@
             .hero-actions { flex-direction: column; align-items: stretch; }
             #typewriter { font-size: 1.2rem; min-height: 40px; }
             
-            /* FIX: Remove negative margin on mobile */
             .stats { 
                 grid-template-columns: 1fr 1fr; 
                 margin-top: 0 !important;
@@ -986,6 +1036,9 @@
             .gallery-grid { grid-template-columns: 1fr; }
             .gallery-grid img { height: 220px; }
             .university-grid { grid-template-columns: 1fr; }
+            .university-grid-wrapper.collapsed {
+                max-height: 400px;
+            }
             .countdown-item { padding: 10px 15px; min-width: 50px; }
             .countdown-item .number { font-size: 1.5rem; }
             .map-grid { grid-template-columns: 1fr; }
@@ -1184,65 +1237,77 @@
     <h2 class="section-title"><i class="fas fa-university"></i> Our Member Universities & Institutions</h2>
     <p class="section-sub">United from across Uganda to drive health change. Over 40 institutions are part of the IUHMC network.</p>
 
-    <h3 style="color:var(--primary); margin-top:30px;">🏛️ Public Universities</h3>
-    <div class="university-grid">
-        <div class="university-card" style="border-color: var(--primary);"><i class="fas fa-university univ-icon" style="color:var(--primary);"></i><span class="univ-name">Makerere University</span><span class="univ-sub">Est. 1922</span></div>
-        <div class="university-card" style="border-color: #dc2626;"><i class="fas fa-university univ-icon" style="color:#dc2626;"></i><span class="univ-name">MUST</span><span class="univ-sub">Mbarara University of Science & Technology</span></div>
-        <div class="university-card" style="border-color: #16a34a;"><i class="fas fa-university univ-icon" style="color:#16a34a;"></i><span class="univ-name">Gulu University</span><span class="univ-sub">Northern Uganda</span></div>
-        <div class="university-card" style="border-color: #eab308;"><i class="fas fa-university univ-icon" style="color:#eab308;"></i><span class="univ-name">Busitema University</span><span class="univ-sub">Eastern Uganda</span></div>
-        <div class="university-card" style="border-color: #8b5cf6;"><i class="fas fa-university univ-icon" style="color:#8b5cf6;"></i><span class="univ-name">Soroti University</span><span class="univ-sub">Teso Region</span></div>
-        <div class="university-card" style="border-color: #ec4899;"><i class="fas fa-university univ-icon" style="color:#ec4899;"></i><span class="univ-name">Kyambogo University</span><span class="univ-sub">Central Uganda</span></div>
-        <div class="university-card" style="border-color: #14b8a6;"><i class="fas fa-university univ-icon" style="color:#14b8a6;"></i><span class="univ-name">Kabale University</span><span class="univ-sub">Southwestern Uganda</span></div>
-        <div class="university-card" style="border-color: #f97316;"><i class="fas fa-university univ-icon" style="color:#f97316;"></i><span class="univ-name">Lira University</span><span class="univ-sub">Northern Uganda</span></div>
-        <div class="university-card" style="border-color: #6366f1;"><i class="fas fa-university univ-icon" style="color:#6366f1;"></i><span class="univ-name">MMU</span><span class="univ-sub">Mountains of the Moon University</span></div>
-        <div class="university-card" style="border-color: #d946ef;"><i class="fas fa-university univ-icon" style="color:#d946ef;"></i><span class="univ-name">Muni University</span><span class="univ-sub">West Nile Region</span></div>
-    </div>
+    <div class="university-section-wrapper">
+        <!-- Public Universities -->
+        <h3 style="color:var(--primary); margin-top:30px;">🏛️ Public Universities</h3>
+        <div class="university-grid-wrapper collapsed" id="universityGrid">
+            <div class="university-grid">
+                <div class="university-card" style="border-color: var(--primary);"><i class="fas fa-university univ-icon" style="color:var(--primary);"></i><span class="univ-name">Makerere University</span><span class="univ-sub">Est. 1922</span></div>
+                <div class="university-card" style="border-color: #dc2626;"><i class="fas fa-university univ-icon" style="color:#dc2626;"></i><span class="univ-name">MUST</span><span class="univ-sub">Mbarara University of Science & Technology</span></div>
+                <div class="university-card" style="border-color: #16a34a;"><i class="fas fa-university univ-icon" style="color:#16a34a;"></i><span class="univ-name">Gulu University</span><span class="univ-sub">Northern Uganda</span></div>
+                <div class="university-card" style="border-color: #eab308;"><i class="fas fa-university univ-icon" style="color:#eab308;"></i><span class="univ-name">Busitema University</span><span class="univ-sub">Eastern Uganda</span></div>
+                <div class="university-card" style="border-color: #8b5cf6;"><i class="fas fa-university univ-icon" style="color:#8b5cf6;"></i><span class="univ-name">Soroti University</span><span class="univ-sub">Teso Region</span></div>
+                <div class="university-card" style="border-color: #ec4899;"><i class="fas fa-university univ-icon" style="color:#ec4899;"></i><span class="univ-name">Kyambogo University</span><span class="univ-sub">Central Uganda</span></div>
+                <div class="university-card" style="border-color: #14b8a6;"><i class="fas fa-university univ-icon" style="color:#14b8a6;"></i><span class="univ-name">Kabale University</span><span class="univ-sub">Southwestern Uganda</span></div>
+                <div class="university-card" style="border-color: #f97316;"><i class="fas fa-university univ-icon" style="color:#f97316;"></i><span class="univ-name">Lira University</span><span class="univ-sub">Northern Uganda</span></div>
+                <div class="university-card" style="border-color: #6366f1;"><i class="fas fa-university univ-icon" style="color:#6366f1;"></i><span class="univ-name">MMU</span><span class="univ-sub">Mountains of the Moon University</span></div>
+                <div class="university-card" style="border-color: #d946ef;"><i class="fas fa-university univ-icon" style="color:#d946ef;"></i><span class="univ-name">Muni University</span><span class="univ-sub">West Nile Region</span></div>
+            </div>
 
-    <h3 style="color:var(--primary); margin-top:40px;">🏫 Private Universities</h3>
-    <div class="university-grid">
-        <div class="university-card" style="border-color: #1e40af;"><i class="fas fa-university univ-icon" style="color:#1e40af;"></i><span class="univ-name">Uganda Christian University (UCU)</span><span class="univ-sub">Mukono</span></div>
-        <div class="university-card" style="border-color: #b91c1c;"><i class="fas fa-university univ-icon" style="color:#b91c1c;"></i><span class="univ-name">Kampala International University (KIU)</span><span class="univ-sub">Kampala</span></div>
-        <div class="university-card" style="border-color: #065f46;"><i class="fas fa-university univ-icon" style="color:#065f46;"></i><span class="univ-name">Uganda Martyrs University (UMU)</span><span class="univ-sub">Nkozi</span></div>
-        <div class="university-card" style="border-color: #6d28d9;"><i class="fas fa-university univ-icon" style="color:#6d28d9;"></i><span class="univ-name">Ndejje University</span><span class="univ-sub">Central Uganda</span></div>
-        <div class="university-card" style="border-color: #047857;"><i class="fas fa-university univ-icon" style="color:#047857;"></i><span class="univ-name">Islamic University in Uganda (IUIU)</span><span class="univ-sub">Mbale</span></div>
-        <div class="university-card" style="border-color: #92400e;"><i class="fas fa-university univ-icon" style="color:#92400e;"></i><span class="univ-name">Bugema University</span><span class="univ-sub">Central Uganda</span></div>
-        <div class="university-card" style="border-color: #1e3a8a;"><i class="fas fa-university univ-icon" style="color:#1e3a8a;"></i><span class="univ-name">Bishop Stuart University</span><span class="univ-sub">Mbarara</span></div>
-        <div class="university-card" style="border-color: #a16207;"><i class="fas fa-university univ-icon" style="color:#a16207;"></i><span class="univ-name">Cavendish University Uganda</span><span class="univ-sub">Kampala</span></div>
-        <div class="university-card" style="border-color: #be185d;"><i class="fas fa-university univ-icon" style="color:#be185d;"></i><span class="univ-name">International University of East Africa (IUEA)</span><span class="univ-sub">Kampala</span></div>
-        <div class="university-card" style="border-color: #0a7e3e;"><i class="fas fa-university univ-icon" style="color:#0a7e3e;"></i><span class="univ-name">Kampala University</span><span class="univ-sub">Kampala</span></div>
-        <div class="university-card" style="border-color: #7c3aed;"><i class="fas fa-university univ-icon" style="color:#7c3aed;"></i><span class="univ-name">Nkumba University</span><span class="univ-sub">Entebbe</span></div>
-        <div class="university-card" style="border-color: #0d9488;"><i class="fas fa-university univ-icon" style="color:#0d9488;"></i><span class="univ-name">Victoria University</span><span class="univ-sub">Kampala</span></div>
-        <div class="university-card" style="border-color: #b45309;"><i class="fas fa-university univ-icon" style="color:#b45309;"></i><span class="univ-name">St. Augustine International University</span><span class="univ-sub">Kampala</span></div>
-        <div class="university-card" style="border-color: #4f46e5;"><i class="fas fa-university univ-icon" style="color:#4f46e5;"></i><span class="univ-name">Fairland University</span><span class="univ-sub">Jinja</span></div>
-        <div class="university-card" style="border-color: #a855f7;"><i class="fas fa-university univ-icon" style="color:#a855f7;"></i><span class="univ-name">Clarke International University</span><span class="univ-sub">Kampala</span></div>
-        <div class="university-card" style="border-color: #059669;"><i class="fas fa-university univ-icon" style="color:#059669;"></i><span class="univ-name">African Rural University</span><span class="univ-sub">Kagadi</span></div>
-        <div class="university-card" style="border-color: #d97706;"><i class="fas fa-university univ-icon" style="color:#d97706;"></i><span class="univ-name">Kumi University</span><span class="univ-sub">Kumi</span></div>
-        <div class="university-card" style="border-color: #2563eb;"><i class="fas fa-university univ-icon" style="color:#2563eb;"></i><span class="univ-name">LivingStone International University</span><span class="univ-sub">Mbale</span></div>
-        <div class="university-card" style="border-color: #0891b2;"><i class="fas fa-university univ-icon" style="color:#0891b2;"></i><span class="univ-name">University of Kisubi (UNIK)</span><span class="univ-sub">Kisubi</span></div>
-        <div class="university-card" style="border-color: #6b7280;"><i class="fas fa-university univ-icon" style="color:#6b7280;"></i><span class="univ-name">All Saints University</span><span class="univ-sub">Lira</span></div>
-        <div class="university-card" style="border-color: #991b1b;"><i class="fas fa-university univ-icon" style="color:#991b1b;"></i><span class="univ-name">Great Lakes Regional University</span><span class="univ-sub">Kanungu</span></div>
-        <div class="university-card" style="border-color: #15803d;"><i class="fas fa-university univ-icon" style="color:#15803d;"></i><span class="univ-name">International Health Sciences University</span><span class="univ-sub">Kampala</span></div>
-        <div class="university-card" style="border-color: #7c3aed;"><i class="fas fa-university univ-icon" style="color:#7c3aed;"></i><span class="univ-name">St. Lawrence University</span><span class="univ-sub">Kampala</span></div>
-        <div class="university-card" style="border-color: #0ea5e9;"><i class="fas fa-university univ-icon" style="color:#0ea5e9;"></i><span class="univ-name">Virtual University of Uganda</span><span class="univ-sub">Online</span></div>
-        <div class="university-card" style="border-color: #f59e0b;"><i class="fas fa-university univ-icon" style="color:#f59e0b;"></i><span class="univ-name">King Ceasor University</span><span class="univ-sub">Central Uganda</span></div>
-        <div class="university-card" style="border-color: #ec4899;"><i class="fas fa-university univ-icon" style="color:#ec4899;"></i><span class="univ-name">Florence Nightingale</span><span class="univ-sub">Nursing & Health Sciences</span></div>
-        <div class="university-card" style="border-color: #8b5cf6;"><i class="fas fa-university univ-icon" style="color:#8b5cf6;"></i><span class="univ-name">KIU Western Campus</span><span class="univ-sub">Western Uganda</span></div>
-        <div class="university-card" style="border-color: #14b8a6;"><i class="fas fa-university univ-icon" style="color:#14b8a6;"></i><span class="univ-name">UICT</span><span class="univ-sub">Uganda Institute of Information & Communications Technology</span></div>
-    </div>
+            <h3 style="color:var(--primary); margin-top:40px;">🏫 Private Universities</h3>
+            <div class="university-grid">
+                <div class="university-card" style="border-color: #1e40af;"><i class="fas fa-university univ-icon" style="color:#1e40af;"></i><span class="univ-name">Uganda Christian University (UCU)</span><span class="univ-sub">Mukono</span></div>
+                <div class="university-card" style="border-color: #b91c1c;"><i class="fas fa-university univ-icon" style="color:#b91c1c;"></i><span class="univ-name">Kampala International University (KIU)</span><span class="univ-sub">Kampala</span></div>
+                <div class="university-card" style="border-color: #065f46;"><i class="fas fa-university univ-icon" style="color:#065f46;"></i><span class="univ-name">Uganda Martyrs University (UMU)</span><span class="univ-sub">Nkozi</span></div>
+                <div class="university-card" style="border-color: #6d28d9;"><i class="fas fa-university univ-icon" style="color:#6d28d9;"></i><span class="univ-name">Ndejje University</span><span class="univ-sub">Central Uganda</span></div>
+                <div class="university-card" style="border-color: #047857;"><i class="fas fa-university univ-icon" style="color:#047857;"></i><span class="univ-name">Islamic University in Uganda (IUIU)</span><span class="univ-sub">Mbale</span></div>
+                <div class="university-card" style="border-color: #92400e;"><i class="fas fa-university univ-icon" style="color:#92400e;"></i><span class="univ-name">Bugema University</span><span class="univ-sub">Central Uganda</span></div>
+                <div class="university-card" style="border-color: #1e3a8a;"><i class="fas fa-university univ-icon" style="color:#1e3a8a;"></i><span class="univ-name">Bishop Stuart University</span><span class="univ-sub">Mbarara</span></div>
+                <div class="university-card" style="border-color: #a16207;"><i class="fas fa-university univ-icon" style="color:#a16207;"></i><span class="univ-name">Cavendish University Uganda</span><span class="univ-sub">Kampala</span></div>
+                <div class="university-card" style="border-color: #be185d;"><i class="fas fa-university univ-icon" style="color:#be185d;"></i><span class="univ-name">International University of East Africa (IUEA)</span><span class="univ-sub">Kampala</span></div>
+                <div class="university-card" style="border-color: #0a7e3e;"><i class="fas fa-university univ-icon" style="color:#0a7e3e;"></i><span class="univ-name">Kampala University</span><span class="univ-sub">Kampala</span></div>
+                <div class="university-card" style="border-color: #7c3aed;"><i class="fas fa-university univ-icon" style="color:#7c3aed;"></i><span class="univ-name">Nkumba University</span><span class="univ-sub">Entebbe</span></div>
+                <div class="university-card" style="border-color: #0d9488;"><i class="fas fa-university univ-icon" style="color:#0d9488;"></i><span class="univ-name">Victoria University</span><span class="univ-sub">Kampala</span></div>
+                <div class="university-card" style="border-color: #b45309;"><i class="fas fa-university univ-icon" style="color:#b45309;"></i><span class="univ-name">St. Augustine International University</span><span class="univ-sub">Kampala</span></div>
+                <div class="university-card" style="border-color: #4f46e5;"><i class="fas fa-university univ-icon" style="color:#4f46e5;"></i><span class="univ-name">Fairland University</span><span class="univ-sub">Jinja</span></div>
+                <div class="university-card" style="border-color: #a855f7;"><i class="fas fa-university univ-icon" style="color:#a855f7;"></i><span class="univ-name">Clarke International University</span><span class="univ-sub">Kampala</span></div>
+                <div class="university-card" style="border-color: #059669;"><i class="fas fa-university univ-icon" style="color:#059669;"></i><span class="univ-name">African Rural University</span><span class="univ-sub">Kagadi</span></div>
+                <div class="university-card" style="border-color: #d97706;"><i class="fas fa-university univ-icon" style="color:#d97706;"></i><span class="univ-name">Kumi University</span><span class="univ-sub">Kumi</span></div>
+                <div class="university-card" style="border-color: #2563eb;"><i class="fas fa-university univ-icon" style="color:#2563eb;"></i><span class="univ-name">LivingStone International University</span><span class="univ-sub">Mbale</span></div>
+                <div class="university-card" style="border-color: #0891b2;"><i class="fas fa-university univ-icon" style="color:#0891b2;"></i><span class="univ-name">University of Kisubi (UNIK)</span><span class="univ-sub">Kisubi</span></div>
+                <div class="university-card" style="border-color: #6b7280;"><i class="fas fa-university univ-icon" style="color:#6b7280;"></i><span class="univ-name">All Saints University</span><span class="univ-sub">Lira</span></div>
+                <div class="university-card" style="border-color: #991b1b;"><i class="fas fa-university univ-icon" style="color:#991b1b;"></i><span class="univ-name">Great Lakes Regional University</span><span class="univ-sub">Kanungu</span></div>
+                <div class="university-card" style="border-color: #15803d;"><i class="fas fa-university univ-icon" style="color:#15803d;"></i><span class="univ-name">International Health Sciences University</span><span class="univ-sub">Kampala</span></div>
+                <div class="university-card" style="border-color: #7c3aed;"><i class="fas fa-university univ-icon" style="color:#7c3aed;"></i><span class="univ-name">St. Lawrence University</span><span class="univ-sub">Kampala</span></div>
+                <div class="university-card" style="border-color: #0ea5e9;"><i class="fas fa-university univ-icon" style="color:#0ea5e9;"></i><span class="univ-name">Virtual University of Uganda</span><span class="univ-sub">Online</span></div>
+                <div class="university-card" style="border-color: #f59e0b;"><i class="fas fa-university univ-icon" style="color:#f59e0b;"></i><span class="univ-name">King Ceasor University</span><span class="univ-sub">Central Uganda</span></div>
+                <div class="university-card" style="border-color: #ec4899;"><i class="fas fa-university univ-icon" style="color:#ec4899;"></i><span class="univ-name">Florence Nightingale</span><span class="univ-sub">Nursing & Health Sciences</span></div>
+                <div class="university-card" style="border-color: #8b5cf6;"><i class="fas fa-university univ-icon" style="color:#8b5cf6;"></i><span class="univ-name">KIU Western Campus</span><span class="univ-sub">Western Uganda</span></div>
+                <div class="university-card" style="border-color: #14b8a6;"><i class="fas fa-university univ-icon" style="color:#14b8a6;"></i><span class="univ-name">UICT</span><span class="univ-sub">Uganda Institute of Information & Communications Technology</span></div>
+            </div>
 
-    <h3 style="color:var(--primary); margin-top:40px;">🏥 Higher Education Institutions</h3>
-    <div class="university-grid">
-        <div class="university-card" style="border-color: var(--primary);"><i class="fas fa-building univ-icon" style="color:var(--primary);"></i><span class="univ-name">Makerere University Business School (MUBS)</span><span class="univ-sub">Kampala</span></div>
-        <div class="university-card" style="border-color: var(--gold);"><i class="fas fa-building univ-icon" style="color:var(--gold);"></i><span class="univ-name">Uganda Management Institute (UMI)</span><span class="univ-sub">Kampala</span></div>
-        <div class="university-card" style="border-color: #8b5cf6;"><i class="fas fa-building univ-icon" style="color:#8b5cf6;"></i><span class="univ-name">Gulu College of Health Sciences</span><span class="univ-sub">Gulu</span></div>
-        <div class="university-card" style="border-color: #ef4444;"><i class="fas fa-building univ-icon" style="color:#ef4444;"></i><span class="univ-name">Mulago Paramedical School</span><span class="univ-sub">Kampala</span></div>
-        <div class="university-card" style="border-color: #14b8a6;"><i class="fas fa-building univ-icon" style="color:#14b8a6;"></i><span class="univ-name">Uganda Institute of Allied Health (UIAHMS)</span><span class="univ-sub">Kampala</span></div>
-        <div class="university-card" style="border-color: #8b5cf6;"><i class="fas fa-building univ-icon" style="color:#8b5cf6;"></i><span class="univ-name">Aga Khan University (Uganda Campus)</span><span class="univ-sub">Kampala</span></div>
-        <div class="university-card" style="border-color: #f59e0b;"><i class="fas fa-building univ-icon" style="color:#f59e0b;"></i><span class="univ-name">Jinja Nursing School</span><span class="univ-sub">Jinja</span></div>
-        <div class="university-card" style="border-color: #10b981;"><i class="fas fa-building univ-icon" style="color:#10b981;"></i><span class="univ-name">Fort Portal Nursing School</span><span class="univ-sub">Fort Portal</span></div>
-        <div class="university-card" style="border-color: #3b82f6;"><i class="fas fa-building univ-icon" style="color:#3b82f6;"></i><span class="univ-name">Arua Nursing School</span><span class="univ-sub">Arua</span></div>
-        <div class="university-card" style="border-color: #7c3aed;"><i class="fas fa-building univ-icon" style="color:#7c3aed;"></i><span class="univ-name">Royal College of Physicians (Uganda)</span><span class="univ-sub">Kampala</span></div>
-        <div class="university-card" style="border-color: #dc2626;"><i class="fas fa-building univ-icon" style="color:#dc2626;"></i><span class="univ-name">Uganda Nurses and Midwives Training Council</span><span class="univ-sub">Kampala</span></div>
+            <h3 style="color:var(--primary); margin-top:40px;">🏥 Higher Education Institutions</h3>
+            <div class="university-grid">
+                <div class="university-card" style="border-color: var(--primary);"><i class="fas fa-building univ-icon" style="color:var(--primary);"></i><span class="univ-name">Makerere University Business School (MUBS)</span><span class="univ-sub">Kampala</span></div>
+                <div class="university-card" style="border-color: var(--gold);"><i class="fas fa-building univ-icon" style="color:var(--gold);"></i><span class="univ-name">Uganda Management Institute (UMI)</span><span class="univ-sub">Kampala</span></div>
+                <div class="university-card" style="border-color: #8b5cf6;"><i class="fas fa-building univ-icon" style="color:#8b5cf6;"></i><span class="univ-name">Gulu College of Health Sciences</span><span class="univ-sub">Gulu</span></div>
+                <div class="university-card" style="border-color: #ef4444;"><i class="fas fa-building univ-icon" style="color:#ef4444;"></i><span class="univ-name">Mulago Paramedical School</span><span class="univ-sub">Kampala</span></div>
+                <div class="university-card" style="border-color: #14b8a6;"><i class="fas fa-building univ-icon" style="color:#14b8a6;"></i><span class="univ-name">Uganda Institute of Allied Health (UIAHMS)</span><span class="univ-sub">Kampala</span></div>
+                <div class="university-card" style="border-color: #8b5cf6;"><i class="fas fa-building univ-icon" style="color:#8b5cf6;"></i><span class="univ-name">Aga Khan University (Uganda Campus)</span><span class="univ-sub">Kampala</span></div>
+                <div class="university-card" style="border-color: #f59e0b;"><i class="fas fa-building univ-icon" style="color:#f59e0b;"></i><span class="univ-name">Jinja Nursing School</span><span class="univ-sub">Jinja</span></div>
+                <div class="university-card" style="border-color: #10b981;"><i class="fas fa-building univ-icon" style="color:#10b981;"></i><span class="univ-name">Fort Portal Nursing School</span><span class="univ-sub">Fort Portal</span></div>
+                <div class="university-card" style="border-color: #3b82f6;"><i class="fas fa-building univ-icon" style="color:#3b82f6;"></i><span class="univ-name">Arua Nursing School</span><span class="univ-sub">Arua</span></div>
+                <div class="university-card" style="border-color: #7c3aed;"><i class="fas fa-building univ-icon" style="color:#7c3aed;"></i><span class="univ-name">Royal College of Physicians (Uganda)</span><span class="univ-sub">Kampala</span></div>
+                <div class="university-card" style="border-color: #dc2626;"><i class="fas fa-building univ-icon" style="color:#dc2626;"></i><span class="univ-name">Uganda Nurses and Midwives Training Council</span><span class="univ-sub">Kampala</span></div>
+            </div>
+        </div>
+        
+        <!-- Toggle Button -->
+        <button class="university-toggle-btn" id="universityToggleBtn" onclick="toggleUniversities()">
+            <i class="fas fa-chevron-down"></i>
+            <span class="show-text">See All Universities</span>
+            <span class="hide-text">Show Less</span>
+        </button>
     </div>
 </section>
 
@@ -1620,6 +1685,26 @@
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // ===== UNIVERSITY TOGGLE =====
+    function toggleUniversities() {
+        const grid = document.getElementById('universityGrid');
+        const btn = document.getElementById('universityToggleBtn');
+        
+        if (grid.classList.contains('collapsed')) {
+            grid.classList.remove('collapsed');
+            grid.classList.add('expanded');
+            btn.classList.add('expanded');
+            btn.querySelector('i').className = 'fas fa-chevron-up';
+        } else {
+            grid.classList.add('collapsed');
+            grid.classList.remove('expanded');
+            btn.classList.remove('expanded');
+            btn.querySelector('i').className = 'fas fa-chevron-down';
+            // Scroll back to top of university section
+            document.querySelector('.university-section-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
 
     // ===== CONTACT FORM =====
     document.getElementById('contactForm').addEventListener('submit', function(e) {
