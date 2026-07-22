@@ -797,7 +797,7 @@
             box-shadow: 0 4px 12px rgba(245,176,65,0.3);
         }
 
-        /* ===== MEMBER DIRECTORY ===== */
+        /* ===== MEMBER DIRECTORY - BEAUTIFUL TABLE ===== */
         .directory-search {
             display: flex;
             gap: 12px;
@@ -841,46 +841,111 @@
         }
         .directory-search button:hover { background: var(--primary-dark); }
 
-        .member-table-container {
-            overflow-x: auto;
+        .member-table-wrapper {
             background: var(--card-bg);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            margin-bottom: 40px;
-            transition: background 0.3s ease;
+            overflow: hidden;
             border: 1px solid var(--border);
+            margin-bottom: 20px;
         }
+
+        .member-table-container {
+            overflow-x: auto;
+            transition: background 0.3s ease;
+        }
+
         .member-table-container table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.9rem;
         }
-        .member-table-container th {
+
+        .member-table-container thead {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: #fff;
-            padding: 14px 16px;
+        }
+
+        .member-table-container th {
+            padding: 16px 20px;
             text-align: left;
             font-weight: 600;
             cursor: pointer;
             user-select: none;
             white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
-        .member-table-container th:hover { background: var(--primary-dark); }
-        .member-table-container th i { margin-left: 6px; font-size: 0.7rem; }
+
+        .member-table-container th i {
+            margin-left: 6px;
+            font-size: 0.7rem;
+            opacity: 0.6;
+        }
+
+        .member-table-container th:hover {
+            background: var(--primary-dark);
+        }
+
         .member-table-container td {
-            padding: 12px 16px;
+            padding: 14px 20px;
             border-bottom: 1px solid var(--border);
             color: var(--text);
-            cursor: pointer;
+            vertical-align: middle;
         }
-        .member-table-container tr:hover { background: var(--sky-light); }
-        body.dark-mode .member-table-container tr:hover { background: #1e293b; }
+
+        .member-table-container tbody tr {
+            transition: all 0.2s;
+            background: var(--card-bg);
+        }
+
+        .member-table-container tbody tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .member-table-container tbody tr:hover {
+            background: var(--sky-light);
+            transform: scale(1.01);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        body.dark-mode .member-table-container tbody tr:nth-child(even) {
+            background: var(--dark);
+        }
+
+        body.dark-mode .member-table-container tbody tr:hover {
+            background: #1e293b;
+        }
+
+        .member-table-container .phone-number {
+            white-space: nowrap;
+            font-weight: 500;
+            font-family: 'Inter', monospace;
+            letter-spacing: 0.3px;
+            color: var(--primary);
+        }
+
+        .member-table-container .email-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+            word-break: break-all;
+        }
+
+        .member-table-container .email-link:hover {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+
         .region-badge {
             display: inline-block;
-            padding: 2px 12px;
+            padding: 4px 14px;
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 600;
+            letter-spacing: 0.3px;
         }
         .region-badge.central { background: #d1fae5; color: #065f2e; }
         .region-badge.eastern { background: #fef3c7; color: #92400e; }
@@ -891,6 +956,82 @@
         body.dark-mode .region-badge.northern { background: #1e40af; color: #dbeafe; }
         body.dark-mode .region-badge.western { background: #9d174d; color: #fce4ec; }
 
+        .member-count {
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .member-count span {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* ===== PAGINATION ===== */
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            padding: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .pagination button {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            padding: 8px 14px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 44px;
+            text-align: center;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(10,126,62,0.2);
+        }
+
+        .pagination button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .pagination button.active-page {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(10,126,62,0.3);
+        }
+
+        .pagination .page-info {
+            font-weight: 500;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            padding: 0 10px;
+        }
+
+        .pagination .arrow-icon {
+            font-size: 0.8rem;
+        }
+
+        /* ===== EVENT REGISTRATION ===== */
         .event-registration-form {
             background: var(--card-bg);
             padding: 30px;
@@ -1260,6 +1401,7 @@
             font-size: 0.85rem;
         }
 
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .top-bar .left { display: none; }
             .top-bar .right { width: 100%; justify-content: center; }
@@ -1298,7 +1440,10 @@
             .coordinator-grid { grid-template-columns: 1fr; }
             .map-grid { grid-template-columns: 1fr 1fr; }
             .member-table-container th, 
-            .member-table-container td { padding: 6px 8px; font-size: 0.7rem; }
+            .member-table-container td { padding: 8px 10px; font-size: 0.75rem; }
+            
+            .pagination button { padding: 6px 10px; font-size: 0.75rem; min-width: 36px; }
+            .pagination .page-info { font-size: 0.75rem; }
             
             footer .container { grid-template-columns: 1fr; }
         }
@@ -1342,13 +1487,11 @@
             </a>
             
             <div class="nav-actions">
-                <!-- Primary navigation - 4 main links -->
                 <a href="index.html" class="nav-link-pill"><i class="fas fa-home"></i> Home</a>
                 <a href="leadership.html" class="nav-link-pill"><i class="fas fa-users"></i> About</a>
                 <a href="impact.html" class="nav-link-pill"><i class="fas fa-bullseye"></i> Impact</a>
                 <a href="index.html#contact" class="nav-link-pill"><i class="fas fa-envelope"></i> Contact</a>
                 
-                <!-- Dropdown for remaining pages -->
                 <div class="nav-dropdown">
                     <button class="dropdown-toggle">
                         <i class="fas fa-ellipsis-h"></i> More <i class="fas fa-chevron-down" style="font-size:0.6rem; margin-left:4px;"></i>
@@ -1371,7 +1514,6 @@
                     <i class="fas fa-moon"></i>
                 </button>
                 
-                <!-- Language Selector - Full names -->
                 <div class="lang-dropdown">
                     <button class="lang-toggle" onclick="toggleLangDropdown()">
                         <i class="fas fa-globe"></i> English <i class="fas fa-chevron-down" style="font-size:0.6rem; margin-left:4px;"></i>
@@ -1459,13 +1601,11 @@
     </div>
 </section>
 
-<!-- ===== COORDINATORS (ONLY 4 REGIONAL COORDINATORS) ===== -->
+<!-- ===== COORDINATORS ===== -->
 <section class="container fade-in">
     <h2 class="section-title"><i class="fas fa-crown"></i> Regional Coordinators</h2>
     <p style="color:var(--text-light); margin-bottom:16px;">Meet the regional coordinators leading IUHMC's work across Uganda.</p>
-    <div class="coordinator-grid" id="coordinatorGrid">
-        <!-- Coordinators will be loaded dynamically -->
-    </div>
+    <div class="coordinator-grid" id="coordinatorGrid"></div>
 </section>
 
 <!-- ===== INTERACTIVE MAP ===== -->
@@ -1473,23 +1613,23 @@
     <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> Where We Reach</h2>
     <p style="color:var(--text-light); margin-bottom:16px;">Interactive map showing IUHMC's presence across Uganda.</p>
     <div class="map-container">
-        <div class="map-grid" id="mapGrid">
-            <div class="map-region" onclick="alert('Central Region: 20+ universities and institutions')">
+        <div class="map-grid">
+            <div class="map-region" onclick="alert('Central Region: 20+ institutions')">
                 <span class="icon">🟢</span>
                 <span class="name">Central Region</span>
                 <span class="count">20+ Institutions</span>
             </div>
-            <div class="map-region" onclick="alert('Eastern Region: 15+ universities and institutions')">
+            <div class="map-region" onclick="alert('Eastern Region: 15+ institutions')">
                 <span class="icon">🟡</span>
                 <span class="name">Eastern Region</span>
                 <span class="count">15+ Institutions</span>
             </div>
-            <div class="map-region" onclick="alert('Northern Region: 30+ universities and institutions')">
+            <div class="map-region" onclick="alert('Northern Region: 30+ institutions')">
                 <span class="icon">🔵</span>
                 <span class="name">Northern Region</span>
                 <span class="count">30+ Institutions</span>
             </div>
-            <div class="map-region" onclick="alert('Western Region: 20+ universities and institutions')">
+            <div class="map-region" onclick="alert('Western Region: 20+ institutions')">
                 <span class="icon">🟠</span>
                 <span class="name">Western Region</span>
                 <span class="count">20+ Institutions</span>
@@ -1511,7 +1651,6 @@
             <div class="partner-logo"><span class="logo-icon">📚</span><span class="logo-name">Makerere University</span></div>
             <div class="partner-logo"><span class="logo-icon">🌍</span><span class="logo-name">WHO Uganda</span></div>
             <div class="partner-logo"><span class="logo-icon">💊</span><span class="logo-name">Quality Chemical Industries</span></div>
-            <!-- Duplicate for seamless scrolling -->
             <div class="partner-logo"><span class="logo-icon">🏛️</span><span class="logo-name">Ministry of Health - Uganda</span></div>
             <div class="partner-logo"><span class="logo-icon">❤️</span><span class="logo-name">Raremark Foundation</span></div>
             <div class="partner-logo"><span class="logo-icon">🔬</span><span class="logo-name">Microhaem Scientifics</span></div>
@@ -1529,35 +1668,42 @@
     <p style="color:var(--text-light); margin-bottom:16px;">Search and connect with health ministers from all member institutions.</p>
 
     <div class="directory-search">
-        <input type="text" id="memberSearch" placeholder="Search by name, university, or district..." onkeyup="filterMembers()" />
-        <select id="regionFilter" onchange="filterMembers()">
+        <input type="text" id="memberSearch" placeholder="Search by name, university, or district..." onkeyup="applyFiltersAndPagination()" />
+        <select id="regionFilter" onchange="applyFiltersAndPagination()">
             <option value="all">All Regions</option>
             <option value="Central">Central</option>
             <option value="Eastern">Eastern</option>
             <option value="Northern">Northern</option>
             <option value="Western">Western</option>
         </select>
-        <button onclick="filterMembers()"><i class="fas fa-search"></i> Search</button>
+        <button onclick="applyFiltersAndPagination()"><i class="fas fa-search"></i> Search</button>
     </div>
 
-    <div class="member-count" style="margin-bottom:16px; font-weight:600;">Total Health Ministers: <span id="countDisplay" style="color:var(--primary); font-size:1.2rem;">0</span></div>
+    <div class="member-count">Total Health Ministers: <span id="countDisplay">0</span></div>
 
-    <div class="member-table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th onclick="sortTable(0)">Name <i class="fas fa-sort"></i></th>
-                    <th onclick="sortTable(1)">University/Institution <i class="fas fa-sort"></i></th>
-                    <th onclick="sortTable(2)">Region <i class="fas fa-sort"></i></th>
-                    <th onclick="sortTable(3)">District <i class="fas fa-sort"></i></th>
-                    <th onclick="sortTable(4)">Phone <i class="fas fa-sort"></i></th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody id="memberTableBody">
-                <!-- Members will be loaded dynamically -->
-            </tbody>
-        </table>
+    <div class="member-table-wrapper">
+        <div class="member-table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">Name <i class="fas fa-sort"></i></th>
+                        <th onclick="sortTable(1)">Institution <i class="fas fa-sort"></i></th>
+                        <th onclick="sortTable(2)">Region <i class="fas fa-sort"></i></th>
+                        <th onclick="sortTable(3)">District <i class="fas fa-sort"></i></th>
+                        <th onclick="sortTable(4)">Phone <i class="fas fa-sort"></i></th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody id="memberTableBody">
+                    <!-- Rows will be rendered by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="paginationControls">
+        <!-- Will be generated by JavaScript -->
     </div>
 
     <div id="noResults" class="no-results" style="display:none; text-align:center; padding:40px; color:var(--text-light);">
@@ -1745,25 +1891,28 @@
 
     // ===== MOBILE MENU =====
     document.getElementById('menuToggle').addEventListener('click', function() {
-        const pills = document.querySelectorAll('.nav-link-pill:not(.dropdown-toggle)');
         const isOpen = this.querySelector('i').classList.contains('fa-times');
-        
+        const pills = document.querySelectorAll('.nav-link-pill:not(.dropdown-toggle)');
+        const toggle = document.querySelector('.dropdown-toggle');
+        const darkBtn = document.querySelector('.dark-toggle');
+        const donate = document.querySelector('.btn-primary');
+        const langBtn = document.querySelector('.lang-toggle');
         if (isOpen) {
             pills.forEach(p => p.style.display = 'none');
-            document.querySelector('.dropdown-toggle').style.display = 'none';
-            document.querySelector('.dark-toggle').style.display = 'none';
-            document.querySelector('.btn-primary').style.display = 'none';
-            document.querySelector('.lang-toggle').style.display = 'none';
+            toggle.style.display = 'none';
+            darkBtn.style.display = 'none';
+            donate.style.display = 'none';
+            langBtn.style.display = 'none';
             this.querySelector('i').classList.remove('fa-times');
             this.querySelector('i').classList.add('fa-bars');
             document.querySelector('.nav-dropdown').classList.remove('open');
             document.querySelector('.lang-dropdown').classList.remove('open');
         } else {
             pills.forEach(p => p.style.display = 'inline-flex');
-            document.querySelector('.dropdown-toggle').style.display = 'inline-flex';
-            document.querySelector('.dark-toggle').style.display = 'inline-flex';
-            document.querySelector('.btn-primary').style.display = 'inline-flex';
-            document.querySelector('.lang-toggle').style.display = 'inline-flex';
+            toggle.style.display = 'inline-flex';
+            darkBtn.style.display = 'inline-flex';
+            donate.style.display = 'inline-flex';
+            langBtn.style.display = 'inline-flex';
             this.querySelector('i').classList.remove('fa-bars');
             this.querySelector('i').classList.add('fa-times');
         }
@@ -1780,17 +1929,16 @@
     function handleMobileNav() {
         const pills = document.querySelectorAll('.nav-link-pill:not(.dropdown-toggle)');
         const toggle = document.querySelector('.dropdown-toggle');
-        const darkToggle = document.querySelector('.dark-toggle');
-        const donateBtn = document.querySelector('.btn-primary');
-        const langToggle = document.querySelector('.lang-toggle');
+        const darkBtn = document.querySelector('.dark-toggle');
+        const donate = document.querySelector('.btn-primary');
+        const langBtn = document.querySelector('.lang-toggle');
         const menuIcon = document.getElementById('menuToggle').querySelector('i');
-        
         if (window.innerWidth <= 768) {
             pills.forEach(p => p.style.display = 'none');
             toggle.style.display = 'none';
-            darkToggle.style.display = 'none';
-            donateBtn.style.display = 'none';
-            langToggle.style.display = 'none';
+            darkBtn.style.display = 'none';
+            donate.style.display = 'none';
+            langBtn.style.display = 'none';
             menuIcon.classList.add('fa-bars');
             menuIcon.classList.remove('fa-times');
             document.querySelector('.nav-dropdown').classList.remove('open');
@@ -1798,12 +1946,11 @@
         } else {
             pills.forEach(p => p.style.display = 'inline-flex');
             toggle.style.display = 'inline-flex';
-            darkToggle.style.display = 'inline-flex';
-            donateBtn.style.display = 'inline-flex';
-            langToggle.style.display = 'inline-flex';
+            darkBtn.style.display = 'inline-flex';
+            donate.style.display = 'inline-flex';
+            langBtn.style.display = 'inline-flex';
         }
     }
-
     window.addEventListener('resize', handleMobileNav);
     handleMobileNav();
 
@@ -1811,31 +1958,20 @@
     function toggleLangDropdown() {
         document.querySelector('.lang-dropdown').classList.toggle('open');
     }
-
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function(e) {
         const dropdown = document.querySelector('.lang-dropdown');
-        if (dropdown && !dropdown.contains(event.target)) {
-            dropdown.classList.remove('open');
-        }
+        if (dropdown && !dropdown.contains(e.target)) dropdown.classList.remove('open');
     });
 
     function changeLanguage(lang) {
         localStorage.setItem('preferredLanguage', lang);
-        // Update language toggle text
         const langToggle = document.querySelector('.lang-toggle');
-        const langMap = {
-            'en': 'English',
-            'lg': 'Luganda',
-            'sw': 'Swahili',
-            'fr': 'Français',
-            'es': 'Español',
-            'de': 'Deutsch'
-        };
-        if (langToggle && langMap[lang]) {
-            const globeIcon = langToggle.querySelector('.fa-globe');
-            const chevronIcon = langToggle.querySelector('.fa-chevron-down');
-            if (globeIcon && chevronIcon) {
-                langToggle.innerHTML = globeIcon.outerHTML + ' ' + langMap[lang] + ' ' + chevronIcon.outerHTML;
+        const map = { 'en':'English', 'lg':'Luganda', 'sw':'Swahili', 'fr':'Français', 'es':'Español', 'de':'Deutsch' };
+        if (langToggle && map[lang]) {
+            const globe = langToggle.querySelector('.fa-globe');
+            const chevron = langToggle.querySelector('.fa-chevron-down');
+            if (globe && chevron) {
+                langToggle.innerHTML = globe.outerHTML + ' ' + map[lang] + ' ' + chevron.outerHTML;
             }
         }
         document.querySelector('.lang-dropdown').classList.remove('open');
@@ -1855,40 +1991,12 @@
         track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
     });
 
-    // ===== COORDINATORS (ONLY 4 REGIONAL COORDINATORS) =====
+    // ===== COORDINATORS =====
     const coordinators = [
-        { 
-            name: 'Baiga Philmon Timothy', 
-            region: 'Eastern', 
-            phone: '+256 780 787 101', 
-            role: 'Coordinator - Eastern Region', 
-            avatar: 'BT',
-            email: 'baigaphilmon@gmail.com'
-        },
-        { 
-            name: 'Morrine Adero', 
-            region: 'Northern', 
-            phone: '+256 774 246 282', 
-            role: 'Coordinator - Northern Region', 
-            avatar: 'MA',
-            email: 'abermoreen9@gmail.com'
-        },
-        { 
-            name: 'Uwimpaye Gloria', 
-            region: 'Central', 
-            phone: '+256 771 894 626', 
-            role: 'Coordinator - Central Region', 
-            avatar: 'UG',
-            email: 'angellahnattabi7@gmail.com'
-        },
-        { 
-            name: 'Atuhaire Edward', 
-            region: 'Western', 
-            phone: '+256 760 085 948', 
-            role: 'Coordinator - Western Region', 
-            avatar: 'AE',
-            email: 'edwardatuhaire6@gmail.com'
-        }
+        { name: 'Baiga Philmon Timothy', region: 'Eastern', phone: '+256 780 787 101', role: 'Coordinator - Eastern Region', avatar: 'BT', email: 'baigaphilmon@gmail.com' },
+        { name: 'Morrine Adero', region: 'Northern', phone: '+256 774 246 282', role: 'Coordinator - Northern Region', avatar: 'MA', email: 'abermoreen9@gmail.com' },
+        { name: 'Uwimpaye Gloria', region: 'Central', phone: '+256 771 894 626', role: 'Coordinator - Central Region', avatar: 'UG', email: 'angellahnattabi7@gmail.com' },
+        { name: 'Atuhaire Edward', region: 'Western', phone: '+256 760 085 948', role: 'Coordinator - Western Region', avatar: 'AE', email: 'edwardatuhaire6@gmail.com' }
     ];
 
     function renderCoordinators() {
@@ -1908,7 +2016,7 @@
         `).join('');
     }
 
-    // ===== MEMBER DIRECTORY (FROM EXCEL DATA) =====
+    // ===== MEMBER DATA =====
     const members = [
         { name: "Mutebi Remmigious Remmy", institution: "Uganda Christian University", region: "Central", district: "Mukono", phone: "+256 763 928 029", email: "Mutebiremmigiousremmy3@gmail.com" },
         { name: "Naibembe Moses Eric", institution: "St. Peter's University", region: "Central", district: "Luwero", phone: "+256 704 123 341", email: "nabalambaflorence@icloud.com" },
@@ -2016,50 +2124,115 @@
         { name: "Ojilong Stephen", institution: "St Daniel Comboni Vocational Training Institute", region: "Northern", district: "Moroto", phone: "+256 769 546 866", email: "ojilongstephen99@gmail.com" }
     ];
 
-    // ===== RENDER MEMBERS =====
-    let currentSort = { column: 0, ascending: true };
+    // ===== PAGINATION VARIABLES =====
+    let currentPage = 1;
+    const rowsPerPage = 20;
     let currentFilteredMembers = [...members];
+    let currentSort = { column: 0, ascending: true };
 
-    function renderMembers(membersToRender) {
+    // ===== RENDER TABLE WITH PAGINATION =====
+    function renderTable() {
         const tbody = document.getElementById('memberTableBody');
         const countDisplay = document.getElementById('countDisplay');
         const noResults = document.getElementById('noResults');
+        const pagination = document.getElementById('paginationControls');
 
-        countDisplay.textContent = membersToRender.length;
+        // Apply sorting
+        const sorted = sortMembersArray(currentFilteredMembers, currentSort.column, currentSort.ascending);
 
-        if (membersToRender.length === 0) {
+        const totalItems = sorted.length;
+        countDisplay.textContent = totalItems;
+
+        if (totalItems === 0) {
             tbody.innerHTML = '';
             noResults.style.display = 'block';
+            pagination.innerHTML = '';
             return;
         }
         noResults.style.display = 'none';
 
-        tbody.innerHTML = membersToRender.map(member => `
+        const totalPages = Math.ceil(totalItems / rowsPerPage);
+        if (currentPage > totalPages) currentPage = totalPages;
+        if (currentPage < 1) currentPage = 1;
+
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = Math.min(start + rowsPerPage, totalItems);
+        const pageItems = sorted.slice(start, end);
+
+        tbody.innerHTML = pageItems.map(member => `
             <tr>
                 <td><strong>${member.name}</strong></td>
                 <td>${member.institution}</td>
                 <td><span class="region-badge ${member.region.toLowerCase()}">${member.region}</span></td>
                 <td>${member.district}</td>
-                <td>${member.phone}</td>
-                <td><a href="mailto:${member.email}" style="color:var(--primary); text-decoration:none;">${member.email}</a></td>
+                <td class="phone-number">${member.phone}</td>
+                <td><a href="mailto:${member.email}" class="email-link">${member.email}</a></td>
             </tr>
         `).join('');
+
+        // Render pagination controls
+        let paginationHtml = '';
+        paginationHtml += `
+            <button onclick="goToPage(${currentPage - 1})" ${currentPage <= 1 ? 'disabled' : ''}>
+                <i class="fas fa-chevron-left arrow-icon"></i>
+            </button>
+        `;
+
+        // Show up to 5 page numbers
+        let startPage = Math.max(1, currentPage - 2);
+        let endPage = Math.min(totalPages, startPage + 4);
+        if (endPage - startPage < 4) startPage = Math.max(1, endPage - 4);
+
+        for (let p = startPage; p <= endPage; p++) {
+            paginationHtml += `
+                <button class="${p === currentPage ? 'active-page' : ''}" onclick="goToPage(${p})">${p}</button>
+            `;
+        }
+
+        paginationHtml += `
+            <button onclick="goToPage(${currentPage + 1})" ${currentPage >= totalPages ? 'disabled' : ''}>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </button>
+            <span class="page-info">Page ${currentPage} of ${totalPages}</span>
+        `;
+
+        pagination.innerHTML = paginationHtml;
     }
 
-    function filterMembers() {
+    function goToPage(page) {
+        const totalItems = currentFilteredMembers.length;
+        const totalPages = Math.ceil(totalItems / rowsPerPage);
+        if (page < 1 || page > totalPages) return;
+        currentPage = page;
+        renderTable();
+    }
+
+    function sortMembersArray(arr, columnIndex, ascending) {
+        const keys = ['name', 'institution', 'region', 'district', 'phone'];
+        const key = keys[columnIndex] || 'name';
+        return [...arr].sort((a, b) => {
+            let valA = (a[key] || '').toLowerCase();
+            let valB = (b[key] || '').toLowerCase();
+            if (valA < valB) return ascending ? -1 : 1;
+            if (valA > valB) return ascending ? 1 : -1;
+            return 0;
+        });
+    }
+
+    function applyFiltersAndPagination() {
         const query = document.getElementById('memberSearch').value.toLowerCase();
         const region = document.getElementById('regionFilter').value;
 
         currentFilteredMembers = members.filter(member => {
             const matchesQuery = member.name.toLowerCase().includes(query) ||
-                               member.institution.toLowerCase().includes(query) ||
-                               member.district.toLowerCase().includes(query);
+                member.institution.toLowerCase().includes(query) ||
+                member.district.toLowerCase().includes(query);
             const matchesRegion = region === 'all' || member.region === region;
             return matchesQuery && matchesRegion;
         });
 
-        sortMembers(currentSort.column, currentSort.ascending);
-        renderMembers(currentFilteredMembers);
+        currentPage = 1;
+        renderTable();
     }
 
     function sortTable(columnIndex) {
@@ -2069,28 +2242,13 @@
             currentSort.column = columnIndex;
             currentSort.ascending = true;
         }
-        sortMembers(columnIndex, currentSort.ascending);
-        renderMembers(currentFilteredMembers);
-    }
-
-    function sortMembers(columnIndex, ascending) {
-        const keys = ['name', 'institution', 'region', 'district', 'phone'];
-        const key = keys[columnIndex];
-
-        currentFilteredMembers.sort((a, b) => {
-            let valA = a[key].toLowerCase();
-            let valB = b[key].toLowerCase();
-            if (valA < valB) return ascending ? -1 : 1;
-            if (valA > valB) return ascending ? 1 : -1;
-            return 0;
-        });
+        renderTable();
     }
 
     // ===== UPDATE STATS =====
     function updateStats() {
         const uniqueInstitutions = new Set(members.map(m => m.institution));
         const uniqueRegions = new Set(members.map(m => m.region));
-
         document.getElementById('statMembers').textContent = members.length;
         document.getElementById('statInstitutions').textContent = uniqueInstitutions.size;
         document.getElementById('statRegions').textContent = uniqueRegions.size;
@@ -2102,7 +2260,6 @@
         members.forEach(m => {
             regionCounts[m.region] = (regionCounts[m.region] || 0) + 1;
         });
-
         const ctx1 = document.getElementById('regionChart').getContext('2d');
         new Chart(ctx1, {
             type: 'doughnut',
@@ -2111,7 +2268,7 @@
                 datasets: [{
                     data: Object.values(regionCounts),
                     backgroundColor: ['#0A7E3E', '#F5B041', '#3B82F6', '#EC4899'],
-                    borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+                    borderColor: '#ffffff',
                     borderWidth: 2
                 }]
             },
@@ -2120,7 +2277,6 @@
                 plugins: { legend: { position: 'bottom' } }
             }
         });
-
         const ctx2 = document.getElementById('activityChart').getContext('2d');
         new Chart(ctx2, {
             type: 'bar',
@@ -2147,17 +2303,14 @@
         const email = document.getElementById('regEmail').value;
         const university = document.getElementById('regUniversity').value;
         const status = document.getElementById('registrationStatus');
-
         if (!name || !email || !university) {
             status.className = 'registration-status error';
             status.textContent = '❌ Please fill in all required fields.';
             return;
         }
-
         let registrations = JSON.parse(localStorage.getItem('eventRegistrations')) || [];
         registrations.push({ name, email, university, role: document.getElementById('regRole').value, notes: document.getElementById('regNotes').value, date: new Date().toISOString() });
         localStorage.setItem('eventRegistrations', JSON.stringify(registrations));
-
         status.className = 'registration-status success';
         status.textContent = '✅ Registration successful! You will receive a confirmation email shortly.';
         document.getElementById('regName').value = '';
@@ -2180,13 +2333,13 @@
 
     function renderResources() {
         const grid = document.getElementById('resourceGrid');
-        grid.innerHTML = resources.map(resource => `
+        grid.innerHTML = resources.map(r => `
             <div class="resource-card">
-                <div class="icon">${resource.icon}</div>
-                <div class="title">${resource.title}</div>
-                <div class="desc">${resource.desc}</div>
-                <div class="meta">${resource.category}</div>
-                <button class="btn-small" onclick="alert('📄 Resource: ${resource.title}\\n\\nContact iuhmcinfo@yahoo.com to access this resource.')">
+                <div class="icon">${r.icon}</div>
+                <div class="title">${r.title}</div>
+                <div class="desc">${r.desc}</div>
+                <div class="meta">${r.category}</div>
+                <button class="btn-small" onclick="alert('📄 Resource: ${r.title}\\n\\nContact iuhmcinfo@yahoo.com to access this resource.')">
                     <i class="fas fa-download"></i> Access
                 </button>
             </div>
@@ -2195,22 +2348,19 @@
 
     // ===== PWA =====
     function installPWA() {
-        alert('📱 To install the IUHMC Executive Hub:\\n\\n1. Open this page in Chrome/Firefox/Edge\\n2. Click the three dots (menu)\\n3. Select "Add to Home Screen" or "Install App"\\n\\nOn Safari:\\n1. Tap the share button\\n2. Tap "Add to Home Screen"');
+        alert('📱 To install the IUHMC Executive Hub:\n\n1. Open this page in Chrome/Firefox/Edge\n2. Click the three dots (menu)\n3. Select "Add to Home Screen" or "Install App"\n\nOn Safari:\n1. Tap the share button\n2. Tap "Add to Home Screen"');
     }
 
     // ===== INIT =====
     document.addEventListener('DOMContentLoaded', function() {
         renderCoordinators();
-        renderMembers(members);
+        applyFiltersAndPagination();
         updateStats();
         initCharts();
         renderResources();
-        
-        // Load saved language
+
         const savedLang = localStorage.getItem('preferredLanguage');
-        if (savedLang) {
-            changeLanguage(savedLang);
-        }
+        if (savedLang) changeLanguage(savedLang);
     });
 </script>
 
