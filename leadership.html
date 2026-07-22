@@ -112,21 +112,6 @@
             color: var(--dark);
             transform: translateY(-2px);
         }
-        .top-bar .right .lang-select {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #A0AEC0;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .top-bar .right .lang-select:hover {
-            background: rgba(255,255,255,0.12);
-            border-color: var(--gold);
-        }
-        .top-bar .right .lang-select option { background: var(--dark); }
 
         /* ===== HEADER / NAV ===== */
         header {
@@ -304,6 +289,99 @@
         }
         body.dark-mode .dropdown-menu a i { color: var(--text-light); }
 
+        /* ===== LANGUAGE DROPDOWN ===== */
+        .lang-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-toggle {
+            background: transparent;
+            border: 2px solid var(--primary);
+            border-radius: 40px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 8px 18px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+        .lang-toggle:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(10,126,62,0.3);
+        }
+        body.dark-mode .lang-toggle {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        body.dark-mode .lang-toggle:hover {
+            background: var(--gold);
+            color: var(--dark);
+        }
+        .lang-toggle i {
+            font-size: 0.9rem;
+        }
+
+        .lang-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 110%;
+            right: 0;
+            min-width: 200px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-hover);
+            padding: 8px 0;
+            z-index: 1000;
+        }
+        .lang-dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 16px;
+            width: 16px;
+            height: 16px;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            border-left: 1px solid var(--border);
+            transform: rotate(45deg);
+        }
+        body.dark-mode .lang-dropdown-menu::before {
+            background: var(--bg);
+            border-color: var(--border);
+        }
+
+        .lang-dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .lang-dropdown-menu a:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        body.dark-mode .lang-dropdown-menu a:hover {
+            background: #06532A;
+            color: var(--gold);
+        }
+
+        .lang-dropdown.open .lang-dropdown-menu {
+            display: block;
+        }
+
         .nav-actions {
             display: flex;
             align-items: center;
@@ -325,8 +403,8 @@
             background: var(--primary);
             color: #fff;
             border: none;
-            padding: 8px 20px;
-            border-radius: 8px;
+            padding: 8px 22px;
+            border-radius: 40px;
             font-weight: 600;
             font-size: 0.85rem;
             cursor: pointer;
@@ -353,12 +431,12 @@
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             
-            .nav-link-pill, .dropdown-toggle {
+            .nav-link-pill, .dropdown-toggle, .lang-toggle {
                 padding: 6px 14px;
                 font-size: 0.75rem;
                 gap: 4px;
             }
-            .nav-link-pill i, .dropdown-toggle i { font-size: 0.7rem; }
+            .nav-link-pill i, .dropdown-toggle i, .lang-toggle i { font-size: 0.7rem; }
             .nav-actions .btn-primary {
                 padding: 6px 14px;
                 font-size: 0.75rem;
@@ -402,19 +480,63 @@
             .nav-dropdown.open .dropdown-menu {
                 display: block;
             }
+            
+            .lang-dropdown {
+                width: 100%;
+            }
+            .lang-toggle {
+                width: 100%;
+                justify-content: center;
+                border-radius: 12px;
+                padding: 10px 16px;
+            }
+            .lang-dropdown-menu {
+                position: static;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                padding: 0;
+                margin-top: 4px;
+                background: transparent;
+            }
+            .lang-dropdown-menu::before {
+                display: none;
+            }
+            .lang-dropdown-menu a {
+                padding: 10px 16px;
+                border-radius: 8px;
+                margin: 2px 0;
+                padding-left: 20px;
+            }
+            .lang-dropdown-menu a:hover {
+                background: var(--primary-light);
+            }
+            .lang-dropdown:hover .lang-dropdown-menu {
+                display: none;
+            }
+            .lang-dropdown.open .lang-dropdown-menu {
+                display: block;
+            }
         }
 
         @media (max-width: 480px) {
-            .nav-link-pill, .dropdown-toggle {
+            .nav-link-pill, .dropdown-toggle, .lang-toggle {
                 padding: 4px 10px;
                 font-size: 0.65rem;
                 gap: 3px;
                 border-width: 1.5px;
             }
-            .nav-link-pill i, .dropdown-toggle i { font-size: 0.6rem; }
+            .nav-link-pill i, .dropdown-toggle i, .lang-toggle i { font-size: 0.6rem; }
             .nav-actions .btn-primary {
                 padding: 4px 10px;
                 font-size: 0.65rem;
+            }
+            .lang-toggle {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+            }
+            .lang-dropdown-menu {
+                min-width: 160px;
             }
         }
 
@@ -752,28 +874,23 @@
 
 <!-- ===== COOKIE CONSENT BANNER ===== -->
 <div class="cookie-banner" id="cookieBanner">
-    <p>🍪 We use cookies to improve your experience. By using this site, you agree to our <a href="#">Privacy Policy</a>.</p>
-    <button class="btn" onclick="acceptCookies()">Accept</button>
+    <p>🍪 <span class="lang-text" data-key="cookie_text">We use cookies to improve your experience. By using this site, you agree to our Privacy Policy.</span></p>
+    <button class="btn" onclick="acceptCookies()"><span class="lang-text" data-key="cookie_accept">Accept</span></button>
 </div>
 
 <!-- ===== TOP BAR ===== -->
 <div class="top-bar">
     <div class="container">
         <div class="left">
-            <a href="mailto:iuhmcinfo@yahoo.com"><i class="fas fa-envelope"></i> iuhmcinfo@yahoo.com</a>
+            <a href="mailto:iuhmcinfo@yahoo.com"><i class="fas fa-envelope"></i> <span class="lang-text" data-key="email">iuhmcinfo@yahoo.com</span></a>
             <a href="tel:+256703796153"><i class="fas fa-phone"></i> +256 703 796 153</a>
-            <span><i class="fas fa-map-marker-alt"></i> Uganda</span>
+            <span><i class="fas fa-map-marker-alt"></i> <span class="lang-text" data-key="uganda">Uganda</span></span>
         </div>
         <div class="right">
             <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
             <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
             <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
             <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-            <select class="lang-select">
-                <option>EN</option>
-                <option>LG</option>
-                <option>SW</option>
-            </select>
         </div>
     </div>
 </div>
@@ -789,34 +906,50 @@
             
             <div class="nav-actions">
                 <!-- Primary navigation - 4 main links -->
-                <a href="index.html" class="nav-link-pill"><i class="fas fa-home"></i> Home</a>
-                <a href="leadership.html" class="nav-link-pill active"><i class="fas fa-users"></i> About</a>
-                <a href="impact.html" class="nav-link-pill"><i class="fas fa-bullseye"></i> Impact</a>
-                <a href="index.html#contact" class="nav-link-pill"><i class="fas fa-envelope"></i> Contact</a>
+                <a href="index.html" class="nav-link-pill" data-key="nav_home"><i class="fas fa-home"></i> <span class="lang-text" data-key="nav_home">Home</span></a>
+                <a href="leadership.html" class="nav-link-pill active" data-key="nav_about"><i class="fas fa-users"></i> <span class="lang-text" data-key="nav_about">About</span></a>
+                <a href="impact.html" class="nav-link-pill" data-key="nav_impact"><i class="fas fa-bullseye"></i> <span class="lang-text" data-key="nav_impact">Impact</span></a>
+                <a href="index.html#contact" class="nav-link-pill" data-key="nav_contact"><i class="fas fa-envelope"></i> <span class="lang-text" data-key="nav_contact">Contact</span></a>
                 
                 <!-- Dropdown for remaining pages -->
                 <div class="nav-dropdown">
                     <button class="dropdown-toggle">
-                        <i class="fas fa-ellipsis-h"></i> More <i class="fas fa-chevron-down" style="font-size:0.6rem; margin-left:4px;"></i>
+                        <i class="fas fa-ellipsis-h"></i> <span class="lang-text" data-key="nav_more">More</span> <i class="fas fa-chevron-down" style="font-size:0.6rem; margin-left:4px;"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a href="leadership.html"><i class="fas fa-users"></i> Leadership</a>
-                        <a href="events.html"><i class="fas fa-calendar"></i> Events</a>
-                        <a href="blog.html"><i class="fas fa-blog"></i> Blog</a>
-                        <a href="resources.html"><i class="fas fa-book"></i> Resources</a>
-                        <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
-                        <a href="get-involved.html"><i class="fas fa-handshake"></i> Get Involved</a>
-                        <a href="newsletter.html"><i class="fas fa-envelope"></i> Newsletter</a>
-                        <a href="portal.html"><i class="fas fa-user-lock"></i> Member Portal</a>
-                        <a href="faqs.html"><i class="fas fa-question-circle"></i> FAQs</a>
-                        <a href="premium-features.html"><i class="fas fa-crown"></i> Executive Hub</a>
+                        <a href="leadership.html" data-key="nav_leadership"><i class="fas fa-users"></i> <span class="lang-text" data-key="nav_leadership">Leadership</span></a>
+                        <a href="events.html" data-key="nav_events"><i class="fas fa-calendar"></i> <span class="lang-text" data-key="nav_events">Events</span></a>
+                        <a href="blog.html" data-key="nav_blog"><i class="fas fa-blog"></i> <span class="lang-text" data-key="nav_blog">Blog</span></a>
+                        <a href="resources.html" data-key="nav_resources"><i class="fas fa-book"></i> <span class="lang-text" data-key="nav_resources">Resources</span></a>
+                        <a href="gallery.html" data-key="nav_gallery"><i class="fas fa-images"></i> <span class="lang-text" data-key="nav_gallery">Gallery</span></a>
+                        <a href="get-involved.html" data-key="nav_get_involved"><i class="fas fa-handshake"></i> <span class="lang-text" data-key="nav_get_involved">Get Involved</span></a>
+                        <a href="newsletter.html" data-key="nav_newsletter"><i class="fas fa-envelope"></i> <span class="lang-text" data-key="nav_newsletter">Newsletter</span></a>
+                        <a href="portal.html" data-key="nav_portal"><i class="fas fa-user-lock"></i> <span class="lang-text" data-key="nav_portal">Member Portal</span></a>
+                        <a href="faqs.html" data-key="nav_faqs"><i class="fas fa-question-circle"></i> <span class="lang-text" data-key="nav_faqs">FAQs</span></a>
+                        <a href="premium-features.html" data-key="nav_executive_hub"><i class="fas fa-crown"></i> <span class="lang-text" data-key="nav_executive_hub">Executive Hub</span></a>
                     </div>
                 </div>
                 
                 <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
                     <i class="fas fa-moon"></i>
                 </button>
-                <a href="index.html#donate" class="btn-primary">Donate</a>
+                
+                <!-- Language Selector - Full names -->
+                <div class="lang-dropdown">
+                    <button class="lang-toggle" onclick="toggleLangDropdown()">
+                        <i class="fas fa-globe"></i> <span class="lang-text" data-key="language_label">English</span> <i class="fas fa-chevron-down" style="font-size:0.6rem; margin-left:4px;"></i>
+                    </button>
+                    <div class="lang-dropdown-menu" id="langDropdownMenu">
+                        <a href="#" onclick="changeLanguage('en')" data-lang="en">🇬🇧 English</a>
+                        <a href="#" onclick="changeLanguage('lg')" data-lang="lg">🇺🇬 Luganda</a>
+                        <a href="#" onclick="changeLanguage('sw')" data-lang="sw">🇰🇪 Swahili</a>
+                        <a href="#" onclick="changeLanguage('fr')" data-lang="fr">🇫🇷 Français</a>
+                        <a href="#" onclick="changeLanguage('es')" data-lang="es">🇪🇸 Español</a>
+                        <a href="#" onclick="changeLanguage('de')" data-lang="de">🇩🇪 Deutsch</a>
+                    </div>
+                </div>
+                
+                <a href="index.html#donate" class="btn-primary"><span class="lang-text" data-key="nav_donate">Donate</span></a>
                 <button class="menu-toggle" id="menuToggle">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -828,15 +961,15 @@
 <!-- ===== PAGE HEADER ===== -->
 <section class="page-header fade-in">
     <div class="container">
-        <h1>Our Leadership</h1>
-        <p>Meet the passionate team driving the Inter-University Health Ministers Consortium.</p>
+        <h1><span class="lang-text" data-key="page_title">Our Leadership</span></h1>
+        <p><span class="lang-text" data-key="page_subtitle">Meet the passionate team driving the Inter-University Health Ministers Consortium.</span></p>
     </div>
 </section>
 
 <!-- ===== BOARD OF TRUSTEES ===== -->
 <div class="container fade-in">
-    <h2 class="section-title">Board of Trustees</h2>
-    <p class="section-sub">The oversight body providing strategic guidance and governance.</p>
+    <h2 class="section-title"><span class="lang-text" data-key="trustees_title">Board of Trustees</span></h2>
+    <p class="section-sub"><span class="lang-text" data-key="trustees_sub">The oversight body providing strategic guidance and governance.</span></p>
     <div class="leader-grid">
 
         <!-- #1 Chairperson (to be filled) -->
@@ -845,10 +978,10 @@
             <div class="avatar" style="background: #fcd34d; border-color: var(--primary);">
                 <span style="font-size:3rem;">👤</span>
             </div>
-            <h3 style="color:var(--primary);">Position Open</h3>
-            <div class="title" style="color:var(--primary); font-weight:700;">Chairperson</div>
-            <div class="university">To be appointed</div>
-            <div class="bio">The Chairperson provides strategic leadership and governance oversight to the Board of Trustees.</div>
+            <h3 style="color:var(--primary);"><span class="lang-text" data-key="chair_open">Position Open</span></h3>
+            <div class="title" style="color:var(--primary); font-weight:700;"><span class="lang-text" data-key="chair_title">Chairperson</span></div>
+            <div class="university"><span class="lang-text" data-key="chair_univ">To be appointed</span></div>
+            <div class="bio"><span class="lang-text" data-key="chair_bio">The Chairperson provides strategic leadership and governance oversight to the Board of Trustees.</span></div>
         </div>
 
         <!-- #2 Vice Chairperson - Chriscent -->
@@ -858,9 +991,9 @@
                 <img src="https://i.ibb.co/9BqC0fs/chrise.jpg" alt="Kurinatuha Chriscent" />
             </div>
             <h3>Kurinatuha Chriscent</h3>
-            <div class="title">Vice Chairperson</div>
+            <div class="title"><span class="lang-text" data-key="vice_chair_title">Vice Chairperson</span></div>
             <div class="university">Makerere University</div>
-            <div class="bio">A dedicated advocate for student welfare and health equity, bringing fresh perspectives to the board.</div>
+            <div class="bio"><span class="lang-text" data-key="vice_chair_bio">A dedicated advocate for student welfare and health equity, bringing fresh perspectives to the board.</span></div>
         </div>
 
         <!-- #3 Secretary General - Mugerwa Erick -->
@@ -870,9 +1003,9 @@
                 <img src="https://i.ibb.co/pjHHrgwB/ericcc.jpg" alt="Mugerwa Erick" />
             </div>
             <h3>Mugerwa Erick</h3>
-            <div class="title">Secretary General</div>
+            <div class="title"><span class="lang-text" data-key="sec_gen_title">Secretary General</span></div>
             <div class="university">Makerere University</div>
-            <div class="bio">Experienced in health project management and governance, ensuring the consortium stays true to its mission.</div>
+            <div class="bio"><span class="lang-text" data-key="sec_gen_bio">Experienced in health project management and governance, ensuring the consortium stays true to its mission.</span></div>
         </div>
 
         <!-- #4 Treasurer - Musoga Reagan -->
@@ -882,9 +1015,9 @@
                 <img src="https://i.ibb.co/0xcs4cT/MUSOGA-bot.jpg" alt="Musoga Reagan" />
             </div>
             <h3>Musoga Reagan</h3>
-            <div class="title">Treasurer</div>
+            <div class="title"><span class="lang-text" data-key="treasurer_title">Treasurer</span></div>
             <div class="university">Makerere University</div>
-            <div class="bio">Committed to resource mobilization and strategic planning for long-term sustainability of IUHMC initiatives.</div>
+            <div class="bio"><span class="lang-text" data-key="treasurer_bio">Committed to resource mobilization and strategic planning for long-term sustainability of IUHMC initiatives.</span></div>
         </div>
 
     </div>
@@ -892,8 +1025,8 @@
 
 <!-- ========== NATIONAL EXECUTIVE COMMITTEE ========== -->
 <div class="container fade-in">
-    <h2 class="section-title">National Executive Committee</h2>
-    <p class="section-sub">The operational team driving IUHMC's day-to-day activities and projects.</p>
+    <h2 class="section-title"><span class="lang-text" data-key="exec_title">National Executive Committee</span></h2>
+    <p class="section-sub"><span class="lang-text" data-key="exec_sub">The operational team driving IUHMC's day-to-day activities and projects.</span></p>
     <div class="leader-grid">
 
         <!-- #1 President -->
@@ -903,9 +1036,9 @@
                 <img src="https://i.ibb.co/7dYTLnyk/ebee.jpg" alt="Wamezaya Ebenezer" />
             </div>
             <h3>Wamezaya Ebenezer</h3>
-            <div class="title">President</div>
+            <div class="title"><span class="lang-text" data-key="president_title">President</span></div>
             <div class="university">Makerere University</div>
-            <div class="bio">Passionate about health policy and youth empowerment. Leading IUHMC with a vision for accessible healthcare across Uganda.</div>
+            <div class="bio"><span class="lang-text" data-key="president_bio">Passionate about health policy and youth empowerment. Leading IUHMC with a vision for accessible healthcare across Uganda.</span></div>
         </div>
 
         <!-- #2 Vice President -->
@@ -915,9 +1048,9 @@
                 <img src="https://i.ibb.co/ksL0KmZv/vice.jpg" alt="Nakigozi Esther" />
             </div>
             <h3>Nakigozi Esther</h3>
-            <div class="title">Vice President</div>
+            <div class="title"><span class="lang-text" data-key="vp_title">Vice President</span></div>
             <div class="university">MMU (Mountains of the Moon University)</div>
-            <div class="bio">Dedicated to community health outreach and strengthening partnerships between universities and local health systems.</div>
+            <div class="bio"><span class="lang-text" data-key="vp_bio">Dedicated to community health outreach and strengthening partnerships between universities and local health systems.</span></div>
         </div>
 
         <!-- #3 General Secretary -->
@@ -927,9 +1060,9 @@
                 <img src="https://i.ibb.co/q367ZYtd/Whats-App-Image-2026-07-07-at-20-57-47.jpg" alt="Latigo Marvin" />
             </div>
             <h3>Latigo Marvin</h3>
-            <div class="title">General Secretary</div>
+            <div class="title"><span class="lang-text" data-key="gs_title">General Secretary</span></div>
             <div class="university">Gulu University</div>
-            <div class="bio">A strong voice for student-led health initiatives in Northern Uganda, focused on malaria eradication and maternal health.</div>
+            <div class="bio"><span class="lang-text" data-key="gs_bio">A strong voice for student-led health initiatives in Northern Uganda, focused on malaria eradication and maternal health.</span></div>
         </div>
 
         <!-- #4 Speaker -->
@@ -939,9 +1072,9 @@
                 <img src="https://i.ibb.co/Z1WrPGM3/latwiif.jpg" alt="Musoke Abdul Latwiif" />
             </div>
             <h3>Musoke Abdul Latwiif</h3>
-            <div class="title">Speaker</div>
+            <div class="title"><span class="lang-text" data-key="speaker_title">Speaker</span></div>
             <div class="university">Islamic University in Uganda (IUIU)</div>
-            <div class="bio">A dynamic leader ensuring effective communication and coordination during IUHMC meetings and events.</div>
+            <div class="bio"><span class="lang-text" data-key="speaker_bio">A dynamic leader ensuring effective communication and coordination during IUHMC meetings and events.</span></div>
         </div>
 
         <!-- #5 Treasurer -->
@@ -951,9 +1084,9 @@
                 <img src="https://i.ibb.co/kVgb3bP6/apo.jpg" alt="Nayebare Apophia" />
             </div>
             <h3>Nayebare Apophia</h3>
-            <div class="title">Treasurer</div>
+            <div class="title"><span class="lang-text" data-key="exec_treasurer_title">Treasurer</span></div>
             <div class="university">Victoria University</div>
-            <div class="bio">Expert in financial management, ensuring transparency and accountability in IUHMC's resources.</div>
+            <div class="bio"><span class="lang-text" data-key="exec_treasurer_bio">Expert in financial management, ensuring transparency and accountability in IUHMC's resources.</span></div>
         </div>
 
         <!-- #6 Public Relations & Communication Officer -->
@@ -963,9 +1096,9 @@
                 <img src="https://i.ibb.co/Y4nXCdDC/okello.jpg" alt="Okello Daniel" />
             </div>
             <h3>Okello Daniel</h3>
-            <div class="title">Public Relations & Communication Officer</div>
+            <div class="title"><span class="lang-text" data-key="pr_title">Public Relations & Communication Officer</span></div>
             <div class="university">UMU - Ngetta Campus</div>
-            <div class="bio">Skilled in strategic communication, managing IUHMC's public image and stakeholder engagement.</div>
+            <div class="bio"><span class="lang-text" data-key="pr_bio">Skilled in strategic communication, managing IUHMC's public image and stakeholder engagement.</span></div>
         </div>
 
         <!-- #7 Research & Innovation Officer -->
@@ -973,9 +1106,9 @@
             <div class="rank">#7</div>
             <div class="avatar">WE</div>
             <h3>Were Elizabeth</h3>
-            <div class="title">Research & Innovation Officer</div>
+            <div class="title"><span class="lang-text" data-key="research_title">Research & Innovation Officer</span></div>
             <div class="university">Kyambogo University</div>
-            <div class="bio">Driving research initiatives and innovative health solutions to address Uganda's health challenges.</div>
+            <div class="bio"><span class="lang-text" data-key="research_bio">Driving research initiatives and innovative health solutions to address Uganda's health challenges.</span></div>
         </div>
 
         <!-- #8 Monitoring & Evaluation Officer -->
@@ -985,9 +1118,9 @@
                 <img src="https://i.ibb.co/mFY4TRdQ/daphine.jpg" alt="Dauphine Amutuhaire" />
             </div>
             <h3>Dauphine Amutuhaire</h3>
-            <div class="title">Monitoring & Evaluation Officer</div>
+            <div class="title"><span class="lang-text" data-key="me_title">Monitoring & Evaluation Officer</span></div>
             <div class="university">UICT</div>
-            <div class="bio">Ensuring IUHMC projects are impactful by tracking progress, outcomes, and lessons learned.</div>
+            <div class="bio"><span class="lang-text" data-key="me_bio">Ensuring IUHMC projects are impactful by tracking progress, outcomes, and lessons learned.</span></div>
         </div>
 
         <!-- #9 Partnership & Resource Mobilization Officer -->
@@ -997,9 +1130,9 @@
                 <img src="https://i.ibb.co/hxb19rPn/abaho.jpg" alt="Abaho Robert" />
             </div>
             <h3>Abaho Robert</h3>
-            <div class="title">Partnership & Resource Mobilization Officer</div>
+            <div class="title"><span class="lang-text" data-key="partnership_title">Partnership & Resource Mobilization Officer</span></div>
             <div class="university">MUST (Mbarara University of Science & Technology)</div>
-            <div class="bio">Building strategic partnerships and mobilizing resources to sustain IUHMC's health initiatives.</div>
+            <div class="bio"><span class="lang-text" data-key="partnership_bio">Building strategic partnerships and mobilizing resources to sustain IUHMC's health initiatives.</span></div>
         </div>
 
         <!-- #10 Coordinator - Eastern Region -->
@@ -1009,9 +1142,9 @@
                 <img src="https://i.ibb.co/gNxR7f4/baiga.jpg" alt="Baiga Timothy" />
             </div>
             <h3>Baiga Timothy</h3>
-            <div class="title">Coordinator - Eastern Region</div>
+            <div class="title"><span class="lang-text" data-key="coord_east_title">Coordinator - Eastern Region</span></div>
             <div class="university">Busitema University</div>
-            <div class="bio">Leading IUHMC's health projects and student engagement in the Eastern region of Uganda.</div>
+            <div class="bio"><span class="lang-text" data-key="coord_east_bio">Leading IUHMC's health projects and student engagement in the Eastern region of Uganda.</span></div>
         </div>
 
         <!-- #11 Coordinator - Northern Region -->
@@ -1021,9 +1154,9 @@
                 <img src="https://i.ibb.co/gLxrrTpN/adero.jpg" alt="Morrine Adero" />
             </div>
             <h3>Morrine Adero</h3>
-            <div class="title">Coordinator - Northern Region</div>
+            <div class="title"><span class="lang-text" data-key="coord_north_title">Coordinator - Northern Region</span></div>
             <div class="university">Florence Nightingale</div>
-            <div class="bio">Coordinating health awareness campaigns and student-led initiatives in Northern Uganda.</div>
+            <div class="bio"><span class="lang-text" data-key="coord_north_bio">Coordinating health awareness campaigns and student-led initiatives in Northern Uganda.</span></div>
         </div>
 
         <!-- #12 Coordinator - Central Region -->
@@ -1031,9 +1164,9 @@
             <div class="rank">#12</div>
             <div class="avatar">UG</div>
             <h3>Uwimpaye Gloria</h3>
-            <div class="title">Coordinator - Central Region</div>
+            <div class="title"><span class="lang-text" data-key="coord_central_title">Coordinator - Central Region</span></div>
             <div class="university">King Ceasor</div>
-            <div class="bio">Driving community health outreach and university partnerships in the Central region.</div>
+            <div class="bio"><span class="lang-text" data-key="coord_central_bio">Driving community health outreach and university partnerships in the Central region.</span></div>
         </div>
 
         <!-- #13 Coordinator - Western Region -->
@@ -1041,9 +1174,9 @@
             <div class="rank">#13</div>
             <div class="avatar">AE</div>
             <h3>Atuhaire Edward</h3>
-            <div class="title">Coordinator - Western Region</div>
+            <div class="title"><span class="lang-text" data-key="coord_west_title">Coordinator - Western Region</span></div>
             <div class="university">KIU Western Campus</div>
-            <div class="bio">Leading health projects and mobilizing students for community impact in Western Uganda.</div>
+            <div class="bio"><span class="lang-text" data-key="coord_west_bio">Leading health projects and mobilizing students for community impact in Western Uganda.</span></div>
         </div>
 
     </div>
@@ -1052,8 +1185,8 @@
 <!-- ========== SHARE SECTION ========== -->
 <section class="container fade-in">
     <div class="share-section">
-        <h2 class="section-title">📤 Share This Page</h2>
-        <p class="section-sub">Help spread the word about IUHMC.</p>
+        <h2 class="section-title">📤 <span class="lang-text" data-key="share_title">Share This Page</span></h2>
+        <p class="section-sub"><span class="lang-text" data-key="share_sub">Help spread the word about IUHMC.</span></p>
         <div class="share-buttons">
             <button class="share-btn linkedin" onclick="sharePage('linkedin')"><i class="fab fa-linkedin"></i> LinkedIn</button>
             <button class="share-btn twitter" onclick="sharePage('twitter')"><i class="fab fa-twitter"></i> Twitter</button>
@@ -1078,29 +1211,29 @@
             </div>
         </div>
         <div>
-            <h4>Quick Links</h4>
-            <a href="leadership.html">Leadership</a>
-            <a href="impact.html">Impact</a>
-            <a href="events.html">Events</a>
-            <a href="blog.html">Blog</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="resources.html">Resources</a>
+            <h4><span class="lang-text" data-key="footer_quick_links">Quick Links</span></h4>
+            <a href="leadership.html"><span class="lang-text" data-key="nav_leadership">Leadership</span></a>
+            <a href="impact.html"><span class="lang-text" data-key="nav_impact">Impact</span></a>
+            <a href="events.html"><span class="lang-text" data-key="nav_events">Events</span></a>
+            <a href="blog.html"><span class="lang-text" data-key="nav_blog">Blog</span></a>
+            <a href="gallery.html"><span class="lang-text" data-key="nav_gallery">Gallery</span></a>
+            <a href="resources.html"><span class="lang-text" data-key="nav_resources">Resources</span></a>
         </div>
         <div>
-            <h4>Resources</h4>
-            <a href="portal.html">Member Portal</a>
-            <a href="faqs.html">FAQs</a>
-            <a href="newsletter.html">Newsletter</a>
-            <a href="premium-features.html">Executive Hub</a>
-            <a href="get-involved.html">Get Involved</a>
+            <h4><span class="lang-text" data-key="footer_resources">Resources</span></h4>
+            <a href="portal.html"><span class="lang-text" data-key="nav_portal">Member Portal</span></a>
+            <a href="faqs.html"><span class="lang-text" data-key="nav_faqs">FAQs</span></a>
+            <a href="newsletter.html"><span class="lang-text" data-key="nav_newsletter">Newsletter</span></a>
+            <a href="premium-features.html"><span class="lang-text" data-key="nav_executive_hub">Executive Hub</span></a>
+            <a href="get-involved.html"><span class="lang-text" data-key="nav_get_involved">Get Involved</span></a>
         </div>
         <div>
-            <h4>Contact</h4>
+            <h4><span class="lang-text" data-key="footer_contact">Contact</span></h4>
             <a href="mailto:iuhmcinfo@yahoo.com"><i class="fas fa-envelope"></i> iuhmcinfo@yahoo.com</a>
             <a href="tel:+256703796153"><i class="fas fa-phone"></i> +256 703 796 153</a>
         </div>
         <div class="copyright">
-            &copy; 2026 IUHMC. Built with ❤️ by the consortium.
+            <span class="lang-text" data-key="footer_copyright">© 2026 IUHMC. Built with ❤️ by the consortium.</span>
         </div>
     </div>
 </footer>
@@ -1126,7 +1259,522 @@
 </div>
 
 <script>
-    // ========== COOKIE CONSENT ==========
+    // ===== TRANSLATIONS =====
+    const translations = {
+        en: {
+            // Top Bar
+            'email': 'iuhmcinfo@yahoo.com',
+            'uganda': 'Uganda',
+            // Navigation
+            'nav_home': 'Home',
+            'nav_about': 'About',
+            'nav_impact': 'Impact',
+            'nav_contact': 'Contact',
+            'nav_more': 'More',
+            'nav_leadership': 'Leadership',
+            'nav_events': 'Events',
+            'nav_blog': 'Blog',
+            'nav_resources': 'Resources',
+            'nav_gallery': 'Gallery',
+            'nav_get_involved': 'Get Involved',
+            'nav_newsletter': 'Newsletter',
+            'nav_portal': 'Member Portal',
+            'nav_faqs': 'FAQs',
+            'nav_executive_hub': 'Executive Hub',
+            'nav_donate': 'Donate',
+            'language_label': 'English',
+            // Page
+            'page_title': 'Our Leadership',
+            'page_subtitle': 'Meet the passionate team driving the Inter-University Health Ministers Consortium.',
+            'trustees_title': 'Board of Trustees',
+            'trustees_sub': 'The oversight body providing strategic guidance and governance.',
+            'chair_open': 'Position Open',
+            'chair_title': 'Chairperson',
+            'chair_univ': 'To be appointed',
+            'chair_bio': 'The Chairperson provides strategic leadership and governance oversight to the Board of Trustees.',
+            'vice_chair_title': 'Vice Chairperson',
+            'vice_chair_bio': 'A dedicated advocate for student welfare and health equity, bringing fresh perspectives to the board.',
+            'sec_gen_title': 'Secretary General',
+            'sec_gen_bio': 'Experienced in health project management and governance, ensuring the consortium stays true to its mission.',
+            'treasurer_title': 'Treasurer',
+            'treasurer_bio': 'Committed to resource mobilization and strategic planning for long-term sustainability of IUHMC initiatives.',
+            'exec_title': 'National Executive Committee',
+            'exec_sub': 'The operational team driving IUHMC\'s day-to-day activities and projects.',
+            'president_title': 'President',
+            'president_bio': 'Passionate about health policy and youth empowerment. Leading IUHMC with a vision for accessible healthcare across Uganda.',
+            'vp_title': 'Vice President',
+            'vp_bio': 'Dedicated to community health outreach and strengthening partnerships between universities and local health systems.',
+            'gs_title': 'General Secretary',
+            'gs_bio': 'A strong voice for student-led health initiatives in Northern Uganda, focused on malaria eradication and maternal health.',
+            'speaker_title': 'Speaker',
+            'speaker_bio': 'A dynamic leader ensuring effective communication and coordination during IUHMC meetings and events.',
+            'exec_treasurer_title': 'Treasurer',
+            'exec_treasurer_bio': 'Expert in financial management, ensuring transparency and accountability in IUHMC\'s resources.',
+            'pr_title': 'Public Relations & Communication Officer',
+            'pr_bio': 'Skilled in strategic communication, managing IUHMC\'s public image and stakeholder engagement.',
+            'research_title': 'Research & Innovation Officer',
+            'research_bio': 'Driving research initiatives and innovative health solutions to address Uganda\'s health challenges.',
+            'me_title': 'Monitoring & Evaluation Officer',
+            'me_bio': 'Ensuring IUHMC projects are impactful by tracking progress, outcomes, and lessons learned.',
+            'partnership_title': 'Partnership & Resource Mobilization Officer',
+            'partnership_bio': 'Building strategic partnerships and mobilizing resources to sustain IUHMC\'s health initiatives.',
+            'coord_east_title': 'Coordinator - Eastern Region',
+            'coord_east_bio': 'Leading IUHMC\'s health projects and student engagement in the Eastern region of Uganda.',
+            'coord_north_title': 'Coordinator - Northern Region',
+            'coord_north_bio': 'Coordinating health awareness campaigns and student-led initiatives in Northern Uganda.',
+            'coord_central_title': 'Coordinator - Central Region',
+            'coord_central_bio': 'Driving community health outreach and university partnerships in the Central region.',
+            'coord_west_title': 'Coordinator - Western Region',
+            'coord_west_bio': 'Leading health projects and mobilizing students for community impact in Western Uganda.',
+            'share_title': 'Share This Page',
+            'share_sub': 'Help spread the word about IUHMC.',
+            // Footer
+            'footer_quick_links': 'Quick Links',
+            'footer_resources': 'Resources',
+            'footer_contact': 'Contact',
+            'footer_copyright': '© 2026 IUHMC. Built with ❤️ by the consortium.',
+            // Cookie
+            'cookie_text': 'We use cookies to improve your experience. By using this site, you agree to our Privacy Policy.',
+            'cookie_accept': 'Accept',
+        },
+        lg: {
+            'email': 'iuhmcinfo@yahoo.com',
+            'uganda': 'Uganda',
+            'nav_home': 'Wandaliro',
+            'nav_about': 'Ku Ffe',
+            'nav_impact': 'Enkizo',
+            'nav_contact': 'Tukubane',
+            'nav_more': 'Ebisingawo',
+            'nav_leadership': 'Obukulembeze',
+            'nav_events': 'Ebimukolebwa',
+            'nav_blog': 'Ebiwandiiko',
+            'nav_resources': 'Eby\'okukozesa',
+            'nav_gallery': 'Ebifaananyi',
+            'nav_get_involved': 'Wetabe',
+            'nav_newsletter': 'Amawulire',
+            'nav_portal': 'Oluggi lwa Bannakibiina',
+            'nav_faqs': 'Ebibuuzo',
+            'nav_executive_hub': 'Ekifo ky\'Abakulembeze',
+            'nav_donate': 'Owaayo',
+            'language_label': 'Luganda',
+            'page_title': 'Obukulembeze Bwaffe',
+            'page_subtitle': 'Sisinkana ekiibina ekikulembera Ekibina ky\'Abaminista ba Byobulamu mu Yunivasite.',
+            'trustees_title': 'Abakulembeze b\'Ekibiina',
+            'trustees_sub': 'Ekibiina ekikulembera n\'okulaba nga buli kikolebwa mu ngeri entuufu.',
+            'chair_open': 'Ekifo Kiri Waggulu',
+            'chair_title': 'Mukulembeze',
+            'chair_univ': 'Okuteekebwawo',
+            'chair_bio': 'Mukulembeze aweereza obukulembeze n\'okulaba nga Ekibiina kikola mu ngeri entuufu.',
+            'vice_chair_title': 'Omumyuka wa Mukulembeze',
+            'vice_chair_bio': 'Muwagizi wa byobulamu bw\'abayizi n\'obwenkanya, aleeta endowooza empya ku kakiiko.',
+            'sec_gen_title': 'Omumyuka wa Bannakibiina',
+            'sec_gen_bio': 'Alina obumanyirivu mu kulabirira emirimu gya byobulamu n\'okulabirako nga Ekibiina kikola nga bwe kyagalibwa.',
+            'treasurer_title': 'Omukuumi wa Sente',
+            'treasurer_bio': 'Yeesigamidde ku kukungaanya eby\'okukozesa n\'okuteesawo enkola ez\'okukola Ekibiina kibeerewo mu biseera bingi.',
+            'exec_title': 'Akakiiko k\'Abakulembeze b\'Eggwanga',
+            'exec_sub': 'Ekibiina ekikulembera emirimu gya buli lunaku n\'ebikolebwa bya IUHMC.',
+            'president_title': 'Pulezidenti',
+            'president_bio': 'Ayagala nnyo emirimu gya byobulamu n\'okuwagira abavulangavu. Akulembera IUHMC n\'okulaba nga byobulamu bw\'awulira mu Uganda.',
+            'vp_title': 'Vice President',
+            'vp_bio': 'Yeesigamidde ku byobulamu mu kitundu n\'okuzimba obukolagana wakati wa yunivasite n\'ebitundu.',
+            'gs_title': 'Omumyuka wa Bannakibiina',
+            'gs_bio': 'Eddoboozi eddene ku mirimu gya byobulamu egyakulemberwa abayizi mu Buvanjuba bwa Uganda, ng\'alina obwegassi ku kuziyiza malaliya n\'ebyobulamu bw\'abakazi.',
+            'speaker_title': 'Omwogezi',
+            'speaker_bio': 'Mukulembeze omuvumu alina obumanyirivu mu kwogera n\'okuteesa ebikolebwa bya IUHMC.',
+            'exec_treasurer_title': 'Omukuumi wa Sente',
+            'exec_treasurer_bio': 'Munnabyenfuna alina obumanyirivu mu kulabirira sente n\'okulaba nga buli kimu kikolebwa mu ngeri ey\'obwesigwa.',
+            'pr_title': 'Omumyuka wa Public Relations & Communication',
+            'pr_bio': 'Alina obumanyirivu mu kwogera n\'okulabirira ekifaananyi kya IUHMC mu bantu n\'okukola n\'abalala.',
+            'research_title': 'Omumyuka wa Research & Innovation',
+            'research_bio': 'Akulembera okunoonyereza n\'ebikolebwa eby\'obugunjuzi okugonjoola ebizibu by\'ebyobulamu mu Uganda.',
+            'me_title': 'Omumyuka wa Monitoring & Evaluation',
+            'me_bio': 'Alaba nga emirimu gya IUHMC gikola bulungi nga akagirako enkola z\'okwetegereza n\'okwebuuza ku byavaamu.',
+            'partnership_title': 'Omumyuka wa Partnership & Resource Mobilization',
+            'partnership_bio': 'Azimba obukolagana n\'okukungaanya eby\'okukozesa okukola emirimu gya byobulamu gya IUHMC.',
+            'coord_east_title': 'Omukulembeze - Ekitundu ky\'Ebugwanjuba',
+            'coord_east_bio': 'Akulembera emirimu gya byobulamu n\'okukola n\'abayizi mu Ebugwanjuba bwa Uganda.',
+            'coord_north_title': 'Omukulembeze - Ekitundu ky\'Ebugwanjuba',
+            'coord_north_bio': 'Akulembera emirimu gya byobulamu n\'okukola n\'abayizi mu Buvanjuba bwa Uganda.',
+            'coord_central_title': 'Omukulembeze - Ekitundu ky\'Ebugwanjuba',
+            'coord_central_bio': 'Akulembera emirimu gya byobulamu n\'okukola n\'abayizi mu Buvanjuba bwa Uganda.',
+            'coord_west_title': 'Omukulembeze - Ekitundu ky\'Ebugwanjuba',
+            'coord_west_bio': 'Akulembera emirimu gya byobulamu n\'okukola n\'abayizi mu Buvanjuba bwa Uganda.',
+            'share_title': 'Gaba Olupapula Luno',
+            'share_sub': 'Yamba okumanyisa abalala ku IUHMC.',
+            'footer_quick_links': 'Ebikwata Ku Ffe',
+            'footer_resources': 'Eby\'okukozesa',
+            'footer_contact': 'Tukubane',
+            'footer_copyright': '© 2026 IUHMC. Ekolebwa n\'omutima gwa konsotiyamu.',
+            'cookie_text': 'Tukozesa cookies okukola okukozesa kwo okubeera obulungi. Bw\'okozesa site eno, okkiriza obukuumi bw\'amawulire gaffe.',
+            'cookie_accept': 'Nzikiriza',
+        },
+        sw: {
+            'email': 'iuhmcinfo@yahoo.com',
+            'uganda': 'Uganda',
+            'nav_home': 'Nyumbani',
+            'nav_about': 'Kuhusu Sisi',
+            'nav_impact': 'Athari',
+            'nav_contact': 'Wasiliana',
+            'nav_more': 'Zaidi',
+            'nav_leadership': 'Uongozi',
+            'nav_events': 'Matukio',
+            'nav_blog': 'Blogu',
+            'nav_resources': 'Rasilimali',
+            'nav_gallery': 'Picha',
+            'nav_get_involved': 'Jihusishe',
+            'nav_newsletter': 'Barua Habari',
+            'nav_portal': 'Lango la Wanachama',
+            'nav_faqs': 'Maswali',
+            'nav_executive_hub': 'Kituo cha Viongozi',
+            'nav_donate': 'Changia',
+            'language_label': 'Swahili',
+            'page_title': 'Uongozi Wetu',
+            'page_subtitle': 'Kutana na timu yenye shauku inayoongoza Muungano wa Mawaziri wa Afya Katika Vyuo Vikuu.',
+            'trustees_title': 'Bodi ya Wadhamini',
+            'trustees_sub': 'Chombo cha usimamizi kinachotoa mwongozo wa kimkakati na utawala.',
+            'chair_open': 'Nafasi Ipo Wazi',
+            'chair_title': 'Mwenyekiti',
+            'chair_univ': 'Kuteuliwa',
+            'chair_bio': 'Mwenyekiti hutoa uongozi wa kimkakati na usimamizi wa utawala kwa Bodi ya Wadhamini.',
+            'vice_chair_title': 'Makamu Mwenyekiti',
+            'vice_chair_bio': 'Mwanaharakati wa ustawi wa wanafunzi na usawa wa afya, akileta mitazamo mipya kwenye bodi.',
+            'sec_gen_title': 'Katibu Mkuu',
+            'sec_gen_bio': 'Mwenye uzoefu katika usimamizi wa miradi ya afya na utawala, kuhakikisha muungano unabaki kwenye dhamira yake.',
+            'treasurer_title': 'Mweka Hazina',
+            'treasurer_bio': 'Kujitolea katika uhamasishaji wa rasilimali na upangaji wa kimkakati kwa uendelevu wa miradi ya IUHMC.',
+            'exec_title': 'Kamati Kuu ya Kitaifa',
+            'exec_sub': 'Timu ya uendeshaji inayoendesha shughuli za kila siku na miradi ya IUHMC.',
+            'president_title': 'Rais',
+            'president_bio': 'Mwenye shauku ya sera za afya na uwezeshaji wa vijana. Anaongoza IUHMC kwa maono ya huduma za afya zinazoweza kupatikana kote Uganda.',
+            'vp_title': 'Makamu Rais',
+            'vp_bio': 'Kujitolea katika ufikiaji wa afya ya jamii na kuimarisha ushirikiano kati ya vyuo vikuu na mifumo ya afya ya mitaa.',
+            'gs_title': 'Katibu Mkuu',
+            'gs_bio': 'Sauti kubwa kwa miradi ya afya inayoongozwa na wanafunzi Kaskazini mwa Uganda, inayolenga malaria na afya ya uzazi.',
+            'speaker_title': 'Spika',
+            'speaker_bio': 'Kiongozi mwenye nguvu anayehakikisha mawasiliano na uratibu mzuri wakati wa mikutano na matukio ya IUHMC.',
+            'exec_treasurer_title': 'Mweka Hazina',
+            'exec_treasurer_bio': 'Mtaalamu wa usimamizi wa fedha, kuhakikisha uwazi na uwajibikaji katika rasilimali za IUHMC.',
+            'pr_title': 'Afisa wa Mahusiano na Mawasiliano',
+            'pr_bio': 'Mtaalamu wa mawasiliano ya kimkakati, kusimamia picha ya IUHMC na ushirikiano na wadau.',
+            'research_title': 'Afisa wa Utafiti na Ubunifu',
+            'research_bio': 'Kuendesha miradi ya utafiti na suluhisho za ubunifu za afya kukabiliana na changamoto za afya nchini Uganda.',
+            'me_title': 'Afisa wa Ufuatiliaji na Tathmini',
+            'me_bio': 'Kuhakikisha miradi ya IUHMC ina athari kwa kufuatilia maendeleo, matokeo, na mafunzo yaliyojifunza.',
+            'partnership_title': 'Afisa wa Ushirikiano na Uhamasishaji wa Rasilimali',
+            'partnership_bio': 'Kujenga ushirikiano wa kimkakati na kuhamasisha rasilimali kuendeleza miradi ya afya ya IUHMC.',
+            'coord_east_title': 'Mratibu - Mkoa wa Mashariki',
+            'coord_east_bio': 'Kuongoza miradi ya afya ya IUHMC na ushiriki wa wanafunzi katika Mkoa wa Mashariki wa Uganda.',
+            'coord_north_title': 'Mratibu - Mkoa wa Kaskazini',
+            'coord_north_bio': 'Kuratibu kampeni za uhamasishaji wa afya na miradi inayoongozwa na wanafunzi Kaskazini mwa Uganda.',
+            'coord_central_title': 'Mratibu - Mkoa wa Kati',
+            'coord_central_bio': 'Kuendesha ufikiaji wa afya ya jamii na ushirikiano wa vyuo vikuu katika Mkoa wa Kati.',
+            'coord_west_title': 'Mratibu - Mkoa wa Magharibi',
+            'coord_west_bio': 'Kuongoza miradi ya afya na kuhamasisha wanafunzi kwa athari ya jamii Magharibi mwa Uganda.',
+            'share_title': 'Shiriki Ukurasa Huu',
+            'share_sub': 'Saidia kueneza habari kuhusu IUHMC.',
+            'footer_quick_links': 'Viungo vya Haraka',
+            'footer_resources': 'Rasilimali',
+            'footer_contact': 'Wasiliana',
+            'footer_copyright': '© 2026 IUHMC. Imejengwa kwa ❤️ na muungano.',
+            'cookie_text': 'Tunatumia kuki kuboresha uzoefu wako. Kwa kutumia tovuti hii, unakubali Sera yetu ya Faragha.',
+            'cookie_accept': 'Kubali',
+        },
+        fr: {
+            'email': 'iuhmcinfo@yahoo.com',
+            'uganda': 'Ouganda',
+            'nav_home': 'Accueil',
+            'nav_about': 'À Propos',
+            'nav_impact': 'Impact',
+            'nav_contact': 'Contact',
+            'nav_more': 'Plus',
+            'nav_leadership': 'Leadership',
+            'nav_events': 'Événements',
+            'nav_blog': 'Blog',
+            'nav_resources': 'Ressources',
+            'nav_gallery': 'Galerie',
+            'nav_get_involved': 'S\'impliquer',
+            'nav_newsletter': 'Newsletter',
+            'nav_portal': 'Portail des Membres',
+            'nav_faqs': 'FAQ',
+            'nav_executive_hub': 'Hub Exécutif',
+            'nav_donate': 'Faire un Don',
+            'language_label': 'Français',
+            'page_title': 'Notre Leadership',
+            'page_subtitle': 'Rencontrez l\'équipe passionnée qui dirige le Consortium Interuniversitaire des Ministres de la Santé.',
+            'trustees_title': 'Conseil d\'Administration',
+            'trustees_sub': 'L\'organe de supervision fournissant une orientation stratégique et une gouvernance.',
+            'chair_open': 'Poste Ouvert',
+            'chair_title': 'Président',
+            'chair_univ': 'À nommer',
+            'chair_bio': 'Le Président assure le leadership stratégique et la supervision de la gouvernance du Conseil d\'Administration.',
+            'vice_chair_title': 'Vice-Président',
+            'vice_chair_bio': 'Un défenseur dévoué du bien-être des étudiants et de l\'équité en santé, apportant de nouvelles perspectives au conseil.',
+            'sec_gen_title': 'Secrétaire Général',
+            'sec_gen_bio': 'Expérimenté dans la gestion de projets de santé et la gouvernance, veillant à ce que le consortium reste fidèle à sa mission.',
+            'treasurer_title': 'Trésorier',
+            'treasurer_bio': 'Engagé dans la mobilisation des ressources et la planification stratégique pour la durabilité à long terme des initiatives de l\'IUHMC.',
+            'exec_title': 'Comité Exécutif National',
+            'exec_sub': 'L\'équipe opérationnelle qui gère les activités quotidiennes et les projets de l\'IUHMC.',
+            'president_title': 'Président',
+            'president_bio': 'Passionné par les politiques de santé et l\'autonomisation des jeunes. Dirige l\'IUHMC avec une vision de soins de santé accessibles à travers l\'Ouganda.',
+            'vp_title': 'Vice-Président',
+            'vp_bio': 'Dédié à la sensibilisation à la santé communautaire et au renforcement des partenariats entre les universités et les systèmes de santé locaux.',
+            'gs_title': 'Secrétaire Général',
+            'gs_bio': 'Une voix forte pour les initiatives de santé dirigées par les étudiants dans le nord de l\'Ouganda, axée sur l\'éradication du paludisme et la santé maternelle.',
+            'speaker_title': 'Porte-parole',
+            'speaker_bio': 'Un leader dynamique assurant une communication et une coordination efficaces lors des réunions et événements de l\'IUHMC.',
+            'exec_treasurer_title': 'Trésorier',
+            'exec_treasurer_bio': 'Expert en gestion financière, garantissant la transparence et la responsabilité dans les ressources de l\'IUHMC.',
+            'pr_title': 'Responsable des Relations Publiques et de la Communication',
+            'pr_bio': 'Compétent en communication stratégique, gérant l\'image publique de l\'IUHMC et l\'engagement des parties prenantes.',
+            'research_title': 'Responsable de la Recherche et de l\'Innovation',
+            'research_bio': 'Diriger des initiatives de recherche et des solutions de santé innovantes pour relever les défis de santé de l\'Ouganda.',
+            'me_title': 'Responsable du Suivi et de l\'Évaluation',
+            'me_bio': 'Garantir que les projets de l\'IUHMC ont un impact en suivant les progrès, les résultats et les leçons apprises.',
+            'partnership_title': 'Responsable des Partenariats et de la Mobilisation des Ressources',
+            'partnership_bio': 'Construire des partenariats stratégiques et mobiliser des ressources pour soutenir les initiatives de santé de l\'IUHMC.',
+            'coord_east_title': 'Coordinateur - Région de l\'Est',
+            'coord_east_bio': 'Diriger les projets de santé de l\'IUHMC et l\'engagement des étudiants dans la région de l\'Est de l\'Ouganda.',
+            'coord_north_title': 'Coordinateur - Région du Nord',
+            'coord_north_bio': 'Coordonner les campagnes de sensibilisation à la santé et les initiatives dirigées par les étudiants dans le nord de l\'Ouganda.',
+            'coord_central_title': 'Coordinateur - Région du Centre',
+            'coord_central_bio': 'Diriger la sensibilisation à la santé communautaire et les partenariats universitaires dans la région du Centre.',
+            'coord_west_title': 'Coordinateur - Région de l\'Ouest',
+            'coord_west_bio': 'Diriger des projets de santé et mobiliser les étudiants pour un impact communautaire dans l\'ouest de l\'Ouganda.',
+            'share_title': 'Partager Cette Page',
+            'share_sub': 'Aidez à faire connaître l\'IUHMC.',
+            'footer_quick_links': 'Liens Rapides',
+            'footer_resources': 'Ressources',
+            'footer_contact': 'Contact',
+            'footer_copyright': '© 2026 IUHMC. Construit avec ❤️ par le consortium.',
+            'cookie_text': 'Nous utilisons des cookies pour améliorer votre expérience. En utilisant ce site, vous acceptez notre Politique de Confidentialité.',
+            'cookie_accept': 'Accepter',
+        },
+        es: {
+            'email': 'iuhmcinfo@yahoo.com',
+            'uganda': 'Uganda',
+            'nav_home': 'Inicio',
+            'nav_about': 'Acerca de',
+            'nav_impact': 'Impacto',
+            'nav_contact': 'Contacto',
+            'nav_more': 'Más',
+            'nav_leadership': 'Liderazgo',
+            'nav_events': 'Eventos',
+            'nav_blog': 'Blog',
+            'nav_resources': 'Recursos',
+            'nav_gallery': 'Galería',
+            'nav_get_involved': 'Participa',
+            'nav_newsletter': 'Boletín',
+            'nav_portal': 'Portal de Miembros',
+            'nav_faqs': 'Preguntas Frecuentes',
+            'nav_executive_hub': 'Hub Ejecutivo',
+            'nav_donate': 'Donar',
+            'language_label': 'Español',
+            'page_title': 'Nuestro Liderazgo',
+            'page_subtitle': 'Conoce al equipo apasionado que impulsa el Consorcio Interuniversitario de Ministros de Salud.',
+            'trustees_title': 'Junta Directiva',
+            'trustees_sub': 'El órgano de supervisión que proporciona orientación estratégica y gobernanza.',
+            'chair_open': 'Puesto Vacante',
+            'chair_title': 'Presidente',
+            'chair_univ': 'Por nombrar',
+            'chair_bio': 'El Presidente proporciona liderazgo estratégico y supervisión de gobernanza a la Junta Directiva.',
+            'vice_chair_title': 'Vicepresidente',
+            'vice_chair_bio': 'Un defensor dedicado del bienestar estudiantil y la equidad en salud, aportando nuevas perspectivas a la junta.',
+            'sec_gen_title': 'Secretario General',
+            'sec_gen_bio': 'Con experiencia en gestión de proyectos de salud y gobernanza, asegurando que el consorcio se mantenga fiel a su misión.',
+            'treasurer_title': 'Tesorero',
+            'treasurer_bio': 'Comprometido con la movilización de recursos y la planificación estratégica para la sostenibilidad a largo plazo de las iniciativas de IUHMC.',
+            'exec_title': 'Comité Ejecutivo Nacional',
+            'exec_sub': 'El equipo operativo que impulsa las actividades diarias y los proyectos de IUHMC.',
+            'president_title': 'Presidente',
+            'president_bio': 'Apasionado por las políticas de salud y el empoderamiento juvenil. Lidera IUHMC con una visión de atención médica accesible en toda Uganda.',
+            'vp_title': 'Vicepresidente',
+            'vp_bio': 'Dedicado a la extensión de salud comunitaria y al fortalecimiento de alianzas entre universidades y sistemas de salud locales.',
+            'gs_title': 'Secretario General',
+            'gs_bio': 'Una voz fuerte para las iniciativas de salud lideradas por estudiantes en el norte de Uganda, enfocado en la erradicación de la malaria y la salud materna.',
+            'speaker_title': 'Portavoz',
+            'speaker_bio': 'Un líder dinámico que asegura una comunicación y coordinación efectivas durante las reuniones y eventos de IUHMC.',
+            'exec_treasurer_title': 'Tesorero',
+            'exec_treasurer_bio': 'Experto en gestión financiera, garantizando transparencia y responsabilidad en los recursos de IUHMC.',
+            'pr_title': 'Oficial de Relaciones Públicas y Comunicación',
+            'pr_bio': 'Hábil en comunicación estratégica, gestionando la imagen pública de IUHMC y el compromiso de los interesados.',
+            'research_title': 'Oficial de Investigación e Innovación',
+            'research_bio': 'Impulsando iniciativas de investigación y soluciones de salud innovadoras para abordar los desafíos de salud de Uganda.',
+            'me_title': 'Oficial de Monitoreo y Evaluación',
+            'me_bio': 'Asegurando que los proyectos de IUHMC tengan impacto mediante el seguimiento de avances, resultados y lecciones aprendidas.',
+            'partnership_title': 'Oficial de Alianzas y Movilización de Recursos',
+            'partnership_bio': 'Construyendo alianzas estratégicas y movilizando recursos para sostener las iniciativas de salud de IUHMC.',
+            'coord_east_title': 'Coordinador - Región Oriental',
+            'coord_east_bio': 'Liderando los proyectos de salud de IUHMC y la participación estudiantil en la región oriental de Uganda.',
+            'coord_north_title': 'Coordinador - Región Norte',
+            'coord_north_bio': 'Coordinando campañas de concienciación sobre salud e iniciativas lideradas por estudiantes en el norte de Uganda.',
+            'coord_central_title': 'Coordinador - Región Central',
+            'coord_central_bio': 'Impulsando la extensión de salud comunitaria y las alianzas universitarias en la región central.',
+            'coord_west_title': 'Coordinador - Región Occidental',
+            'coord_west_bio': 'Liderando proyectos de salud y movilizando estudiantes para el impacto comunitario en el oeste de Uganda.',
+            'share_title': 'Compartir Esta Página',
+            'share_sub': 'Ayuda a difundir la palabra sobre IUHMC.',
+            'footer_quick_links': 'Enlaces Rápidos',
+            'footer_resources': 'Recursos',
+            'footer_contact': 'Contacto',
+            'footer_copyright': '© 2026 IUHMC. Construido con ❤️ por el consorcio.',
+            'cookie_text': 'Usamos cookies para mejorar tu experiencia. Al usar este sitio, aceptas nuestra Política de Privacidad.',
+            'cookie_accept': 'Aceptar',
+        },
+        de: {
+            'email': 'iuhmcinfo@yahoo.com',
+            'uganda': 'Uganda',
+            'nav_home': 'Startseite',
+            'nav_about': 'Über Uns',
+            'nav_impact': 'Wirkung',
+            'nav_contact': 'Kontakt',
+            'nav_more': 'Mehr',
+            'nav_leadership': 'Führung',
+            'nav_events': 'Veranstaltungen',
+            'nav_blog': 'Blog',
+            'nav_resources': 'Ressourcen',
+            'nav_gallery': 'Galerie',
+            'nav_get_involved': 'Mitmachen',
+            'nav_newsletter': 'Newsletter',
+            'nav_portal': 'Mitgliederportal',
+            'nav_faqs': 'FAQ',
+            'nav_executive_hub': 'Executive Hub',
+            'nav_donate': 'Spenden',
+            'language_label': 'Deutsch',
+            'page_title': 'Unsere Führung',
+            'page_subtitle': 'Lernen Sie das leidenschaftliche Team kennen, das das Interuniversitäre Konsortium der Gesundheitsminister leitet.',
+            'trustees_title': 'Vorstand',
+            'trustees_sub': 'Das Aufsichtsorgan, das strategische Anleitung und Governance bietet.',
+            'chair_open': 'Position Offen',
+            'chair_title': 'Vorsitzender',
+            'chair_univ': 'Zu ernennen',
+            'chair_bio': 'Der Vorsitzende bietet strategische Führung und Governance-Aufsicht für den Vorstand.',
+            'vice_chair_title': 'Stellvertretender Vorsitzender',
+            'vice_chair_bio': 'Ein engagierter Verfechter des Studentenwohls und der gesundheitlichen Gerechtigkeit, der neue Perspektiven in den Vorstand einbringt.',
+            'sec_gen_title': 'Generalsekretär',
+            'sec_gen_bio': 'Erfahren in der Verwaltung von Gesundheitsprojekten und Governance, stellt sicher, dass das Konsortium seiner Mission treu bleibt.',
+            'treasurer_title': 'Schatzmeister',
+            'treasurer_bio': 'Engagiert in der Ressourcenmobilisierung und strategischen Planung für die langfristige Nachhaltigkeit der IUHMC-Initiativen.',
+            'exec_title': 'Nationaler Vorstand',
+            'exec_sub': 'Das operative Team, das die täglichen Aktivitäten und Projekte der IUHMC vorantreibt.',
+            'president_title': 'Präsident',
+            'president_bio': 'Leidenschaftlich für Gesundheitspolitik und Jugendförderung. Führt IUHMC mit einer Vision für zugängliche Gesundheitsversorgung in ganz Uganda.',
+            'vp_title': 'Vizepräsident',
+            'vp_bio': 'Engagiert in der Gemeinschaftsgesundheit und der Stärkung von Partnerschaften zwischen Universitäten und lokalen Gesundheitssystemen.',
+            'gs_title': 'Generalsekretär',
+            'gs_bio': 'Eine starke Stimme für studentische Gesundheitsinitiativen in Norduganda, mit Fokus auf Malaria-Bekämpfung und Müttergesundheit.',
+            'speaker_title': 'Sprecher',
+            'speaker_bio': 'Ein dynamischer Leiter, der effektive Kommunikation und Koordination während IUHMC-Treffen und -Veranstaltungen gewährleistet.',
+            'exec_treasurer_title': 'Schatzmeister',
+            'exec_treasurer_bio': 'Experte für Finanzmanagement, der Transparenz und Verantwortlichkeit in den IUHMC-Ressourcen gewährleistet.',
+            'pr_title': 'Leiter Öffentlichkeitsarbeit und Kommunikation',
+            'pr_bio': 'Erfahren in strategischer Kommunikation, verwaltet das öffentliche Image der IUHMC und das Engagement von Interessengruppen.',
+            'research_title': 'Leiter Forschung und Innovation',
+            'research_bio': 'Förderung von Forschungsinitiativen und innovativen Gesundheitslösungen zur Bewältigung der Gesundheitsherausforderungen Ugandas.',
+            'me_title': 'Leiter Monitoring und Evaluierung',
+            'me_bio': 'Stellt sicher, dass IUHMC-Projekte wirkungsvoll sind, indem Fortschritte, Ergebnisse und gewonnene Erkenntnisse verfolgt werden.',
+            'partnership_title': 'Leiter Partnerschaften und Ressourcenmobilisierung',
+            'partnership_bio': 'Aufbau strategischer Partnerschaften und Mobilisierung von Ressourcen zur Unterstützung der IUHMC-Gesundheitsinitiativen.',
+            'coord_east_title': 'Koordinator - Ostregion',
+            'coord_east_bio': 'Leitung der IUHMC-Gesundheitsprojekte und des Studentenengagements in der Ostregion Ugandas.',
+            'coord_north_title': 'Koordinator - Nordregion',
+            'coord_north_bio': 'Koordinierung von Gesundheitskampagnen und studentischen Initiativen in Norduganda.',
+            'coord_central_title': 'Koordinator - Zentralregion',
+            'coord_central_bio': 'Förderung der Gemeinschaftsgesundheit und Hochschulpartnerschaften in der Zentralregion.',
+            'coord_west_title': 'Koordinator - Westregion',
+            'coord_west_bio': 'Leitung von Gesundheitsprojekten und Mobilisierung von Studenten für die Gemeinschaftswirkung in Westuganda.',
+            'share_title': 'Diese Seite Teilen',
+            'share_sub': 'Helfen Sie, die Nachricht über IUHMC zu verbreiten.',
+            'footer_quick_links': 'Schnelllinks',
+            'footer_resources': 'Ressourcen',
+            'footer_contact': 'Kontakt',
+            'footer_copyright': '© 2026 IUHMC. Mit ❤️ vom Konsortium erbaut.',
+            'cookie_text': 'Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Durch die Nutzung dieser Website stimmen Sie unserer Datenschutzrichtlinie zu.',
+            'cookie_accept': 'Akzeptieren',
+        }
+    };
+
+    // ===== LANGUAGE FUNCTIONS =====
+    function changeLanguage(lang) {
+        localStorage.setItem('preferredLanguage', lang);
+        
+        document.querySelectorAll('[data-key]').forEach(element => {
+            const key = element.getAttribute('data-key');
+            if (translations[lang] && translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
+        });
+        
+        document.querySelectorAll('[data-placeholder-key]').forEach(element => {
+            const key = element.getAttribute('data-placeholder-key');
+            if (translations[lang] && translations[lang][key]) {
+                element.placeholder = translations[lang][key];
+            }
+        });
+        
+        document.querySelectorAll('[data-text-key]').forEach(element => {
+            const key = element.getAttribute('data-text-key');
+            if (translations[lang] && translations[lang][key]) {
+                element.innerHTML = translations[lang][key];
+            }
+        });
+        
+        document.querySelectorAll('.dropdown-menu a').forEach(link => {
+            const key = link.getAttribute('data-key');
+            if (key && translations[lang] && translations[lang][key]) {
+                const icon = link.querySelector('i');
+                if (icon) {
+                    link.innerHTML = icon.outerHTML + ' ' + translations[lang][key];
+                } else {
+                    link.textContent = translations[lang][key];
+                }
+            }
+        });
+        
+        const donateBtn = document.querySelector('.btn-primary');
+        if (donateBtn && translations[lang] && translations[lang]['nav_donate']) {
+            donateBtn.innerHTML = '<span class="lang-text" data-key="nav_donate">' + translations[lang]['nav_donate'] + '</span>';
+        }
+        
+        document.querySelectorAll('.nav-link-pill').forEach(link => {
+            const key = link.getAttribute('data-key');
+            if (key && translations[lang] && translations[lang][key]) {
+                const icon = link.querySelector('i');
+                if (icon) {
+                    link.innerHTML = icon.outerHTML + ' <span class="lang-text" data-key="' + key + '">' + translations[lang][key] + '</span>';
+                }
+            }
+        });
+        
+        const langToggle = document.querySelector('.lang-toggle');
+        if (langToggle && translations[lang] && translations[lang]['language_label']) {
+            const globeIcon = langToggle.querySelector('.fa-globe');
+            const chevronIcon = langToggle.querySelector('.fa-chevron-down');
+            if (globeIcon && chevronIcon) {
+                langToggle.innerHTML = globeIcon.outerHTML + ' <span class="lang-text" data-key="language_label">' + translations[lang]['language_label'] + '</span> ' + chevronIcon.outerHTML;
+            }
+        }
+        
+        document.querySelector('.lang-dropdown').classList.remove('open');
+    }
+
+    function toggleLangDropdown() {
+        document.querySelector('.lang-dropdown').classList.toggle('open');
+    }
+
+    document.addEventListener('click', function(event) {
+        const dropdown = document.querySelector('.lang-dropdown');
+        if (dropdown && !dropdown.contains(event.target)) {
+            dropdown.classList.remove('open');
+        }
+    });
+
+    function loadLanguage() {
+        const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+        changeLanguage(savedLang);
+    }
+
+    // ===== COOKIE CONSENT =====
     function acceptCookies() {
         document.getElementById('cookieBanner').classList.remove('active');
         localStorage.setItem('cookiesAccepted', 'true');
@@ -1137,7 +1785,7 @@
         }, 1500);
     }
 
-    // ========== DARK MODE ==========
+    // ===== DARK MODE =====
     const darkToggle = document.getElementById('darkToggle');
     darkToggle.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
@@ -1146,14 +1794,14 @@
         icon.classList.toggle('fa-sun');
     });
 
-    // ========== SCROLL PROGRESS ==========
+    // ===== SCROLL PROGRESS =====
     window.addEventListener('scroll', () => {
         const scrollTop = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         document.getElementById('progressBar').style.width = (scrollTop / docHeight * 100) + '%';
     });
 
-    // ========== FADE-IN ANIMATIONS ==========
+    // ===== FADE-IN ANIMATIONS =====
     const fadeElements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1162,7 +1810,7 @@
     }, { threshold: 0.1 });
     fadeElements.forEach(el => observer.observe(el));
 
-    // ========== SHARE BUTTONS ==========
+    // ===== SHARE BUTTONS =====
     function sharePage(platform) {
         const url = encodeURIComponent(window.location.href);
         const text = encodeURIComponent('Check out IUHMC - Inter-University Health Ministers Consortium!');
@@ -1175,7 +1823,7 @@
         window.open(urls[platform], '_blank', 'width=600,height=500');
     }
 
-    // ========== MOBILE MENU WITH DROPDOWN ==========
+    // ===== MOBILE MENU =====
     document.getElementById('menuToggle').addEventListener('click', function() {
         const isOpen = this.querySelector('i').classList.contains('fa-times');
         
@@ -1184,14 +1832,17 @@
             document.querySelector('.dropdown-toggle').style.display = 'none';
             document.querySelector('.dark-toggle').style.display = 'none';
             document.querySelector('.btn-primary').style.display = 'none';
+            document.querySelector('.lang-toggle').style.display = 'none';
             this.querySelector('i').classList.remove('fa-times');
             this.querySelector('i').classList.add('fa-bars');
             document.querySelector('.nav-dropdown').classList.remove('open');
+            document.querySelector('.lang-dropdown').classList.remove('open');
         } else {
             document.querySelectorAll('.nav-link-pill:not(.dropdown-toggle)').forEach(el => el.style.display = 'inline-flex');
             document.querySelector('.dropdown-toggle').style.display = 'inline-flex';
             document.querySelector('.dark-toggle').style.display = 'inline-flex';
             document.querySelector('.btn-primary').style.display = 'inline-flex';
+            document.querySelector('.lang-toggle').style.display = 'inline-flex';
             this.querySelector('i').classList.remove('fa-bars');
             this.querySelector('i').classList.add('fa-times');
         }
@@ -1210,6 +1861,7 @@
         const toggle = document.querySelector('.dropdown-toggle');
         const darkToggle = document.querySelector('.dark-toggle');
         const donateBtn = document.querySelector('.btn-primary');
+        const langToggle = document.querySelector('.lang-toggle');
         const menuIcon = document.getElementById('menuToggle').querySelector('i');
         
         if (window.innerWidth <= 768) {
@@ -1217,21 +1869,24 @@
             toggle.style.display = 'none';
             darkToggle.style.display = 'none';
             donateBtn.style.display = 'none';
+            langToggle.style.display = 'none';
             menuIcon.classList.add('fa-bars');
             menuIcon.classList.remove('fa-times');
             document.querySelector('.nav-dropdown').classList.remove('open');
+            document.querySelector('.lang-dropdown').classList.remove('open');
         } else {
             pills.forEach(p => p.style.display = 'inline-flex');
             toggle.style.display = 'inline-flex';
             darkToggle.style.display = 'inline-flex';
             donateBtn.style.display = 'inline-flex';
+            langToggle.style.display = 'inline-flex';
         }
     }
 
     window.addEventListener('resize', handleMobileNav);
     handleMobileNav();
 
-    // ========== BACK TO TOP ==========
+    // ===== BACK TO TOP =====
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
         backToTop.classList.toggle('visible', window.scrollY > 300);
@@ -1240,6 +1895,8 @@
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    document.addEventListener('DOMContentLoaded', loadLanguage);
 </script>
 
 </body>
