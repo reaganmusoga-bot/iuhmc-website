@@ -1180,7 +1180,7 @@
             <div class="btn-group">
                 <button class="btn" onclick="generateBlogIdea()"><i class="fas fa-lightbulb"></i> Generate Ideas</button>
                 <button class="btn" onclick="generateBlogOutline()" style="background:var(--gold); color:var(--dark);"><i class="fas fa-list"></i> Generate Outline</button>
-                <button class="btn" onclick="generateBlogIntro()" style="background:var(--blue);"><i class="fas fa-pen"></i> Write Intro</button>
+                <button class="btn" onclick="generateBlogIntro()" style="background:#3B82F6; color:#fff;"><i class="fas fa-pen"></i> Write Intro</button>
             </div>
             <div class="blog-output" id="blogOutput">Your generated content will appear here...</div>
         </div>
@@ -1445,33 +1445,13 @@
         'contact': 'You can contact us at iuhmcinfo@yahoo.com or call +256 703 796 153. You can also use the contact form on our homepage.',
         'hello': 'Hello! Welcome to IUHMC. How can I help you today?',
         'hi': 'Hi there! I\'m the IUHMC AI Assistant. Ask me anything about our organization.',
-        'help': 'I can help you with: - About IUHMC - Sickle Cell Campaign - How to get involved - Events - Leadership - Donations - Contact information',
-        'northern region training': 'The Northern Region Sickle Cell Training will be held at Lira University on August 15-16, 2026. It\'s a training session for health ministers from universities in the Northern region. Register now on our Events page!',
-        'when was iuhmc founded': 'IUHMC was founded in 2026 with the official launch on June 26, 2026 at the Ministry of Health HQ in Kampala.',
-        'who is the president': 'The President of IUHMC is Wamezaya Ebenezer, from Makerere University.',
-        'how many members': 'IUHMC has 186 health ministers from 40+ institutions across Uganda.',
-        'regions covered': 'We cover all 4 regions: Central, Eastern, Northern, and Western Uganda.',
-        'partners': 'Our partners include the Ministry of Health - Uganda, Raremark Foundation, Microhaem Scientifics, WHO Uganda, and Quality Chemical Industries.'
+        'help': 'I can help you with: - About IUHMC - Sickle Cell Campaign - How to get involved - Events - Leadership - Donations - Contact information'
     };
 
     function getBotResponse(input) {
         const lowerInput = input.toLowerCase().trim();
-        // Check for exact or partial matches
         for (const [key, value] of Object.entries(chatbotData)) {
             if (lowerInput.includes(key) || key.includes(lowerInput)) {
-                return value;
-            }
-        }
-        // Check for keywords
-        const keywords = {
-            'test': 'We offer sickle cell testing at our events. Check our Events page for upcoming testing drives!',
-            'fund': 'We accept donations via PayPal, MTN, Airtel, and bank transfer. Visit our Donate section!',
-            'volunteer': 'We welcome volunteers! Visit our Get Involved page to sign up or contact us directly.',
-            'partner': 'We\'re always looking for partners. Visit our Get Involved page or contact us at iuhmcinfo@yahoo.com.',
-            'university': 'We have members from over 40 universities and institutions across all 4 regions of Uganda.'
-        };
-        for (const [key, value] of Object.entries(keywords)) {
-            if (lowerInput.includes(key)) {
                 return value;
             }
         }
@@ -1484,36 +1464,20 @@
         const text = input.value.trim();
         if (!text) return;
 
-        // Add user message
-        messages.innerHTML += `
-            <div class="chat-message user">
-                <div class="bubble">${text}</div>
-            </div>
-        `;
-
+        messages.innerHTML += `<div class="chat-message user"><div class="bubble">${text}</div></div>`;
         input.value = '';
         messages.scrollTop = messages.scrollHeight;
 
-        // Get bot response
-        const response = getBotResponse(text) || 'I don\'t have an answer for that yet. Please contact us at iuhmcinfo@yahoo.com for more information, or try rephrasing your question.';
-
-        // Add bot response with typing delay
+        const response = getBotResponse(text) || 'I don\'t have an answer for that yet. Please contact us at iuhmcinfo@yahoo.com for more information.';
         setTimeout(() => {
-            messages.innerHTML += `
-                <div class="chat-message bot">
-                    <div class="bubble">${response}</div>
-                </div>
-            `;
+            messages.innerHTML += `<div class="chat-message bot"><div class="bubble">${response}</div></div>`;
             messages.scrollTop = messages.scrollHeight;
         }, 300);
     }
 
     function clearChatMessages() {
-        const messages = document.getElementById('chatMessages');
-        messages.innerHTML = `
-            <div class="chat-message bot">
-                <div class="bubble">Chat cleared! How can I help you today?</div>
-            </div>
+        document.getElementById('chatMessages').innerHTML = `
+            <div class="chat-message bot"><div class="bubble">Chat cleared! How can I help you today?</div></div>
         `;
     }
 
@@ -1531,12 +1495,7 @@
         { title: 'Regional Coordinators', content: 'Leaders for Central, Eastern, Northern, and Western regions.', category: 'Leadership' },
         { title: 'Donate to IUHMC', content: 'Support our health campaigns through PayPal, MTN, Airtel, or bank transfer.', category: 'Get Involved' },
         { title: 'Volunteer Opportunities', content: 'Join our testing drives, health camps, and community outreach programs.', category: 'Get Involved' },
-        { title: 'Partnership with IUHMC', content: 'Collaborate with us on health projects, provide resources, or co-host awareness campaigns.', category: 'Get Involved' },
-        { title: 'Member Portal', content: 'Exclusive access for IUHMC health ministers and members.', category: 'Resources' },
-        { title: 'Health Resources Library', content: 'Access health articles, research, and educational materials.', category: 'Resources' },
-        { title: 'Executive Hub', content: 'Command center for IUHMC leadership – track members, coordinators, and impact.', category: 'Resources' },
-        { title: 'Test Before You Taste', content: 'Campaign slogan encouraging young people to know their genotype before making long-term decisions.', category: 'Campaigns' },
-        { title: 'Gene Clubs', content: 'Student-led clubs focused on sickle cell education and awareness.', category: 'Campaigns' }
+        { title: 'Partnership with IUHMC', content: 'Collaborate with us on health projects, provide resources, or co-host awareness campaigns.', category: 'Get Involved' }
     ];
 
     function performAISearch() {
@@ -1549,22 +1508,17 @@
             return;
         }
 
-        // Simple fuzzy search - score based on matches
         const scoredResults = searchData.map(item => {
             let score = 0;
             const titleLower = item.title.toLowerCase();
             const contentLower = item.content.toLowerCase();
-            
             if (titleLower.includes(query)) score += 3;
             if (contentLower.includes(query)) score += 2;
-            
-            // Check word by word
             const words = query.split(' ');
             words.forEach(word => {
                 if (titleLower.includes(word)) score += 1;
                 if (contentLower.includes(word)) score += 0.5;
             });
-            
             return { ...item, score };
         });
 
@@ -1572,7 +1526,7 @@
         filtered.sort((a, b) => b.score - a.score);
 
         if (filtered.length === 0) {
-            results.innerHTML = `<p style="color:var(--text-light); font-size:0.9rem;">No results found for "${query}". Try a different search term.</p>`;
+            results.innerHTML = `<p style="color:var(--text-light); font-size:0.9rem;">No results found for "${query}".</p>`;
             return;
         }
 
@@ -1599,84 +1553,42 @@
             'Student Leaders Shaping Uganda\'s Health Future',
             'The Power of Youth Advocacy in Health',
             'Understanding Sickle Cell: Myths vs. Facts',
-            'Building a Healthier Uganda: One Student at a Time',
-            'Why "Test Before You Taste" Matters',
-            'The Role of Universities in Community Health',
-            'From Student to Health Leader: My IUHMC Journey'
+            'Building a Healthier Uganda: One Student at a Time'
         ],
         outlines: {
             'sickle cell': '1. Introduction to Sickle Cell Disease\n2. Prevalence in Uganda\n3. The Importance of Testing\n4. IUHMC\'s Sickle Cell Campaign\n5. Success Stories and Impact\n6. How to Get Involved\n7. Conclusion',
-            'mental health': '1. Understanding Mental Health\n2. Common Mental Health Issues on Campus\n3. The Impact of Stigma\n4. IUHMC\'s Mental Health Initiatives\n5. Resources and Support\n6. How to Help a Friend\n7. Conclusion',
-            'maternal health': '1. Maternal Health in Uganda\n2. Common Challenges Faced\n3. The Role of Community Health\n4. IUHMC\'s Maternal Health Camps\n5. Success Stories\n6. How to Support Maternal Health\n7. Conclusion',
-            'student leadership': '1. The Power of Student Leadership\n2. IUHMC: A Student-Led Movement\n3. Skills Gained Through Leadership\n4. Impact Stories\n5. How to Develop Your Leadership Skills\n6. The Future of Student Leadership\n7. Conclusion'
+            'mental health': '1. Understanding Mental Health\n2. Common Mental Health Issues on Campus\n3. The Impact of Stigma\n4. IUHMC\'s Mental Health Initiatives\n5. Resources and Support\n6. Conclusion',
+            'maternal health': '1. Maternal Health in Uganda\n2. Common Challenges Faced\n3. The Role of Community Health\n4. IUHMC\'s Maternal Health Camps\n5. Success Stories\n6. Conclusion'
         }
     };
 
     function generateBlogIdea() {
         const topic = document.getElementById('blogTopic').value.trim().toLowerCase();
         const output = document.getElementById('blogOutput');
-        
-        if (!topic) {
-            output.textContent = 'Please enter a topic or theme first.';
-            output.style.color = '#dc2626';
-            return;
-        }
-
-        const ideas = blogPrompts.ideas;
-        const matchedIdeas = ideas.filter(idea => idea.toLowerCase().includes(topic) || topic.split(' ').some(word => idea.toLowerCase().includes(word)));
-        
-        if (matchedIdeas.length > 0) {
-            output.innerHTML = `🎯 <strong>Blog Ideas for "${topic}":</strong>\n\n${matchedIdeas.map((idea, i) => `${i + 1}. ${idea}`).join('\n')}\n\n💡 Tip: Choose one and start writing!`;
-        } else {
-            output.innerHTML = `🎯 <strong>Blog Ideas for "${topic}":</strong>\n\n${ideas.map((idea, i) => `${i + 1}. ${idea}`).join('\n')}\n\n💡 Tip: Choose one and start writing!`;
-        }
-        output.style.color = 'var(--text)';
+        if (!topic) { output.textContent = 'Please enter a topic first.'; return; }
+        output.innerHTML = `🎯 <strong>Blog Ideas for "${topic}":</strong>\n\n${blogPrompts.ideas.map((idea, i) => `${i + 1}. ${idea}`).join('\n')}\n\n💡 Tip: Choose one and start writing!`;
     }
 
     function generateBlogOutline() {
         const topic = document.getElementById('blogTopic').value.trim().toLowerCase();
         const output = document.getElementById('blogOutput');
-        
-        if (!topic) {
-            output.textContent = 'Please enter a topic first.';
-            output.style.color = '#dc2626';
-            return;
-        }
-
+        if (!topic) { output.textContent = 'Please enter a topic first.'; return; }
         let outline = '';
         for (const [key, value] of Object.entries(blogPrompts.outlines)) {
-            if (topic.includes(key)) {
-                outline = value;
-                break;
-            }
+            if (topic.includes(key)) { outline = value; break; }
         }
-
-        if (outline) {
-            output.innerHTML = `📋 <strong>Blog Outline for "${topic}":</strong>\n\n${outline}\n\n✍️ Use this outline to structure your article. Each bullet can be a section or paragraph.`;
-        } else {
-            output.innerHTML = `📋 <strong>Blog Outline for "${topic}":</strong>\n\n1. Introduction\n2. Background and Context\n3. Key Points\n4. Challenges and Solutions\n5. Impact and Success Stories\n6. Conclusion\n\n✍️ Use this outline to structure your article.`;
-        }
-        output.style.color = 'var(--text)';
+        output.innerHTML = outline ? `📋 <strong>Blog Outline for "${topic}":</strong>\n\n${outline}` : `📋 <strong>Blog Outline for "${topic}":</strong>\n\n1. Introduction\n2. Background\n3. Key Points\n4. Conclusion`;
     }
 
     function generateBlogIntro() {
         const topic = document.getElementById('blogTopic').value.trim();
         const output = document.getElementById('blogOutput');
-        
-        if (!topic) {
-            output.textContent = 'Please enter a topic first.';
-            output.style.color = '#dc2626';
-            return;
-        }
-
+        if (!topic) { output.textContent = 'Please enter a topic first.'; return; }
         const intros = [
             `In today's Uganda, ${topic} has become an increasingly important topic for students and communities alike.`,
-            `As student leaders committed to health advocacy, we believe that ${topic} is key to building a healthier Uganda.`,
-            `Every day, students across Uganda are facing challenges related to ${topic}. But with the right knowledge and support, we can make a difference.`
+            `As student leaders committed to health advocacy, we believe that ${topic} is key to building a healthier Uganda.`
         ];
-
-        output.innerHTML = `📝 <strong>Blog Introduction for "${topic}":</strong>\n\n"${intros[Math.floor(Math.random() * intros.length)]}"\n\n✍️ Continue writing from here to develop your article. Focus on the impact, personal stories, and ways to take action.`;
-        output.style.color = 'var(--text)';
+        output.innerHTML = `📝 <strong>Blog Introduction for "${topic}":</strong>\n\n"${intros[Math.floor(Math.random() * intros.length)]}"\n\n✍️ Continue writing from here.`;
     }
 
     // ============================================================
@@ -1685,14 +1597,10 @@
     const memberList = [
         { name: 'Wamezaya Ebenezer', region: 'Central', university: 'Makerere University', interests: 'health policy, youth empowerment, sickle cell' },
         { name: 'Nakigozi Esther', region: 'Western', university: 'Mountains of the Moon University', interests: 'community health, maternal health, partnerships' },
-        { name: 'Latigo Marvin', region: 'Northern', university: 'Gulu University', interests: 'malaria eradication, maternal health, student leadership' },
-        { name: 'Musoke Abdul Latwiif', region: 'Eastern', university: 'Islamic University in Uganda', interests: 'communication, coordination, public speaking' },
-        { name: 'Nayebare Apophia', region: 'Central', university: 'Victoria University', interests: 'financial management, transparency, accountability' },
-        { name: 'Okello Daniel', region: 'Northern', university: 'Uganda Martyrs University - Ngetta', interests: 'strategic communication, public relations, stakeholder engagement' },
-        { name: 'Abaho Robert', region: 'Western', university: 'Mbarara University of Science and Technology', interests: 'partnerships, resource mobilization, health projects' },
-        { name: 'Baiga Philmon Timothy', region: 'Eastern', university: 'Busitema University', interests: 'health projects, student engagement, community outreach' },
-        { name: 'Atuhaire Edward', region: 'Western', university: 'KIU Western Campus', interests: 'health projects, community impact, student mobilization' },
-        { name: 'Amutuhaire Daphne', region: 'Central', university: 'Uganda Institute of Information and Communications Technology', interests: 'monitoring, evaluation, data analysis' }
+        { name: 'Latigo Marvin', region: 'Northern', university: 'Gulu University', interests: 'malaria eradication, maternal health' },
+        { name: 'Musoke Abdul Latwiif', region: 'Eastern', university: 'Islamic University in Uganda', interests: 'communication, public speaking' },
+        { name: 'Nayebare Apophia', region: 'Central', university: 'Victoria University', interests: 'financial management, transparency' },
+        { name: 'Okello Daniel', region: 'Northern', university: 'Uganda Martyrs University - Ngetta', interests: 'strategic communication, public relations' }
     ];
 
     function findMatches() {
@@ -1701,7 +1609,7 @@
         const results = document.getElementById('matchResults');
 
         if (!interest) {
-            results.innerHTML = `<p style="color:var(--text-light); font-size:0.9rem; grid-column:1/-1; text-align:center;">Please enter an interest or skill to find matching members.</p>`;
+            results.innerHTML = `<p style="color:var(--text-light); font-size:0.9rem; grid-column:1/-1; text-align:center;">Please enter an interest.</p>`;
             return;
         }
 
@@ -1721,7 +1629,7 @@
         filtered.sort((a, b) => b.score - a.score);
 
         if (filtered.length === 0) {
-            results.innerHTML = `<p style="color:var(--text-light); font-size:0.9rem; grid-column:1/-1; text-align:center;">No members found matching "${interest}". Try a different interest.</p>`;
+            results.innerHTML = `<p style="color:var(--text-light); font-size:0.9rem; grid-column:1/-1; text-align:center;">No members found.</p>`;
             return;
         }
 
@@ -1747,27 +1655,6 @@
         });
     }, { threshold: 0.1 });
     fadeElements.forEach(el => observer.observe(el));
-
-    // ============================================================
-    //  KEYBOARD SHORTCUTS
-    // ============================================================
-    document.addEventListener('keydown', function(e) {
-        // Ctrl + / to focus chat
-        if (e.ctrlKey && e.key === '/') {
-            e.preventDefault();
-            document.getElementById('chatInput').focus();
-        }
-        // Ctrl + K to focus search
-        if (e.ctrlKey && e.key === 'k') {
-            e.preventDefault();
-            document.getElementById('aiSearchInput').focus();
-        }
-    });
-
-    console.log('🤖 IUHMC AI Tools loaded successfully!');
-    console.log('💡 Tips:');
-    console.log('  - Press Ctrl + / to focus the chat');
-    console.log('  - Press Ctrl + K to focus the search');
 </script>
 
 </body>
