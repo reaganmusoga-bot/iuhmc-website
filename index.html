@@ -121,21 +121,6 @@
             color: var(--dark);
             transform: translateY(-2px);
         }
-        .top-bar .right .lang-select {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #A0AEC0;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .top-bar .right .lang-select:hover {
-            background: rgba(255,255,255,0.12);
-            border-color: var(--gold);
-        }
-        .top-bar .right .lang-select option { background: var(--dark); }
 
         /* ===== HEADER / NAV ===== */
         header {
@@ -313,6 +298,99 @@
         }
         body.dark-mode .dropdown-menu a i { color: var(--text-light); }
 
+        /* ===== LANGUAGE DROPDOWN ===== */
+        .lang-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-toggle {
+            background: transparent;
+            border: 2px solid var(--primary);
+            border-radius: 40px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 8px 18px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+        .lang-toggle:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(10,126,62,0.3);
+        }
+        body.dark-mode .lang-toggle {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        body.dark-mode .lang-toggle:hover {
+            background: var(--gold);
+            color: var(--dark);
+        }
+        .lang-toggle i {
+            font-size: 0.9rem;
+        }
+
+        .lang-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 110%;
+            right: 0;
+            min-width: 200px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-hover);
+            padding: 8px 0;
+            z-index: 1000;
+        }
+        .lang-dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 16px;
+            width: 16px;
+            height: 16px;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            border-left: 1px solid var(--border);
+            transform: rotate(45deg);
+        }
+        body.dark-mode .lang-dropdown-menu::before {
+            background: var(--bg);
+            border-color: var(--border);
+        }
+
+        .lang-dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .lang-dropdown-menu a:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        body.dark-mode .lang-dropdown-menu a:hover {
+            background: #06532A;
+            color: var(--gold);
+        }
+
+        .lang-dropdown.open .lang-dropdown-menu {
+            display: block;
+        }
+
         .nav-actions {
             display: flex;
             align-items: center;
@@ -334,8 +412,8 @@
             background: var(--primary);
             color: #fff;
             border: none;
-            padding: 8px 20px;
-            border-radius: 8px;
+            padding: 8px 22px;
+            border-radius: 40px;
             font-weight: 600;
             font-size: 0.85rem;
             cursor: pointer;
@@ -362,12 +440,12 @@
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             
-            .nav-link-pill, .dropdown-toggle {
+            .nav-link-pill, .dropdown-toggle, .lang-toggle {
                 padding: 6px 14px;
                 font-size: 0.75rem;
                 gap: 4px;
             }
-            .nav-link-pill i, .dropdown-toggle i { font-size: 0.7rem; }
+            .nav-link-pill i, .dropdown-toggle i, .lang-toggle i { font-size: 0.7rem; }
             .nav-actions .btn-primary {
                 padding: 6px 14px;
                 font-size: 0.75rem;
@@ -411,19 +489,63 @@
             .nav-dropdown.open .dropdown-menu {
                 display: block;
             }
+            
+            .lang-dropdown {
+                width: 100%;
+            }
+            .lang-toggle {
+                width: 100%;
+                justify-content: center;
+                border-radius: 12px;
+                padding: 10px 16px;
+            }
+            .lang-dropdown-menu {
+                position: static;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                padding: 0;
+                margin-top: 4px;
+                background: transparent;
+            }
+            .lang-dropdown-menu::before {
+                display: none;
+            }
+            .lang-dropdown-menu a {
+                padding: 10px 16px;
+                border-radius: 8px;
+                margin: 2px 0;
+                padding-left: 20px;
+            }
+            .lang-dropdown-menu a:hover {
+                background: var(--primary-light);
+            }
+            .lang-dropdown:hover .lang-dropdown-menu {
+                display: none;
+            }
+            .lang-dropdown.open .lang-dropdown-menu {
+                display: block;
+            }
         }
 
         @media (max-width: 480px) {
-            .nav-link-pill, .dropdown-toggle {
+            .nav-link-pill, .dropdown-toggle, .lang-toggle {
                 padding: 4px 10px;
                 font-size: 0.65rem;
                 gap: 3px;
                 border-width: 1.5px;
             }
-            .nav-link-pill i, .dropdown-toggle i { font-size: 0.6rem; }
+            .nav-link-pill i, .dropdown-toggle i, .lang-toggle i { font-size: 0.6rem; }
             .nav-actions .btn-primary {
                 padding: 4px 10px;
                 font-size: 0.65rem;
+            }
+            .lang-toggle {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+            }
+            .lang-dropdown-menu {
+                min-width: 160px;
             }
         }
 
@@ -503,7 +625,7 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* ===== HERO LINKS (IFMSA STYLE) ===== */
+        /* ===== HERO LINKS ===== */
         .hero-links {
             display: flex;
             gap: 16px;
@@ -1375,7 +1497,7 @@
     <button class="btn" onclick="acceptCookies()"><span class="lang-text" data-key="cookie_accept">Accept</span></button>
 </div>
 
-<!-- ===== TOP BAR WITH LANGUAGE SELECTOR ===== -->
+<!-- ===== TOP BAR ===== -->
 <div class="top-bar">
     <div class="container">
         <div class="left">
@@ -1388,14 +1510,6 @@
             <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
             <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
             <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-            <select class="lang-select" id="languageSelector" onchange="changeLanguage(this.value)">
-                <option value="en">🇬🇧 English</option>
-                <option value="lg">🇺🇬 Luganda</option>
-                <option value="sw">🇰🇪 Swahili</option>
-                <option value="fr">🇫🇷 Français</option>
-                <option value="es">🇪🇸 Español</option>
-                <option value="de">🇩🇪 Deutsch</option>
-            </select>
         </div>
     </div>
 </div>
@@ -1438,6 +1552,22 @@
                 <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
                     <i class="fas fa-moon"></i>
                 </button>
+                
+                <!-- Language Selector - Full names -->
+                <div class="lang-dropdown">
+                    <button class="lang-toggle" onclick="toggleLangDropdown()">
+                        <i class="fas fa-globe"></i> <span class="lang-text" data-key="language_label">English</span> <i class="fas fa-chevron-down" style="font-size:0.6rem; margin-left:4px;"></i>
+                    </button>
+                    <div class="lang-dropdown-menu" id="langDropdownMenu">
+                        <a href="#" onclick="changeLanguage('en')" data-lang="en">🇬🇧 English</a>
+                        <a href="#" onclick="changeLanguage('lg')" data-lang="lg">🇺🇬 Luganda</a>
+                        <a href="#" onclick="changeLanguage('sw')" data-lang="sw">🇰🇪 Swahili</a>
+                        <a href="#" onclick="changeLanguage('fr')" data-lang="fr">🇫🇷 Français</a>
+                        <a href="#" onclick="changeLanguage('es')" data-lang="es">🇪🇸 Español</a>
+                        <a href="#" onclick="changeLanguage('de')" data-lang="de">🇩🇪 Deutsch</a>
+                    </div>
+                </div>
+                
                 <a href="index.html#donate" class="btn-primary"><span class="lang-text" data-key="nav_donate">Donate</span></a>
                 <button class="menu-toggle" id="menuToggle">
                     <i class="fas fa-bars"></i>
@@ -1980,6 +2110,7 @@
             'nav_faqs': 'FAQs',
             'nav_executive_hub': 'Executive Hub',
             'nav_donate': 'Donate',
+            'language_label': 'English',
             // Hero
             'hero_badge': "🇺🇬 Uganda's Health Leadership",
             'hero_title': 'INTER-UNIVERSITY',
@@ -2122,6 +2253,7 @@
             'nav_faqs': 'Ebibuuzo',
             'nav_executive_hub': 'Ekifo ky\'Abakulembeze',
             'nav_donate': 'Owaayo',
+            'language_label': 'Luganda',
             'hero_badge': "🇺🇬 Obukulembeze bw'ebyobulamu mu Uganda",
             'hero_title': 'EKIBINA KY\'ABA MINISTA BA BYOBULAMU MU YUNIVASITE ZONA',
             'hero_highlight': 'ABA MINISTA BA BYOBULAMU',
@@ -2246,6 +2378,7 @@
             'nav_faqs': 'Maswali',
             'nav_executive_hub': 'Kituo cha Viongozi',
             'nav_donate': 'Changia',
+            'language_label': 'Swahili',
             'hero_badge': "🇺🇬 Uongozi wa Afya wa Uganda",
             'hero_title': 'MUUNGANO WA WAZIRI WA AFYA KATIKA VYUO VYOTE',
             'hero_highlight': 'WAZIRI WA AFYA',
@@ -2370,6 +2503,7 @@
             'nav_faqs': 'FAQ',
             'nav_executive_hub': 'Hub Exécutif',
             'nav_donate': 'Faire un Don',
+            'language_label': 'Français',
             'hero_badge': "🇺🇬 Leadership en Santé de l'Ouganda",
             'hero_title': 'CONSORTIUM DES MINISTRES DE LA SANTÉ INTER-UNIVERSITAIRE',
             'hero_highlight': 'MINISTRES DE LA SANTÉ',
@@ -2494,6 +2628,7 @@
             'nav_faqs': 'Preguntas Frecuentes',
             'nav_executive_hub': 'Hub Ejecutivo',
             'nav_donate': 'Donar',
+            'language_label': 'Español',
             'hero_badge': "🇺🇬 Liderazgo en Salud de Uganda",
             'hero_title': 'CONSORCIO DE MINISTROS DE SALUD INTERUNIVERSITARIO',
             'hero_highlight': 'MINISTROS DE SALUD',
@@ -2618,6 +2753,7 @@
             'nav_faqs': 'FAQ',
             'nav_executive_hub': 'Executive Hub',
             'nav_donate': 'Spenden',
+            'language_label': 'Deutsch',
             'hero_badge': "🇺🇬 Ugandas Gesundheitsführung",
             'hero_title': 'INTERUNIVERSITÄRES KONSORTIUM DER GESUNDHEITSMINISTER',
             'hero_highlight': 'GESUNDHEITSMINISTER',
@@ -2730,8 +2866,6 @@
         localStorage.setItem('preferredLanguage', lang);
         
         // Update language selector
-        document.getElementById('languageSelector').value = lang;
-        
         // Update all text elements with data-key attribute
         document.querySelectorAll('[data-key]').forEach(element => {
             const key = element.getAttribute('data-key');
@@ -2807,7 +2941,33 @@
                 }
             });
         }
+        
+        // Update language toggle button text
+        const langToggle = document.querySelector('.lang-toggle');
+        if (langToggle && translations[lang] && translations[lang]['language_label']) {
+            const globeIcon = langToggle.querySelector('.fa-globe');
+            const chevronIcon = langToggle.querySelector('.fa-chevron-down');
+            if (globeIcon && chevronIcon) {
+                langToggle.innerHTML = globeIcon.outerHTML + ' <span class="lang-text" data-key="language_label">' + translations[lang]['language_label'] + '</span> ' + chevronIcon.outerHTML;
+            }
+        }
+        
+        // Close dropdown after selection
+        document.querySelector('.lang-dropdown').classList.remove('open');
     }
+
+    // ===== LANGUAGE DROPDOWN TOGGLE =====
+    function toggleLangDropdown() {
+        document.querySelector('.lang-dropdown').classList.toggle('open');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.querySelector('.lang-dropdown');
+        if (dropdown && !dropdown.contains(event.target)) {
+            dropdown.classList.remove('open');
+        }
+    });
 
     // ===== LOAD SAVED LANGUAGE =====
     function loadLanguage() {
@@ -2928,14 +3088,17 @@
             document.querySelector('.dropdown-toggle').style.display = 'none';
             document.querySelector('.dark-toggle').style.display = 'none';
             document.querySelector('.btn-primary').style.display = 'none';
+            document.querySelector('.lang-toggle').style.display = 'none';
             this.querySelector('i').classList.remove('fa-times');
             this.querySelector('i').classList.add('fa-bars');
             document.querySelector('.nav-dropdown').classList.remove('open');
+            document.querySelector('.lang-dropdown').classList.remove('open');
         } else {
             document.querySelectorAll('.nav-link-pill:not(.dropdown-toggle)').forEach(el => el.style.display = 'inline-flex');
             document.querySelector('.dropdown-toggle').style.display = 'inline-flex';
             document.querySelector('.dark-toggle').style.display = 'inline-flex';
             document.querySelector('.btn-primary').style.display = 'inline-flex';
+            document.querySelector('.lang-toggle').style.display = 'inline-flex';
             this.querySelector('i').classList.remove('fa-bars');
             this.querySelector('i').classList.add('fa-times');
         }
@@ -2954,6 +3117,7 @@
         const toggle = document.querySelector('.dropdown-toggle');
         const darkToggle = document.querySelector('.dark-toggle');
         const donateBtn = document.querySelector('.btn-primary');
+        const langToggle = document.querySelector('.lang-toggle');
         const menuIcon = document.getElementById('menuToggle').querySelector('i');
         
         if (window.innerWidth <= 768) {
@@ -2961,14 +3125,17 @@
             toggle.style.display = 'none';
             darkToggle.style.display = 'none';
             donateBtn.style.display = 'none';
+            langToggle.style.display = 'none';
             menuIcon.classList.add('fa-bars');
             menuIcon.classList.remove('fa-times');
             document.querySelector('.nav-dropdown').classList.remove('open');
+            document.querySelector('.lang-dropdown').classList.remove('open');
         } else {
             pills.forEach(p => p.style.display = 'inline-flex');
             toggle.style.display = 'inline-flex';
             darkToggle.style.display = 'inline-flex';
             donateBtn.style.display = 'inline-flex';
+            langToggle.style.display = 'inline-flex';
         }
     }
 
